@@ -25,3 +25,4 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard/single', function () {
     return view('admin.single');
 });
+
