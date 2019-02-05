@@ -55,7 +55,7 @@ class RegisterController extends Controller
             // 'lab_id'=> ['alpha_dash', 'unique:users'],
             // 'role'=>  ['required'],
             // 'power'=>  ['required'],
-            'image'=>  [],
+            'image'=>  ['image'],
             'phone'=>  ['required'],
             'edu_dept'=>  ['required'],
             'edu_varsity'=>  ['required'],

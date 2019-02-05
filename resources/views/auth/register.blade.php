@@ -79,7 +79,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Profile Photo<!--  (Optional) --></label>
 
                             <div class="col-md-6">
-                                <input type="file" class="form-control-file {{ $errors->has('image') ? ' is-invalid' : '' }}" id="exampleFormControlFile1" name="image">
+                                <input type="file" class="form-control-file {{ $errors->has('image') ? ' is-invalid' : '' }}" id="exampleFormControlFile1" name="image" accept="image/*">
                                 <!-- <p class="help-block">Equal ratio. (example: 100*100)</p> -->
                                 <!-- <input id="name" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus> -->
 
