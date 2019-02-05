@@ -61,6 +61,62 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Phone</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
+
+                                @if ($errors->has('phone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Department</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('edu_dept') ? ' is-invalid' : '' }}" name="edu_dept" value="{{ old('edu_dept') }}" required autofocus>
+
+                                @if ($errors->has('edu_dept'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('edu_dept') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">University</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('edu_varsity') ? ' is-invalid' : '' }}" name="edu_varsity" value="{{ old('edu_varsity') }}" required autofocus>
+
+                                @if ($errors->has('edu_varsity'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('edu_varsity') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Country Of University</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('edu_country') ? ' is-invalid' : '' }}" name="edu_country" value="{{ old('edu_country') }}" required autofocus>
+
+                                @if ($errors->has('edu_country'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('edu_country') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
