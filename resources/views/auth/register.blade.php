@@ -8,7 +8,7 @@
                 <div class="card-header"><b>Let's Join As A Researcher</b></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -70,6 +70,22 @@
                                 @if ($errors->has('phone'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Profile Photo<!--  (Optional) --></label>
+
+                            <div class="col-md-6">
+                                <input type="file" class="form-control-file {{ $errors->has('image') ? ' is-invalid' : '' }}" id="exampleFormControlFile1" name="image">
+                                <!-- <p class="help-block">Equal ratio. (example: 100*100)</p> -->
+                                <!-- <input id="name" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus> -->
+
+                                @if ($errors->has('image'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('image') }}</strong>
                                     </span>
                                 @endif
                             </div>

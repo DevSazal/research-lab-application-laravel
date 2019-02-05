@@ -55,7 +55,7 @@ class RegisterController extends Controller
             // 'lab_id'=> ['alpha_dash', 'unique:users'],
             // 'role'=>  ['required'],
             // 'power'=>  ['required'],
-            // 'image'=>  [],
+            'image'=>  [],
             'phone'=>  ['required'],
             'edu_dept'=>  ['required'],
             'edu_varsity'=>  ['required'],
@@ -71,6 +71,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // if ($request->hasFile('image')) {
+        //         // your code here
+        //     }
+        
+        if(isset($data['image'])){
+            if($data['image']->getClientOriginalName()){
+                    $ext = $data['image']->getClientOriginalExtension();
+                    $file = date('YmdHis').'_'.rand(1,999).'.'.$ext;
+                    $data['image']->storeAs('public/profile',$file);
+                }else{
+                    $file = NULL;
+                }
+        }else{
+            $file = NULL;    
+        }
+                
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -79,7 +95,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'role' => 1,
             'power' => 0,
-            'image' => NULL,
+            'image' => $file,
             'edu_dept' => $data['edu_dept'],
             'edu_varsity' => $data['edu_varsity'],
             'edu_country' => $data['edu_country'],
