@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header"><b>Let's Join As A Researcher</b></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -79,7 +79,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Department</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('edu_dept') ? ' is-invalid' : '' }}" name="edu_dept" value="{{ old('edu_dept') }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('edu_dept') ? ' is-invalid' : '' }}" name="edu_dept" value="{{ old('edu_dept') }}" placeholder="B.Sc in Software Engineering" required autofocus>
 
                                 @if ($errors->has('edu_dept'))
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +93,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">University</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('edu_varsity') ? ' is-invalid' : '' }}" name="edu_varsity" value="{{ old('edu_varsity') }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('edu_varsity') ? ' is-invalid' : '' }}" name="edu_varsity" value="{{ old('edu_varsity') }}" placeholder="Daffodil International University" required autofocus>
 
                                 @if ($errors->has('edu_varsity'))
                                     <span class="invalid-feedback" role="alert">
@@ -104,10 +104,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Country Of University</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Country of University</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('edu_country') ? ' is-invalid' : '' }}" name="edu_country" value="{{ old('edu_country') }}" required autofocus>
+                                <select class="form-control {{ $errors->has('edu_country') ? ' is-invalid' : '' }}" id="country" name="edu_country"></select>
+                                <!-- <input id="name" type="text" class="form-control{{ $errors->has('edu_country') ? ' is-invalid' : '' }}" name="edu_country" value="{{ old('edu_country') }}" placeholder="Bangladesh" required autofocus> -->
 
                                 @if ($errors->has('edu_country'))
                                     <span class="invalid-feedback" role="alert">
@@ -130,4 +131,8 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('AdminSD/assets/js/countries.js') }}"></script>
+<script language="javascript">
+    populateCountries("country");
+</script>
 @endsection
