@@ -25,3 +25,8 @@ Route::get('/app', function () {
 Route::get('/app/single', function () {
     return view('admin.single');
 });
+
+Route::get('/app/traning', function () {
+    return view('admin.single');
+});
+
