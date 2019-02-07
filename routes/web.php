@@ -30,3 +30,4 @@ Route::get('/app/single', function () {
 //     return view('admin.single');
 // });
 
+
