@@ -15,13 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/app', function () {
-    return view('admin.index');
-});
 Route::get('/app/single', function () {
     return view('admin.single');
 });
@@ -33,6 +26,13 @@ Route::get('/app/single', function () {
 Route::get('/app/workshop', function () {
     return view('admin.single');
 });
+
+Auth::routes();
+
+// Admin Route Start
+Route::get('/app', 'Admin\RootController@index')->name('app');
+
+
 
 
 
