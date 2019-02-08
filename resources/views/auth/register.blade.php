@@ -134,6 +134,23 @@
                             </div>
                         </div>
 
+                        <!-- bKash payment -->
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">bKash TrxID</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('trxid') ? ' is-invalid' : '' }}" name="trxid" value="{{ old('trxid') }}" placeholder="" required autofocus>
+
+                                @if ($errors->has('trxid'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('trxid') }}</strong>
+                                    </span>
+                                @endif
+
+                                <p class="help-block" style="padding-top: 10px; color: green; font-weight: bold">* First, you have to send 500BDT on this bKash number 01700110022. Then, enter your bKash TrxID into the form.</p>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

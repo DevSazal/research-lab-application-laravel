@@ -60,6 +60,7 @@ class RegisterController extends Controller
             'edu_dept'=>  ['required'],
             'edu_varsity'=>  ['required'],
             'edu_country'=>  ['required'],
+            'trxid'=>  ['required'],
         ]);
     }
 
@@ -99,6 +100,7 @@ class RegisterController extends Controller
             'edu_dept' => $data['edu_dept'],
             'edu_varsity' => $data['edu_varsity'],
             'edu_country' => $data['edu_country'],
+            'bkash_trxid' => $data['trxid'],
 
 
         ]);
