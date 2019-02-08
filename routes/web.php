@@ -30,4 +30,9 @@ Route::get('/app/single', function () {
 //     return view('admin.single');
 // });
 
+Route::get('/app/workshop', function () {
+    return view('admin.single');
+});
+
+
 
