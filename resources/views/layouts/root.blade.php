@@ -119,10 +119,14 @@
                         </a>
                     </li> -->
                     <li class="">
-                        <a href="upgrade.html">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
                             <i class="ti-export"></i>
                             <p style="text-transform: capitalize;">Sign Out</p>
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -178,7 +182,8 @@
 
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
+
+                    <div class="row" id="board">
                         <div class="col-lg-3 col-sm-6">
                             <div class="card">
                                 <div class="content">
@@ -343,7 +348,7 @@
 <script src="{{ asset('AdminSD/assets/js/bootstrap-notify.js') }}"></script>
 
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="{{ asset('AdminSD/https://maps.googleapis.com/maps/api/js') }}"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
 <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 <script src="{{ asset('AdminSD/assets/js/paper-dashboard.js') }}"></script>

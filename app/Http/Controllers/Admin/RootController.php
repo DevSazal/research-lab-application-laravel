@@ -13,7 +13,11 @@ class RootController extends Controller
     }
 
     public function index(){
-    	
+
     	return view('admin.index');
+    }
+    public function newUser(){
+    	
+    	return view('admin.users');
     }
 }
