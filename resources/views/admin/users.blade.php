@@ -24,6 +24,9 @@
             font-weight: bold;
             font-size: 1em;
         }
+        .btn{
+            border-width: 2px;
+        }
     </style>
 
                     <div class="row">
@@ -67,14 +70,19 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-info btn-sm">Accept</a>
-
-                                                    <form method="POST" action="{{ url('app/user/verify', $user->id) }}">
-                                                        @method('PUT')
-                                                        @csrf
-                                                    </form>
-
-                                                    <a href="" class="btn btn-denger btn-sm">Edit</a>
+                                                    @if($user->power == 0)
+                                                        <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a>
+                                                        <form id="accept" method="POST" action="{{ url('app/user/verify', $user->id) }}">
+                                                            @method('PUT')
+                                                            @csrf
+                                                        </form>
+                                                    @else
+                                                        <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a>
+                                                        <form id="wait" method="POST" action="{{ url('app/user/unverify', $user->id) }}">
+                                                            @method('PUT')
+                                                            @csrf
+                                                        </form>
+                                                    @endif                                                    
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -179,5 +187,24 @@
                     </div> -->
 
 
+<script>
+     // showNotification('top','right');
+    function showNotification(from, align){
+    color = Math.floor((Math.random() * 4) + 1);
+
+    $.notify({
+        icon: "ti-gift",
+        message: "XXXX Welcome to <b>Paper Dashboard</b> - a beautiful freebie for every web developer."
+
+    },{
+        type: type[color],
+        timer: 4000,
+        placement: {
+            from: from,
+            align: align
+        }
+    });
+}
+</script>
 
 @endsection

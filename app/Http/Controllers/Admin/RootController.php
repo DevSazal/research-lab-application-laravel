@@ -25,15 +25,23 @@ class RootController extends Controller
     }
 
 
-    public function reqUpdate($id){
+    public function verifyResearchUser($id){
 
     	$user = User::find($id);
     	$user->power = 1;
     	$user->save();
 
     	return redirect('app/user');
-    	
-    	// $array['users'] = User::where('role', 1)->paginate(5);
-    	// return view('admin.users')->with($array);
+
+    }
+
+    public function unverifyResearchUser($id){
+
+    	$user = User::find($id);
+    	$user->power = 0;
+    	$user->save();
+
+    	return redirect('app/user');
+
     }
 }
