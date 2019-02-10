@@ -23,12 +23,15 @@ class RootController extends Controller
     	$array['users'] = User::where('role', 1)->paginate(5);
     	return view('admin.users')->with($array);
     }
-    public function reqUpdate($id, User $user){
 
+
+    public function reqUpdate($id){
+
+    	$user = User::find($id);
     	$user->power = 1;
     	$user->save();
 
-    	return redirect('app/user/requests');
+    	return redirect('app/user');
     	
     	// $array['users'] = User::where('role', 1)->paginate(5);
     	// return view('admin.users')->with($array);

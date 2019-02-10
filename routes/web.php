@@ -31,7 +31,7 @@ Auth::routes();
 
 // Admin Route Start
 Route::get('/app', 'Admin\RootController@index')->name('app');
-Route::get('/app/requests', 'Admin\RootController@newUser')->name('requests');
+Route::get('/app/user', 'Admin\RootController@newUser')->name('request');
 Route::put('/app/user/verify/{id}', 'Admin\RootController@reqUpdate',);
 
 
