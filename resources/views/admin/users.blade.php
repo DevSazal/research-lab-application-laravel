@@ -51,91 +51,28 @@
                                             <th>Action</th>
                                         </thead>
                                         <tbody>
+                                            @foreach($users as $user)
                                             <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Nigerdhydfdgf@gmail.com</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Test</td>
+                                                <td>{{ $user->id }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->edu_dept }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->phone }}</td>
+                                                <td>{{ $user->bKash_trxid }}</td>
                                                 <td>
-                                                    <span class="label label-success">Published</span>
+                                                    @if($user->power == 1)
+                                                        <span class="label label-success">Accepted</span>
+                                                    @else
+                                                        <span class="label label-warning">Pending</span>
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     <a href="" class="btn btn-info btn-sm">Edit</a>
                                                     <a href="" class="btn btn-denger btn-sm">Edit</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                                <td>Test</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Test</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                                <td>Test</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Test</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                                <td>Test</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Test</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                                <td>Test</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
+                                            @endforeach
+                                            
                                             
                                         </tbody>
                                     </table>
@@ -143,7 +80,8 @@
                                 </div>
                                 <!--pagination-->
                                 <nav class="pagination-box" aria-label="Page navigation">
-                                    <ul class="pagination" role="navigation">
+                                    {{ $users->links() }}
+                                    <!-- <ul class="pagination" role="navigation">
                                         <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
                                             <span class="page-link" aria-hidden="true">‹</span>
                                         </li>
@@ -153,7 +91,7 @@
                                         <li class="page-item">
                                             <a class="page-link" href="#" rel="next" aria-label="Next »">›</a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </nav>
                                 <!--pagination END-->
                             </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\User;
+
 class RootController extends Controller
 {
     public function __construct()
@@ -18,6 +20,7 @@ class RootController extends Controller
     }
     public function newUser(){
     	
-    	return view('admin.users');
+    	$array['users'] = User::paginate(1);
+    	return view('admin.users')->with($array);
     }
 }
