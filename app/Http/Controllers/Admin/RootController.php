@@ -20,7 +20,17 @@ class RootController extends Controller
     }
     public function newUser(){
     	
-    	$array['users'] = User::paginate(1);
+    	$array['users'] = User::where('role', 1)->paginate(5);
     	return view('admin.users')->with($array);
+    }
+    public function reqUpdate($id, User $user){
+
+    	$user->power = 1;
+    	$user->save();
+
+    	return redirect('app/user/requests');
+    	
+    	// $array['users'] = User::where('role', 1)->paginate(5);
+    	// return view('admin.users')->with($array);
     }
 }

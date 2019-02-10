@@ -58,7 +58,7 @@
                                                 <td>{{ $user->edu_dept }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->phone }}</td>
-                                                <td>{{ $user->bKash_trxid }}</td>
+                                                <td>{{ $user->bkash_trxid }}</td>
                                                 <td>
                                                     @if($user->power == 1)
                                                         <span class="label label-success">Accepted</span>
@@ -67,7 +67,13 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="" class="btn btn-info btn-sm">Edit</a>
+                                                    <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-info btn-sm">Accept</a>
+
+                                                    <form method="POST" action="{{ url('app/user/verify', $user->id) }}">
+                                                        @method('PUT')
+                                                        @csrf
+                                                    </form>
+
                                                     <a href="" class="btn btn-denger btn-sm">Edit</a>
                                                 </td>
                                             </tr>
