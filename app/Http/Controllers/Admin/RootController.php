@@ -20,7 +20,7 @@ class RootController extends Controller
     }
     public function newUser(){
     	
-    	$array['users'] = User::where('role', 1)->paginate(5);
+    	$array['users'] = User::where('role', 1)->orderBy('id', 'desc')->paginate(5);
     	return view('admin.users')->with($array);
     }
 
