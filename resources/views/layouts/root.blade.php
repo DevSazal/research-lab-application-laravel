@@ -37,8 +37,9 @@
 
 </head>
 
-<body>
+<body onload="myLoader()">
     
+    <div id="preloader"></div>  
 
     <div class="wrapper">
         <div class="sidebar" data-background-color="white" data-active-color="danger">
@@ -374,5 +375,27 @@
 
     });
 </script>
+<script>
+        
+        var preloader = document.getElementById("preloader");
+
+        // function myLoader(){
+        //     preloader.style.display = 'none';
+        //     // without fixed time
+        // };
+
+
+        function myLoader(){
+
+            var time = 300;
+            setTimeout(function() {
+
+                 preloader.style.display = 'none';
+                 
+            },time);
+            
+        };
+
+    </script>
 
 </html>
