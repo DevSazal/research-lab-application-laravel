@@ -20,18 +20,33 @@
                                 <h4 class="title">Enter New Profile Information</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form action="{{ route('storeUser') }}" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input type="text" class="form-control border-input" placeholder="Username" value="michael23">
+                                                <input type="text" class="form-control border-input {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" name="name" value="{{ old('name') }}">
+
+                                                @if ($errors->has('name'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('name') }}</strong>
+                                                    </span>
+                                                @endif
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control border-input" placeholder="Email">
+                                                <label for="exampleInputEmail1">Email Address</label>
+                                                <input type="email" class="form-control border-input {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" name="email" value="{{ old('email') }}">
+
+                                                @if ($errors->has('email'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>
@@ -40,7 +55,13 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" class="form-control border-input" placeholder="" value="">
+                                                <input type="password" class="form-control border-input {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="">
+
+                                                @if ($errors->has('password'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('password') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +70,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Confirm Password</label>
-                                                <input type="password" class="form-control border-input"  name="password_confirmation" placeholder="" value="">
+                                                <input type="password" class="form-control border-input"  name="password_confirmation" placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +79,13 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="text" class="form-control border-input" placeholder="015********" value="">
+                                                <input type="text" class="form-control border-input {{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="015********" name="phone" value="{{ old('phone') }}">
+
+                                                @if ($errors->has('phone'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('phone') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -67,13 +94,26 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Designation</label>
-                                                <input type="text" class="form-control border-input" placeholder="Assistant Professor">
+                                                <input type="text" class="form-control border-input {{ $errors->has('designation') ? ' is-invalid' : '' }}" placeholder="Assistant Professor" name="designation" value="{{ old('designation') }}">
+
+                                                @if ($errors->has('designation'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('designation') }}</strong>
+                                                    </span>
+                                                @endif
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Workplace</label>
-                                                <input type="text" class="form-control border-input" placeholder="Daffodil International University" value="Daffodil International University">
+                                                <input type="text" class="form-control border-input  {{ $errors->has('workplace') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="Daffodil International University" name="workplace">
+
+                                                @if ($errors->has('workplace'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('workplace') }}</strong>
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
