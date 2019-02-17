@@ -25,9 +25,9 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('image')->nullable();
             $table->rememberToken();
-            $table->string('edu_dept');
-            $table->string('edu_varsity');
-            $table->string('edu_country');
+            $table->string('edu_dept')->nullable();
+            $table->string('edu_varsity')->nullable();
+            $table->string('edu_country')-nullable();
             $table->string('designation')->nullable();
             $table->string('company')->nullable();
             $table->timestamps();

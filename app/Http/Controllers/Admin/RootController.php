@@ -44,6 +44,9 @@ class RootController extends Controller
     	return redirect('app/user');
 
     }
+    public function addUser(){
+    	return view('admin.add-supervisor');
+    }
 }
 
 

@@ -144,7 +144,7 @@
                             <span class="icon-bar bar2"></span>
                             <span class="icon-bar bar3"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Dashboard</a>
+                        <a class="navbar-brand" href="#">@yield('pagetitle')</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -154,21 +154,7 @@
                                     <p>Stats</p>
                                 </a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-                                    <p>Notifications</p>
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Notification 1</a></li>
-                                    <li><a href="#">Notification 2</a></li>
-                                    <li><a href="#">Notification 3</a></li>
-                                    <li><a href="#">Notification 4</a></li>
-                                    <li><a href="#">Another notification</a></li>
-                                </ul>
-                            </li>
+                            
                             <li>
                                 <a href="#">
                                     <i class="ti-settings"></i>
@@ -185,108 +171,9 @@
             <div class="content">
                 <div class="container-fluid">
 
-                    <div class="row" id="board">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <div class="icon-big icon-warning text-center">
-                                                <i class="ti-book"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>Research</p>
-                                                105
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="ti-reload"></i> Updated now
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <div class="icon-big icon-success text-center">
-                                                <i class="ti-stats-up"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>Open</p>
-                                                1,345
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="ti-calendar"></i> Last day
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <div class="icon-big icon-danger text-center">
-                                                <i class="ti-reload"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>Running</p>
-                                                23
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="ti-timer"></i> In the last hour
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <div class="icon-big icon-info text-center">
-                                                <i class="ti-check"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>Completed</p>
-                                                45
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="footer">
-                                        <hr />
-                                        <div class="stats">
-                                            <i class="ti-reload"></i> Updated now
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+
+
 
 
 
@@ -360,41 +247,41 @@
 <script src="{{ asset('AdminSD/assets/js/main.js') }}"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    // $(document).ready(function () {
 
-        demo.initChartist();
+    //     demo.initChartist();
 
-        $.notify({
-            icon: 'ti-gift',
-            message: "Welcome to <b>Cyber Research Lab</b> - a beautiful connectivity platform for researcher."
+    //     $.notify({
+    //         icon: 'ti-gift',
+    //         message: "Welcome to <b>Cyber Research Lab</b> - a beautiful connectivity platform for researcher."
 
-        }, {
-                type: 'success',
-                timer: 4000
-            });
+    //     }, {
+    //             type: 'success',
+    //             timer: 4000
+    //         });
 
-    });
+    // });
 </script>
 <script>
         
         var preloader = document.getElementById("preloader");
 
-        // function myLoader(){
-        //     preloader.style.display = 'none';
-        //     // without fixed time
-        // };
-
-
         function myLoader(){
-
-            var time = 300;
-            setTimeout(function() {
-
-                 preloader.style.display = 'none';
-                 
-            },time);
-            
+            preloader.style.display = 'none';
+            // without fixed time
         };
+
+
+        // function myLoader(){
+
+        //     var time = 300;
+        //     setTimeout(function() {
+
+        //          preloader.style.display = 'none';
+                 
+        //     },time);
+            
+        // };
 
     </script>
 
