@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-// use Illuminate\Routing\Redirector;
+// use App\Http\Requests\storeUserForm;
 
 class AdminController extends Controller
 {
@@ -34,28 +34,31 @@ class AdminController extends Controller
 
 	    //  
 
-	    $user = User::create([
-	    	'name' => $request->input('name'),
-	    	'email' => $request->input('email'),
-	    	'password' => Hash::make($request->input('password')),
-	    	'phone'=> $request->input('phone'),
-	    	'designation' => $request->input('designation'),
-	    	'company' => $request->input('company'),
-	    	'role' => 2,
-	    	'power' => 1,
-	    ]);
+		if ($validator->fails()) {
+		        return back()
+		                ->withErrors($validator)
+		                ->withInput();
+		    }else{
 
-	    if($user){
-	    	return redirect()->route('storeUser')->with('success', 'New supervisor added successfully!');
-	    }else{
-	    	return back()->withInput()->withErrorts($validator);
-	    }
+		    	// The blog post is valid...
 
-	    // The blog post is valid...
+		        $user = User::create([
+			    	'name' => $request->input('name'),
+			    	'email' => $request->input('email'),
+			    	'password' => Hash::make($request->input('password')),
+			    	'phone'=> $request->input('phone'),
+			    	'designation' => $request->input('designation'),
+			    	'company' => $request->input('company'),
+			    	'role' => 2,
+			    	'power' => 1,
+			    ]);
+
+			    return redirect()->route('storeUser')->with('success', 'New supervisor added successfully!');
+		    }
+
 
 	    // dd($validator);
 
-	    
 
 	}
 }
