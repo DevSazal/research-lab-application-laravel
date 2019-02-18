@@ -5,11 +5,7 @@
 
 
 @section('content')
-    <style>
-        #board{
-            display: none;
-        }
-    </style>
+
 
             <!-- content code start -->
 
@@ -39,7 +35,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email Address</label>
-                                                <input type="email" class="form-control border-input {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" name="email" value="{{ old('email') }}">
+                                                <input type="email" class="form-control border-input {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" name="email" value="{{ old('email') }}" autocomplete="off">
 
                                                 @if ($errors->has('email'))
                                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +51,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" class="form-control border-input {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="">
+                                                <input type="password" class="form-control border-input {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="" name="password" autocomplete="off">
 
                                                 @if ($errors->has('password'))
                                                     <span class="invalid-feedback" role="alert">
@@ -107,7 +103,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Workplace</label>
-                                                <input type="text" class="form-control border-input  {{ $errors->has('workplace') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="Daffodil International University" name="workplace">
+                                                <input type="text" class="form-control border-input  {{ $errors->has('workplace') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="{{ old('workplace') ? old('workplace') : 'Daffodil International University' }}" name="workplace">
 
                                                 @if ($errors->has('workplace'))
                                                     <span class="invalid-feedback" role="alert">

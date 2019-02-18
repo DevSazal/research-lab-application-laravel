@@ -18,6 +18,7 @@ class AdminController extends Controller
     }
 
     public function createUser(){
+    	
     	return view('admin.add-supervisor');
     }
 
@@ -29,7 +30,7 @@ class AdminController extends Controller
 	        'password' => 'required|string|min:6|confirmed',
             'phone'=>  'required',
             'designation'=>  'required',
-            'company'=>  'required',
+            'workplace'=>  'required',
 	    ]);
 
 	    //  
@@ -48,12 +49,12 @@ class AdminController extends Controller
 			    	'password' => Hash::make($request->input('password')),
 			    	'phone'=> $request->input('phone'),
 			    	'designation' => $request->input('designation'),
-			    	'company' => $request->input('company'),
+			    	'company' => $request->input('workplace'),
 			    	'role' => 2,
 			    	'power' => 1,
 			    ]);
 
-			    return redirect()->route('storeUser')->with('success', 'New supervisor added successfully!');
+			    return redirect()->route('createUser');
 		    }
 
 

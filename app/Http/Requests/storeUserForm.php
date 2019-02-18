@@ -29,7 +29,7 @@ class storeUserForm extends FormRequest
             'password' => 'required|string|min:6|confirmed',
             'phone'=>  'required',
             'designation'=>  'required',
-            'company'=>  'required',
+            'workplace'=>  'required',
         ];
     }
 }
