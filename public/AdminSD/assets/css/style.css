@@ -10,6 +10,12 @@
     /*-webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;*/
 }
+
+/*right button*/
+.card .header .btn{
+    float: right;
+    margin-top: -33px;
+}
 .sidebar .nav p, .off-canvas-sidebar .nav p {
     margin: 0;
     line-height: 30px;

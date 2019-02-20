@@ -22,7 +22,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-        $array['skills'] = Skill::paginate(1);
+        $array['skills'] = Skill::paginate(15);
         return view('admin.skill.index')->with($array);
     }
 
@@ -33,7 +33,8 @@ class SkillController extends Controller
      */
     public function create()
     {
-        return view('admin.skill.create');
+        $array['skills'] = Skill::paginate(8);
+        return view('admin.skill.create')->with($array);
     }
 
     /**
@@ -68,7 +69,9 @@ class SkillController extends Controller
      */
     public function edit($id)
     {
-        //
+        $array['skill'] = Skill::find($id);
+        $array['skills'] = Skill::paginate(8);
+        return view('admin.skill.edit')->with($array);
     }
 
     /**
@@ -80,7 +83,10 @@ class SkillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $skill = Skill::find($id);
+        $skill->title = $request->title;
+        $skill->save();
+        return redirect('app/skill');
     }
 
     /**
@@ -91,6 +97,7 @@ class SkillController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Skill::destroy($id);
+        return redirect('app/skill');
     }
 }

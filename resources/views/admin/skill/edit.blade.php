@@ -1,35 +1,55 @@
 @extends('layouts.root')
 
 @section('title', 'New User List | Cyber Security Center by Appsolic Lab')
-@section('pagetitle', 'Dashboard')
+@section('pagetitle', 'Add Skill')
 
 
 @section('content')
-    <style>
-        #board{
-            display: none;
-        }
-        .table-striped tbody > tr:nth-of-type(2n) {
-            background-color: #FFF;
-        }
-        .table-striped tbody > tr:hover {
-            background-color: #f5f5f5;
-        }
-        .btn-sm {
-            font-size: 12px;
-            border-radius: 26px;
-            padding: 4px 10px;
-            margin-top: -4px;
-            margin-bottom: -4px;
-        }
-        .table-striped > thead > tr > th{
-            font-weight: bold;
-            font-size: 1em;
-        }
-        .btn{
-            border-width: 2px;
-        }
-    </style>
+
+
+            <!-- content code start -->
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Add New Skill</h4>
+                            </div>
+                            <div class="content">
+                                <form action="{{ route('admin.skill.update', $skill->id) }}" method="post">
+                                    @csrf
+                                    @method('PATCH')
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="type skill title" name="title" value="{{$skill->title}}" required>
+
+                                                @if ($errors->has('title'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('title') }}</strong>
+                                                    </span>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div>
+                          
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
 
                     <div class="row">
 
@@ -37,6 +57,7 @@
                             <div class="card">
                                 <div class="header">
                                     <h3 class="title"><b>Skill List</b></h3>
+
                                     <a href="{{ route('admin.skill.create') }}" class="btn btn-success"> + Add New Skill</a>
                                 </div>
                                 
@@ -113,10 +134,10 @@
                         </div>
                     </div>
 
+            
+
+            <!-- content code end -->
 
 
-<script>
-
-</script>
 
 @endsection
