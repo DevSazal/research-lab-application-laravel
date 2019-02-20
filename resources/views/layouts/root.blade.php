@@ -102,6 +102,16 @@
                             <p>Contest</p>
                         </a>
                     </li>
+                    <li data-panelId="panel4" class="dropdown-btn">
+                        <a href="{{ route('admin.skill.index') }}">
+                            <i class="ti-blackboard"></i>
+                            <p>Skill <b class="caret"></b></p>
+                        </a>
+                        <ul id="panel4" class="dropdown-ul">
+                            <li><a href="{{ route('admin.skill.index') }}"><span>T</span><span>All skills</span></a></li>
+                            <li><a href="{{ route('admin.skill.create') }}"><span>T</span><span>Add skill</span></a></li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="user.html">
                             <i class="ti-user"></i>
