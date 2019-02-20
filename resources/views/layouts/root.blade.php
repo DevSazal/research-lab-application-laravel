@@ -57,8 +57,14 @@
                 </div>
 
                 <ul class="nav">
-                    <li class="active">
-                        <a href="dashboard.html">
+                    <?php $segment = Request::segment(2) ?>
+                    @guest
+                    @else
+                    <li class="
+                    @if(!$segment)
+                        active
+                    @endif">
+                        <a href="{{ url('/app')}}">
                             <i class="ti-panel"></i>
                             <p>My Feed</p>
                         </a>
@@ -102,14 +108,23 @@
                             <p>Contest</p>
                         </a>
                     </li>
-                    <li data-panelId="panel4" class="dropdown-btn">
+                    <li data-panelId="panel4" class="
+                            @if($segment=='skill')
+                            active
+                            @endif dropdown-btn">
                         <a href="{{ route('admin.skill.index') }}">
                             <i class="ti-blackboard"></i>
-                            <p>Skill <b class="caret"></b></p>
+                            <p>Skill @if($segment=='skill')@else<b class="caret"></b>@endif</p>
                         </a>
                         <ul id="panel4" class="dropdown-ul">
-                            <li><a href="{{ route('admin.skill.index') }}"><span>T</span><span>All skills</span></a></li>
-                            <li><a href="{{ route('admin.skill.create') }}"><span>T</span><span>Add skill</span></a></li>
+                            <li><a href="{{ route('admin.skill.index') }}" class="
+                                @if($segment=='skill' && !Request::segment(3))
+                                open
+                                @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>All skills</span></a></li>
+                            <li><a href="{{ route('admin.skill.create') }}" class="
+                                @if($segment=='skill' && Request::segment(3)=='create')
+                                open
+                                @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>Add skill</span></a></li>
                         </ul>
                     </li>
                     <li>
@@ -140,6 +155,7 @@
                             @csrf
                         </form>
                     </li>
+                    @endguest
                 </ul>
             </div>
         </div>

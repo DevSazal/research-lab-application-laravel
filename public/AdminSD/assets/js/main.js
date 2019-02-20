@@ -4,4 +4,9 @@ $(document).ready(function(){
         var panelId = $(this).attr('data-panelId');
         $("#"+panelId).slideToggle();
     });
+    // $(".dropdown-btn").hover(function(){
+    //     var panelId = $(this).attr('data-panelId');
+    //     $("#"+panelId).slideToggle();
+    // });
+    // $(".abc").slideToggle();
 });

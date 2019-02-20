@@ -16,6 +16,18 @@
     float: right;
     margin-top: -33px;
 }
+.sidebar .nav li ul li i{
+    font-size: 12px;
+    line-height: 19px;
+    margin-right: -20px;
+}
+ul li ul li a:hover{
+    color: #2c3e50 !important;
+    font-weight: bold !important;
+}
+ul li ul .open{
+    color: #55c57a !important;
+}
 .sidebar .nav p, .off-canvas-sidebar .nav p {
     margin: 0;
     line-height: 30px;
