@@ -1,6 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'Dashboard | Cyber Security Center by Appsolic Lab')
+@section('title', 'Dashboard - ')
+@section('pagetitle', 'My Feed')
 
 @section('content')
 

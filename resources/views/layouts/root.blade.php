@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Applied Reaserch Application | @yield('title')</title>
+    <title>@yield('title')Applied Reaserch Application | Cyber Security Center | Developed by Appsolic Lab</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />

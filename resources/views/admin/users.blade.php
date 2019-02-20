@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'New User List | Cyber Security Center by Appsolic Lab')
-@section('pagetitle', 'Dashboard')
+@section('title', 'Researcher - ')
+@section('pagetitle', 'Researcher')
 
 
 @section('content')

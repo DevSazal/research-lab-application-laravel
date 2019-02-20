@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'New User List | Cyber Security Center by Appsolic Lab')
-@section('pagetitle', 'Add Skill')
+@section('title', 'Edit Skill - ')
+@section('pagetitle', 'Edit Skill')
 
 
 @section('content')
@@ -13,7 +13,7 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Add New Skill</h4>
+                                <h4 class="title">Edit Skill</h4>
                             </div>
                             <div class="content">
                                 <form action="{{ route('admin.skill.update', $skill->id) }}" method="post">
