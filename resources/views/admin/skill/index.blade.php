@@ -68,14 +68,16 @@
                                                     @endif
                                                 </td> -->
                                                 <td>
+                                                        <button onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Edit</button>
+                                                        <button onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Delete</button>
                                                     
-                                                        <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a>
+                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->
                                                         <form id="accept" method="POST" action="{{ url('app/user/verify', $skill->id) }}">
                                                             @method('PUT')
                                                             @csrf
                                                         </form>
                                                     
-                                                        <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a>
+                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a> -->
                                                         <form id="wait" method="POST" action="{{ url('app/user/unverify', $skill->id) }}">
                                                             @method('PUT')
                                                             @csrf
