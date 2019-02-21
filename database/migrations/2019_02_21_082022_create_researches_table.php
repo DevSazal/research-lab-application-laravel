@@ -15,6 +15,12 @@ class CreateResearchesTable extends Migration
     {
         Schema::create('researches', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->string('title');
+            $table->longText('description');
+            $table->string('fingerprint')->nullable();
+            $table->dateTime('expire_at');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
