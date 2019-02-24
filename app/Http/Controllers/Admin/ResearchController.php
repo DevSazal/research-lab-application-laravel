@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ResearchControlller extends Controller
+class ResearchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class ResearchControlller extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.research.create');
     }
 
     /**

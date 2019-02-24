@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'Add Skill - ')
-@section('pagetitle', 'Add Skill')
+@section('title', 'Add Research - ')
+@section('pagetitle', 'Add Research')
 
 
 @section('content')
@@ -12,10 +12,10 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
-                            <div class="header">
-                                <h4 class="title">Add New Skill</h4>
+                            <div class="header" style="padding-bottom: 20px;">
+                                <h4 class="title"><b>Post A New Research Project<b></h4>
                             </div>
-                            <div class="content">
+                            <!-- <div class="content">
                                 <form action="{{ route('admin.skill.store') }}" method="post">
                                     @csrf
                                     <div class="row">
@@ -40,6 +40,143 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>
+                            </div> -->
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <!-- <div class="header">
+                                <h4 class="title"><b>Post A New Research Project<b></h4>
+                            </div> -->
+                            <div class="content">
+                                <form action="{{ route('admin.skill.store') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Title</label>
+                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Research Title" name="title" value="{{ old('title') }}" required>
+
+                                                @if ($errors->has('title'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('title') }}</strong>
+                                                    </span>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your research description" value="Mike">Oh so, your weak rhyme
+You doubt I'll bother, reading into it
+I'll probably won't, left to my own devices
+But that's the difference in our opinions.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Expire Date</label>
+                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="type skill title" name="title" value="{{ old('title') }}" required>
+
+                                                @if ($errors->has('title'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('title') }}</strong>
+                                                    </span>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div>
+                          
+
+                                    <!-- <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
+                                    </div> -->
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <!-- <div class="header">
+                                <h4 class="title"><b>Post A New Research Project<b></h4>
+                            </div> -->
+                            <div class="content">
+                                <form action="{{ route('admin.skill.store') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Expire Date</label>
+                                                
+
+
+                                                <div class="form-group">
+                                                
+                                                  
+                                                        <div class="pretty p-default p-thick p-pulse">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-warning-o">
+                                                                <label>Occasionally</label>
+                                                            </div>
+                                                        </div>
+                                                  
+                                                
+                                                </div>
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your research description" value="Mike">Oh so, your weak rhyme
+You doubt I'll bother, reading into it
+I'll probably won't, left to my own devices
+But that's the difference in our opinions.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Expire Date</label>
+                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="type skill title" name="title" value="{{ old('title') }}" required>
+
+                                                @if ($errors->has('title'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('title') }}</strong>
+                                                    </span>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div> -->
+                          
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -49,89 +186,7 @@
 
 
 
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="header">
-                                    <h3 class="title"><b>Skill List</b></h3>
-                                </div>
-                                
-                                 <!--    <div class="header">
-                                    <h4 class="title">Striped Table</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
-                                </div> -->
-                                <div class="content table-responsive table-full-width" style="padding-left: 20px; padding-right: 20px; margin: unset;">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <th>#</th>
-                                            <th>Title</th>
-                                            <th>Created</th>
-                                            <th>Updated</th>
-                                            <!-- <th>Status</th> -->
-                                            <th>Action</th>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($skills as $skill)
-                                            <tr>
-                                                <td>{{ $skill->id }}</td>
-                                                <td>{{ $skill->title }}</td>
-                                                <td>{{ $skill->created_at }}</td>
-                                                <td>{{ $skill->updated_at }}</td>
-                                                <!-- <td>
-                                                    @if($skill->power == 1)
-                                                        <span class="label label-success">Accepted</span>
-                                                    @else
-                                                        <span class="label label-warning">Pending</span>
-                                                    @endif
-                                                </td> -->
-                                                <td>
-                                                        <button onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Edit</button>
-                                                        <button onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Delete</button>
-                                                    
-                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->
-                                                        <form id="accept" method="POST" action="{{ route('admin.skill.edit', $skill->id) }}">
-                                                            @method('GET')
-                                                            @csrf
-                                                        </form>
-                                                    
-                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a> -->
-                                                        <form id="wait" method="POST" action="{{ route('admin.skill.destroy', $skill->id) }}">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                        </form>
-                                                                                                        
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                            
-                                            
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <!--pagination-->
-                                <nav class="pagination-box" aria-label="Page navigation">
-                                    {{ $skills->links() }}
-                                    <!-- <ul class="pagination" role="navigation">
-                                        <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
-                                            <span class="page-link" aria-hidden="true">‹</span>
-                                        </li>
-                                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" rel="next" aria-label="Next »">›</a>
-                                        </li>
-                                    </ul> -->
-                                </nav>
-                                <!--pagination END-->
-                            </div>
-                        </div>
-                    </div>
-
-            
+           
 
             <!-- content code end -->
 

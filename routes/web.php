@@ -38,6 +38,7 @@ Route::put('/app/user/unverify/{id}', 'Admin\RootController@unverifyResearchUser
 Route::get('/app/user/add', 'Admin\AdminController@createUser')->name('createUser');
 Route::post('/app/user/add', 'Admin\AdminController@storeUser')->name('storeUser');
 Route::resource('/app/skill', 'Admin\SkillController', ['as'=>'admin']);
+Route::resource('/app/research', 'Admin\ResearchController', ['as'=>'admin']);
 
 
 

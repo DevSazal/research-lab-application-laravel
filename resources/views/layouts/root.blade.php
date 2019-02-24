@@ -34,6 +34,7 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="{{ asset('AdminSD/assets/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('AdminSD/assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('AdminSD/assets/css/pretty-checkbox.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -254,7 +255,7 @@
 <script src="{{ asset('AdminSD/assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
-<script src="{{ asset('AdminSD/assets/js/bootstrap-checkbox-radio.js') }}"></script>
+<!-- <script src="{{ asset('AdminSD/assets/js/bootstrap-checkbox-radio.js') }}"></script> -->
 
 <!--  Charts Plugin -->
 <script src="{{ asset('AdminSD/assets/js/chartist.min.js') }}"></script>
