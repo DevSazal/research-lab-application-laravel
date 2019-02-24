@@ -257,6 +257,7 @@
 <!--  Checkbox, Radio & Switch Plugins -->
 <!-- <script src="{{ asset('AdminSD/assets/js/bootstrap-checkbox-radio.js') }}"></script> -->
 
+
 <!--  Charts Plugin -->
 <script src="{{ asset('AdminSD/assets/js/chartist.min.js') }}"></script>
 
