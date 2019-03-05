@@ -128,10 +128,16 @@ But that's the difference in our opinions.</textarea>
                                                 <div class="form-group">
                                                 
                                                   
-                                                        <div class="pretty p-default p-thick p-pulse">
+                                                        <div class="pretty p-default p-thick p-pulse p-curve">
                                                             <input type="checkbox" />
                                                             <div class="state p-warning-o">
                                                                 <label>Occasionally</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pretty p-default p-curve">
+                                                            <input type="radio" name="color" />
+                                                            <div class="state p-primary-o">
+                                                                <label>Primary</label>
                                                             </div>
                                                         </div>
                                                   
