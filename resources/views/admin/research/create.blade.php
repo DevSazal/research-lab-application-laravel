@@ -83,7 +83,7 @@
 </style>
             <!-- content code start -->
 
-<form action="{{ route('admin.skill.store') }}" method="post">
+<form action="{{ route('admin.research.store') }}" method="post">
     @csrf
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
@@ -92,32 +92,7 @@
                                 <!-- <h4 class="title"><b>Post A New Research Project<b></h4> -->
                                 <h4 class="title"><b>Tell us what you need done<b></h4>
                             </div>
-                            <!-- <div class="content">
-                                <form action="{{ route('admin.skill.store') }}" method="post">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Name</label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="type skill title" name="title" value="{{ old('title') }}" required>
-
-                                                @if ($errors->has('title'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('title') }}</strong>
-                                                    </span>
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    </div>
-                          
-
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div> -->
+                            
                         </div>
                     </div>
 
@@ -151,10 +126,18 @@
                                             <div class="form-group">
                                                 <!-- <label>Description</label> -->
                                                 <label><b>Tell us more about your project</b></label>
-                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your research description" value="Mike">Oh so, your weak rhyme
-You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.</textarea>
+                                                <textarea name="description" rows="5" class="form-control border-input {{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Here can be your research description" value="Mike">
+                                                {{ old('description') }}
+                                                </textarea>
+
+                                                
+                                                @if ($errors->has('description'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('description') }}</strong>
+                                                    </span>
+                                                @endif
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -162,11 +145,11 @@ But that's the difference in our opinions.</textarea>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label><b>Expire Date</b></label>
-                                                <input type="date" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="type skill title" name="title" value="{{ old('title') }}" required>
+                                                <input type="date" class="form-control border-input {{ $errors->has('exp') ? ' is-invalid' : '' }}" placeholder="" name="exp" value="{{ old('exp') }}" required>
 
-                                                @if ($errors->has('title'))
+                                                @if ($errors->has('exp'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('title') }}</strong>
+                                                        <strong>{{ $errors->first('exp') }}</strong>
                                                     </span>
                                                 @endif
 
@@ -198,54 +181,21 @@ But that's the difference in our opinions.</textarea>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                        <div class="pretty p-default p-thick p-pulse p-curve">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-warning-o">
-                                                                <label>Occasionally</label>
-                                                            </div>
+                                                @foreach($skills as $skill)
+                                                    <div class="pretty p-default p-thick p-pulse p-curve">
+                                                        <input type="checkbox" name="rskills[]" value="{{ $skill->id }}" />
+                                                        <div class="state p-warning-o">
+                                                            <label>{{ $skill->name }}</label>
                                                         </div>
-                                                        <div class="pretty p-default p-thick p-pulse p-curve">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-warning-o">
-                                                                <label>Occasionally</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pretty p-default p-thick p-pulse p-curve">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-warning-o">
-                                                                <label>Occasionally</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pretty p-default p-thick p-pulse p-curve">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-warning-o">
-                                                                <label>Occasionally</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pretty p-default p-thick p-pulse p-curve">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-warning-o">
-                                                                <label>Occasionally</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pretty p-default p-thick p-pulse p-curve">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-warning-o">
-                                                                <label>Occasionally</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pretty p-default p-thick p-pulse p-curve">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-warning-o">
-                                                                <label>Occasionally</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pretty p-default p-thick p-pulse p-curve">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-warning-o">
-                                                                <label>Occasionally</label>
-                                                            </div>
-                                                        </div>                                            
+                                                    </div>
+                                                @endforeach
+                                                
+                                                @if ($errors->has('rskills'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('rskills') }}</strong>
+                                                    </span>
+                                                @endif
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -286,9 +236,9 @@ But that's the difference in our opinions.</textarea>
                                                 <div class="col-md-9">
                                                     <p class="file-return">only pdf, doc, docx, xls, xlsx, ppt, pptx and image format</p>
 
-                                                @if ($errors->has('image'))
+                                                @if ($errors->has('file'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('image') }}</strong>
+                                                        <strong>{{ $errors->first('file') }}</strong>
                                                     </span>
                                                 @endif
                                                 </div>
