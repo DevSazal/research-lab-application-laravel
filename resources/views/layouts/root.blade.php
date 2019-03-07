@@ -35,6 +35,18 @@
     <link href="{{ asset('AdminSD/assets/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('AdminSD/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('AdminSD/assets/css/pretty-checkbox.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('AdminSD/assets/css/mdb.css') }}" rel="stylesheet">
+     Font Awesome v5
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"> -->
+
+    <style type="text/css">
+        .pretty input:checked~.state.p-warning-o label:before, .pretty.p-toggle .state.p-warning-o label:before {
+            border-color: #14bf96!important;
+        }
+        .pretty.p-default:not(.p-fill) input:checked~.state.p-warning-o label:after {
+            background-color: #14bf96!important;
+        }
+    </style>
 
 </head>
 
@@ -273,6 +285,7 @@
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('AdminSD/assets/js/demo.js') }}"></script>
 <script src="{{ asset('AdminSD/assets/js/main.js') }}"></script>
+<!-- <script src="{{ asset('AdminSD/assets/js/mdb.js') }}"></script> -->
 
 <script type="text/javascript">
     // $(document).ready(function () {

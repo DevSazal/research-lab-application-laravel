@@ -10,6 +10,12 @@
     /*-webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;*/
 }
+.pretty input:checked~.state.p-warning-o label:before, .pretty.p-toggle .state.p-warning-o label:before {
+    border-color: #14bf96!important;
+}
+.pretty.p-default:not(.p-fill) input:checked~.state.p-warning-o label:after {
+    background-color: #14bf96!important;
+}
 
 /*right button*/
 .card .header .btn{

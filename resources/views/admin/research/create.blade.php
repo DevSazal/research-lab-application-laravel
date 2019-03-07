@@ -6,14 +6,89 @@
 
 @section('content')
 
+<style type="text/css">
+    .card .header {
+    padding: 20px 14px 0;
+}
+.pretty.p-default.p-thick .state label:after, .pretty.p-default.p-thick .state label:before {
+    border-width: calc(1em / 7);
+}
+.pretty:hover{
+    color: #14bf96!important;
 
+}
+.card .pretty label{
+    color: unset !important;
+}
+.pretty{color: #9A9A9A;}
+
+
+.input-file-container {
+  position: relative;
+  width: 225px;
+} 
+.js .input-file-trigger {
+  display: block;
+  padding: 14px 45px;
+  background: #39D2B4;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+/*.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495E;
+  color: #39D2B4;
+}*/
+.js .input-file:hover + .input-file-trigger, .js .input-file:focus + .input-file-trigger, .js .input-file-trigger:hover, .js .input-file-trigger:focus {
+    background: #fffcf5;
+    color: #7ac29a;
+    border: 1px solid #dee0e0;
+    transition: all 0.5s;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+
+.custom-select.is-invalid, .form-control.is-invalid, .was-validated .custom-select:invalid, .was-validated .form-control:invalid {
+    border-color: #e3342f;
+}
+</style>
             <!-- content code start -->
 
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="header" style="padding-bottom: 20px;">
-                                <h4 class="title"><b>Post A New Research Project<b></h4>
+                                <!-- <h4 class="title"><b>Post A New Research Project<b></h4> -->
+                                <h4 class="title"><b>Tell us what you need done<b></h4>
                             </div>
                             <!-- <div class="content">
                                 <form action="{{ route('admin.skill.store') }}" method="post">
@@ -58,7 +133,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Title</label>
+                                                <label><b>Choose a name for your project</b></label>
+                                                <!-- <label>Title</label> -->
                                                 <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Research Title" name="title" value="{{ old('title') }}" required>
 
                                                 @if ($errors->has('title'))
@@ -73,7 +149,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Description</label>
+                                                <!-- <label>Description</label> -->
+                                                <label><b>Tell us more about your project</b></label>
                                                 <textarea rows="5" class="form-control border-input" placeholder="Here can be your research description" value="Mike">Oh so, your weak rhyme
 You doubt I'll bother, reading into it
 I'll probably won't, left to my own devices
@@ -84,8 +161,8 @@ But that's the difference in our opinions.</textarea>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Expire Date</label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="type skill title" name="title" value="{{ old('title') }}" required>
+                                                <label><b>Expire Date</b></label>
+                                                <input type="date" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="type skill title" name="title" value="{{ old('title') }}" required>
 
                                                 @if ($errors->has('title'))
                                                     <span class="invalid-feedback" role="alert">
@@ -112,75 +189,68 @@ But that's the difference in our opinions.</textarea>
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
-                            <!-- <div class="header">
-                                <h4 class="title"><b>Post A New Research Project<b></h4>
-                            </div> -->
-                            <div class="content">
+                            <div class="header">
+                                <h4 class="title"><b>What skills are required?<b></h4>
+                                    <label style="padding-top: 5px;">Select the following suitable skills for your research. Hope these choices will be the best suit your needs.</label>
+                            </div>
+                            <div class="content" style="padding-top: 8px;">
                                 <form action="{{ route('admin.skill.store') }}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Expire Date</label>
-                                                
-
-
-                                                <div class="form-group">
-                                                
-                                                  
                                                         <div class="pretty p-default p-thick p-pulse p-curve">
                                                             <input type="checkbox" />
                                                             <div class="state p-warning-o">
                                                                 <label>Occasionally</label>
                                                             </div>
                                                         </div>
-                                                        <div class="pretty p-default p-curve">
-                                                            <input type="radio" name="color" />
-                                                            <div class="state p-primary-o">
-                                                                <label>Primary</label>
+                                                        <div class="pretty p-default p-thick p-pulse p-curve">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-warning-o">
+                                                                <label>Occasionally</label>
                                                             </div>
                                                         </div>
-                                                  
-                                                
-                                                </div>
-
-
-
-
+                                                        <div class="pretty p-default p-thick p-pulse p-curve">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-warning-o">
+                                                                <label>Occasionally</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pretty p-default p-thick p-pulse p-curve">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-warning-o">
+                                                                <label>Occasionally</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pretty p-default p-thick p-pulse p-curve">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-warning-o">
+                                                                <label>Occasionally</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pretty p-default p-thick p-pulse p-curve">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-warning-o">
+                                                                <label>Occasionally</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pretty p-default p-thick p-pulse p-curve">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-warning-o">
+                                                                <label>Occasionally</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pretty p-default p-thick p-pulse p-curve">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-warning-o">
+                                                                <label>Occasionally</label>
+                                                            </div>
+                                                        </div>                                            
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your research description" value="Mike">Oh so, your weak rhyme
-You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Expire Date</label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="type skill title" name="title" value="{{ old('title') }}" required>
-
-                                                @if ($errors->has('title'))
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('title') }}</strong>
-                                                    </span>
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    </div> -->
-                          
-
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
-                                    </div>
+                                    
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -192,10 +262,80 @@ But that's the difference in our opinions.</textarea>
 
 
 
+
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <!-- <div class="header" style="padding-bottom: 20px;">
+                                <h4 class="title"><b>Post A New Research Project<b></h4>
+                                <h4 class="title"><b>Tell us what you need done<b></h4>
+                            </div> -->
+                            <div class="content">
+                                <form action="{{ route('admin.skill.store') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group  row">
+                                                <div class="col-md-3">
+                                                    <div class="input-file-container">  
+                                                        <input class="input-file" id="my-file" type="file" name="file" 
+                                                        accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+                                                        text/plain, application/pdf, image/*">
+                                                        <label tabindex="0" for="my-file" class="input-file-trigger"><i class="fa fa-paperclip" aria-hidden="true"></i> Upload your file</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <p class="file-return">only pdf, doc, docx, xls, xlsx, ppt, pptx and image format</p>
+
+                                                @if ($errors->has('image'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('image') }}</strong>
+                                                    </span>
+                                                @endif
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                          
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
            
 
             <!-- content code end -->
 
+<script type="text/javascript">
+    document.querySelector("html").classList.add('js');
 
+var fileInput  = document.querySelector( ".input-file" ),  
+    button     = document.querySelector( ".input-file-trigger" ),
+    the_return = document.querySelector(".file-return");
+      
+button.addEventListener( "keydown", function( event ) {  
+    if ( event.keyCode == 13 || event.keyCode == 32 ) {  
+        fileInput.focus();  
+    }  
+});
+button.addEventListener( "click", function( event ) {
+   fileInput.focus();
+   return false;
+});  
+fileInput.addEventListener( "change", function( event ) {  
+    the_return.innerHTML = this.value;  
+});
+</script>
 
 @endsection
