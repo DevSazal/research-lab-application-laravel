@@ -5,8 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Skill;
+
+use Auth;
+
 class ResearchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +32,8 @@ class ResearchController extends Controller
      */
     public function create()
     {
-        return view('admin.research.create');
+        $array['skills'] = Skill::all();
+        return view('admin.research.create')->with($array);
     }
 
     /**
@@ -35,7 +44,7 @@ class ResearchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**

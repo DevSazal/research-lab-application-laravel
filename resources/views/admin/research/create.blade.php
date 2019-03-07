@@ -126,9 +126,7 @@
                                             <div class="form-group">
                                                 <!-- <label>Description</label> -->
                                                 <label><b>Tell us more about your project</b></label>
-                                                <textarea name="description" rows="5" class="form-control border-input {{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Here can be your research description" value="Mike">
-                                                {{ old('description') }}
-                                                </textarea>
+                                                <textarea name="description" rows="5" class="form-control border-input {{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Here can be your research description" value="Mike">{{ old('description') }}</textarea>
 
                                                 
                                                 @if ($errors->has('description'))
@@ -185,7 +183,7 @@
                                                     <div class="pretty p-default p-thick p-pulse p-curve">
                                                         <input type="checkbox" name="rskills[]" value="{{ $skill->id }}" />
                                                         <div class="state p-warning-o">
-                                                            <label>{{ $skill->name }}</label>
+                                                            <label>{{ $skill->title }}</label>
                                                         </div>
                                                     </div>
                                                 @endforeach
