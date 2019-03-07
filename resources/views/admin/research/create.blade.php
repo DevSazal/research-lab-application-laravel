@@ -83,6 +83,8 @@
 </style>
             <!-- content code start -->
 
+<form action="{{ route('admin.skill.store') }}" method="post">
+    @csrf
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
@@ -128,8 +130,6 @@
                                 <h4 class="title"><b>Post A New Research Project<b></h4>
                             </div> -->
                             <div class="content">
-                                <form action="{{ route('admin.skill.store') }}" method="post">
-                                    @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -179,7 +179,7 @@ But that's the difference in our opinions.</textarea>
                                         <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
                                     </div> -->
                                     <div class="clearfix"></div>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>
@@ -194,8 +194,7 @@ But that's the difference in our opinions.</textarea>
                                     <label style="padding-top: 5px;">Select the following suitable skills for your research. Hope these choices will be the best suit your needs.</label>
                             </div>
                             <div class="content" style="padding-top: 8px;">
-                                <form action="{{ route('admin.skill.store') }}" method="post">
-                                    @csrf
+                                
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -252,7 +251,7 @@ But that's the difference in our opinions.</textarea>
                                     </div>
                                     
                                     <div class="clearfix"></div>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>
@@ -272,8 +271,7 @@ But that's the difference in our opinions.</textarea>
                                 <h4 class="title"><b>Tell us what you need done<b></h4>
                             </div> -->
                             <div class="content">
-                                <form action="{{ route('admin.skill.store') }}" method="post">
-                                    @csrf
+                                
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group  row">
@@ -305,7 +303,7 @@ But that's the difference in our opinions.</textarea>
                                         <button type="submit" class="btn btn-info btn-fill btn-wd">Save</button>
                                     </div>
                                     <div class="clearfix"></div>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>
@@ -313,7 +311,7 @@ But that's the difference in our opinions.</textarea>
 
 
 
-           
+</form>           
 
             <!-- content code end -->
 
