@@ -83,7 +83,7 @@
 </style>
             <!-- content code start -->
 
-<form action="{{ route('admin.research.store') }}" method="post">
+<form action="{{ route('admin.research.store') }}" method="post" enctype="multipart/form-data">
     @csrf
                 <div class="row">
                     <div class="col-lg-12 col-md-12">

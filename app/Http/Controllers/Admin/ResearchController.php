@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 use App\Skill;
+use App\Research;
 
 use Auth;
 
@@ -44,7 +47,36 @@ class ResearchController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        //
+	    $validator = Validator::make($request->all(), [
+	        'title' => 'required|string|max:255',
+	        'description' => 'required|string|min:20',
+	        'exp' => 'required|date',
+            'rskills'=>  'required',
+            'file'=>  'mimes:jpg,jpeg,gif,png,pdf,doc,docx,xls,xlsx,ppt,pptx',
+	    ]);
+
+	    //   
+
+		if ($validator->fails()) {
+		        return back()
+		                ->withErrors($validator)
+		                ->withInput();
+		    }else{
+
+		    	// The blog post is valid...
+
+		        $research = Research::create([
+			    	'title' => $request->input('title'),
+			    	'description' => $request->input('description'),
+			    	'expire_at' => $request->input('exp'),
+			    	'user_id' => Auth::user()->id,
+			    	'status' => 0,
+			    	'fingerprint' => 111111,
+			    ]);
+
+			    return redirect('app/research');
+		    } 
     }
 
     /**
