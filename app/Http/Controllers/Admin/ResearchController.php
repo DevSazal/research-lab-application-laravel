@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Skill;
 use App\Research;
+use App\ResearchSkill;
+use App\File;
 
 use Auth;
 
@@ -64,16 +66,39 @@ class ResearchController extends Controller
 		                ->withInput();
 		    }else{
 
-		    	// The blog post is valid...
+                // The blog post is valid...
+                $token = date('Ymd').'x'.rand(00000000,99999999);
 
 		        $research = Research::create([
-			    	'title' => $request->input('title'),
-			    	'description' => $request->input('description'),
-			    	'expire_at' => $request->input('exp'),
+			    	'title' => $request->title,
+			    	'description' => $request->description,
+			    	'expire_at' => $request->exp,
 			    	'user_id' => Auth::user()->id,
 			    	'status' => 0,
-			    	'fingerprint' => 111111,
-			    ]);
+			    	'fingerprint' => $token,
+                ]);
+
+                $skillIdArray =  $request->rskills;
+                $count = count($skillIdArray);
+
+                for($i = 0; $i < $count; $i++){
+                    $rs = new ResearchSkill();
+                    $rs->skill_id = $skillIdArray[$i];
+                    $rs->research_id = $research->id;
+                    $rs->save();
+                }
+                        
+                // if(isset($request->file)){
+                //     if($request->file->getClientOriginalName()){
+                //             $ext = $request->file->getClientOriginalExtension();
+                //             $file = date('YmdHis').'_'.rand(1,999).'.'.$ext;
+                //             $request->file->storeAs('public/researchfile',$file);
+                //         }else{
+                //             $file = NULL;
+                //         }
+                // }else{
+                //     $file = NULL;    
+                // }
 
 			    return redirect('app/research');
 		    } 
