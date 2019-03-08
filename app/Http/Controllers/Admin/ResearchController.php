@@ -88,17 +88,22 @@ class ResearchController extends Controller
                     $rs->save();
                 }
                         
-                // if(isset($request->file)){
-                //     if($request->file->getClientOriginalName()){
-                //             $ext = $request->file->getClientOriginalExtension();
-                //             $file = date('YmdHis').'_'.rand(1,999).'.'.$ext;
-                //             $request->file->storeAs('public/researchfile',$file);
-                //         }else{
-                //             $file = NULL;
-                //         }
-                // }else{
-                //     $file = NULL;    
-                // }
+                if(isset($request->file)){
+                    if($request->file->getClientOriginalName()){
+                            $ext = $request->file->getClientOriginalExtension();
+                            $file = date('YmdHis').'_'.rand(1,999).'.'.$ext;
+                            $request->file->storeAs('public/researchfile',$file);
+
+                            $files = new File();
+                            $files->file = $file;
+                            $files->research_id = $research->id;
+                            $files->save();
+                        }else{
+                            $file = NULL;
+                        }
+                }else{
+                    $file = NULL;    
+                }
 
 			    return redirect('app/research');
 		    } 
