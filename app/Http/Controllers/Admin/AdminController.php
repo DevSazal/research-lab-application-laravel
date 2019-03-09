@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Research;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 // use App\Http\Requests\storeUserForm;
@@ -33,7 +35,7 @@ class AdminController extends Controller
             'workplace'=>  'required',
 	    ]);
 
-	    //  
+	    //   
 
 		if ($validator->fails()) {
 		        return back()
@@ -62,4 +64,13 @@ class AdminController extends Controller
 
 
 	}
+	public function publish($id){
+
+    	$user = Research::find($id);
+    	$user->status = 1;
+    	$user->save();
+
+    	return redirect('app/research');
+
+    }
 }

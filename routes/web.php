@@ -29,7 +29,7 @@ Route::get('/app/workshop', function () {
 
 Auth::routes();
 
-// Admin Route Start
+// Admin Panel Route Start
 Route::get('/app', 'Admin\RootController@index')->name('app');
 
 Route::get('/app/user', 'Admin\RootController@newUser')->name('request');
@@ -39,6 +39,7 @@ Route::get('/app/user/add', 'Admin\AdminController@createUser')->name('createUse
 Route::post('/app/user/add', 'Admin\AdminController@storeUser')->name('storeUser');
 Route::resource('/app/skill', 'Admin\SkillController', ['as'=>'admin']);
 Route::resource('/app/research', 'Admin\ResearchController', ['as'=>'admin']);
+Route::put('/app/research/publish/{id}', 'Admin\AdminController@publish');
 
 
 

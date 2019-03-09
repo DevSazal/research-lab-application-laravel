@@ -94,13 +94,13 @@
 
 
                                                         <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a> -->
-                                                        <form id="wait" method="POST" action="{{ route('admin.research.destroy', $r->id) }}">
-                                                            @method('DELETE')
+                                                        <form id="wait" method="POST" action="{{ url('app/research/pending', $r->id) }}">
+                                                            @method('PUT')
                                                             @csrf
                                                         </form>
                                                         <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->
-                                                        <form id="publish" method="get" action="{{ route('admin.research.edit', $r->id) }}">
-                                                            @method('GET')
+                                                        <form id="publish" method="POST" action="{{ url('app/research/publish', $r->id) }}">
+                                                            @method('PUT')
                                                             @csrf
                                                         </form>
                                                         <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->

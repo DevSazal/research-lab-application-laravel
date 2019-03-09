@@ -145,11 +145,6 @@ class ResearchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // //
-        // $skill = Skill::find($id);
-        // $skill->title = $request->title;
-        // $skill->save();
-        // return redirect('app/skill');
 
         //
 	    $validator = Validator::make($request->all(), [
@@ -168,7 +163,7 @@ class ResearchController extends Controller
 		                ->withInput();
 		    }else{
 
-                // The blog post is valid...
+                // The request is valid...
                 $token = date('Ymd').'x'.rand(00000000,99999999);
 
 		        // $research = Research::create([
