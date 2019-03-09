@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'Skill - ')
-@section('pagetitle', 'Skill')
+@section('title', 'Research - ')
+@section('pagetitle', 'Research')
 
 
 @section('content')
@@ -36,8 +36,8 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="header">
-                                    <h3 class="title"><b>Skill List</b></h3>
-                                    <a href="{{ route('admin.skill.create') }}" class="btn btn-success"> + Add New Skill</a>
+                                    <h3 class="title"><b>Research List</b></h3>
+                                    <a href="{{ route('admin.research.create') }}" class="btn btn-success"> + Add New Research</a>
                                 </div>
                                 
                                  <!--    <div class="header">
@@ -50,37 +50,52 @@
                                             <th>#</th>
                                             <th>Title</th>
                                             <th>Created</th>
-                                            <th>Updated</th>
-                                            <!-- <th>Status</th> -->
+                                            <th>Expire</th>
+                                            <th>Status</th>
+                                            <th>Author</th>
                                             <th>Action</th>
                                         </thead>
                                         <tbody>
-                                            @foreach($skills as $skill)
+                                            @foreach($research as $r)
                                             <tr>
-                                                <td>{{ $skill->id }}</td>
-                                                <td>{{ $skill->title }}</td>
-                                                <td>{{ $skill->created_at }}</td>
-                                                <td>{{ $skill->updated_at }}</td>
-                                                <!-- <td>
-                                                    @if($skill->power == 1)
-                                                        <span class="label label-success">Accepted</span>
+                                                <td>{{ $r->id }}</td>
+                                                <td>{{ $r->title }}</td>
+                                                <td>{{ $r->created_at }}</td>
+                                                <td>{{ $r->expire_at }}</td>
+                                                <td>
+                                                    @if($r->status == 1)
+                                                        <span class="label label-success">Published</span>
                                                     @else
                                                         <span class="label label-warning">Pending</span>
                                                     @endif
-                                                </td> -->
+                                                </td>
+                                                <td>{{ $r->user_id }}</td>
                                                 <td>
-                                                        <button onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Edit</button>
-                                                        <button onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Delete</button>
-                                                    
+
+                                                    @if($r->status == 0)
+                                                        <button onclick="$(this).parent().find('#publish').submit()" class="btn btn-success btn-sm">Publish</button>
+                                                        
+
+                                                    @else
+                                                        <button onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Pending</button>
+                                                        
+                                                    @endif
+                                                        <button onclick="$(this).parent().find('#edit').submit()" class="btn btn-info btn-sm">Edit</button>
+
+
+                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a> -->
+                                                        <form id="wait" method="POST" action="{{ route('admin.research.destroy', $r->id) }}">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                        </form>
                                                         <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->
-                                                        <form id="accept" method="POST" action="{{ route('admin.skill.edit', $skill->id) }}">
+                                                        <form id="publish" method="POST" action="{{ route('admin.research.edit', $r->id) }}">
                                                             @method('GET')
                                                             @csrf
                                                         </form>
-                                                    
-                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a> -->
-                                                        <form id="wait" method="POST" action="{{ route('admin.skill.destroy', $skill->id) }}">
-                                                            @method('DELETE')
+                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->
+                                                        <form id="edit" method="POST" action="{{ route('admin.research.edit', $r->id) }}">
+                                                            @method('GET')
                                                             @csrf
                                                         </form>
                                                                                                         
@@ -95,7 +110,7 @@
                                 </div>
                                 <!--pagination-->
                                 <nav class="pagination-box" aria-label="Page navigation">
-                                    {{ $skills->links() }}
+                                    {{ $research->links() }}
                                     <!-- <ul class="pagination" role="navigation">
                                         <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
                                             <span class="page-link" aria-hidden="true">‹</span>
