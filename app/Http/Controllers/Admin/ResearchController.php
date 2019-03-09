@@ -130,7 +130,10 @@ class ResearchController extends Controller
      */
     public function edit($id)
     {
-        //
+        $array['research'] = Research::find($id);
+        $array['rs'] = ResearchSkill::where('research_id', $id)->get();
+        $array['skills'] = Skill::all();
+        return view('admin.research.edit')->with($array);
     }
 
     /**

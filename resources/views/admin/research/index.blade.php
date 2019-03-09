@@ -89,7 +89,8 @@
                                                         <button onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Pending</button>
                                                         
                                                     @endif
-                                                        <button onclick="$(this).parent().find('#edit').submit()" class="btn btn-info btn-sm">Edit</button>
+                                                        <!-- <button onclick="$(this).parent().find('#edit').submit()" class="btn btn-info btn-sm">Edit</button> -->
+                                                        <a href="{{ route('admin.research.edit', $r->id) }}" class="btn btn-info btn-sm">Edit</a>
 
 
                                                         <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a> -->
@@ -98,7 +99,7 @@
                                                             @csrf
                                                         </form>
                                                         <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->
-                                                        <form id="publish" method="POST" action="{{ route('admin.research.edit', $r->id) }}">
+                                                        <form id="publish" method="get" action="{{ route('admin.research.edit', $r->id) }}">
                                                             @method('GET')
                                                             @csrf
                                                         </form>
