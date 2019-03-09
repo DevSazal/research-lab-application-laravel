@@ -60,8 +60,17 @@
                                             <tr>
                                                 <td>{{ $r->id }}</td>
                                                 <td>{{ $r->title }}</td>
-                                                <td>{{ $r->created_at }}</td>
-                                                <td>{{ $r->expire_at }}</td>
+                                                <td>{{ ($r->created_at)->format('Y-m-d') }}</td>
+                                                <td title="{{ \Carbon\Carbon::parse($r->expire_at)->format('jS F Y') }}">
+                                                <?php 
+                                                    if(date('Y-m-d') > $r->expire_at){
+                                                        echo "Expired";
+                                                    }else{
+                                                        $date1 = new DateTime(date('Y-m-d H:i:s'));
+                                                        $date2 = new DateTime($r->expire_at);
+                                                        echo $date1->diff($date2)->format("%dD %hH");
+                                                    }
+                                                        ?></td>
                                                 <td>
                                                     @if($r->status == 1)
                                                         <span class="label label-success">Published</span>
@@ -69,7 +78,7 @@
                                                         <span class="label label-warning">Pending</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $r->user_id }}</td>
+                                                <td>{{ $r->user->name }}</td>
                                                 <td>
 
                                                     @if($r->status == 0)
