@@ -126,12 +126,12 @@
                                         </a>
                                     </div>
                                     <div class="content">
-                                        <p class="category">{{ $research->description }}</p>
+                                        <p class="category">{{ \Illuminate\Support\Str::words($research->description, 65,'....') }}</p>
                                         <div class="footer">
                                             <div class="chart-legend">
                                                 <?php $rs = App\ResearchSkill::where('research_id', $research->id)->get(); ?>
                                                 @foreach($rs as $skill)
-                                                <div class="tag skill"> {{ $skill->id }}</div>
+                                                <div class="tag skill"> {{ $skill->skill->title }}</div>
                                                 @endforeach
                                             </div>
                                             <br>
@@ -157,7 +157,8 @@
                                     </div>
                                 </section>
                                 @endforeach
-                                <section class="single-feed">
+
+                                <!-- <section class="single-feed">
                                     <div class="header">
                                         <a href="single-research-feed.html">
                                             <h4 class="title"><b>What is Lorem Ipsum</b></h4>
@@ -171,9 +172,7 @@
                                             pede. Suscipit lectus luctus, ac urna eu luctus.</p>
                                         <div class="footer">
                                             <div class="chart-legend">
-                                                <!--<i class="fa fa-circle text-info"></i>
-                                            <i class="fa fa-circle text-danger"></i>
-                                            <i class="fa fa-circle text-warning"></i>-->
+                                                
                                                 <div class="tag skill"> Security</div>
                                                 <div class="tag skill"> Network security</div>
                                                 <div class="tag skill"> Application security</div>
@@ -191,45 +190,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                </section>
-                                <section class="single-feed">
-                                    <div class="header">
-                                        <a href="single-research-feed.html">
-                                            <h4 class="title"><b>What is Lorem Ipsum</b></h4>
-                                        </a>
-                                    </div>
-                                    <div class="content">
-                                        <p class="category">Nullam et, etiam consectetuer fusce lectus nascetur at.
-                                            Pulvinar dapibus diam turpis sed, vel eget neque. Sed lacus donec, neque
-                                            velit viverra tellus, faucibus integer odio animi amet lacinia augue. Lacus
-                                            etiam nec, fusce curabitur, sollicitudin pede suscipit quam, aliquet vel
-                                            pede. Suscipit lectus luctus, ac urna eu luctus.</p>
-                                        <div class="footer">
-                                            <div class="chart-legend">
-                                                <!--<i class="fa fa-circle text-info"></i>
-                                            <i class="fa fa-circle text-danger"></i>
-                                            <i class="fa fa-circle text-warning"></i>-->
-                                                <div class="tag skill"> Security</div>
-                                                <div class="tag skill"> Network security</div>
-                                                <div class="tag skill"> Application security</div>
-                                                <div class="tag skill"> Pen Testing</div>
-                                                <div class="tag skill"> SQL inject Testing</div>
-                                            </div>
-                                            <br>
-                                            <div class="stats feed-stats">
-                                                <div class="col-md-6 research-feed-footer-left"><i class="ti-reload"></i>
-                                                    <b>Created</b> 3 minutes ago</div>
-                                                <a>
-                                                    <div class="col-md-6 research-feed-footer-right"><i class="fa fa-user"></i>
-                                                        Maruf Hasan</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
+                                </section> -->
                                 <!--pagination-->
                                 <nav class="pagination-box" aria-label="Page navigation">
-                                    <ul class="pagination" role="navigation">
+                                    {{ $researches->links() }}
+                                    <!-- <ul class="pagination" role="navigation">
                                         <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
                                             <span class="page-link" aria-hidden="true">‹</span>
                                         </li>
@@ -239,7 +204,7 @@
                                         <li class="page-item">
                                             <a class="page-link" href="#" rel="next" aria-label="Next »">›</a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </nav>
                                 <!--pagination END-->
                             </div>
