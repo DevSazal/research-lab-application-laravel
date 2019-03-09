@@ -145,7 +145,78 @@ class ResearchController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // //
+        // $skill = Skill::find($id);
+        // $skill->title = $request->title;
+        // $skill->save();
+        // return redirect('app/skill');
+
         //
+	    $validator = Validator::make($request->all(), [
+	        'title' => 'required|string|max:255',
+	        'description' => 'required|string|min:20',
+	        'exp' => 'required|date',
+            'rskills'=>  'required',
+            'file'=>  'mimes:jpg,jpeg,gif,png,pdf,doc,docx,xls,xlsx,ppt,pptx',
+	    ]);
+
+	    //   
+
+		if ($validator->fails()) {
+		        return back()
+		                ->withErrors($validator)
+		                ->withInput();
+		    }else{
+
+                // The blog post is valid...
+                $token = date('Ymd').'x'.rand(00000000,99999999);
+
+		        // $research = Research::create([
+			    // 	'title' => $request->title,
+			    // 	'description' => $request->description,
+			    // 	'expire_at' => $request->exp,
+			    // 	'user_id' => Auth::user()->id,
+			    // 	'status' => 0,
+			    // 	'fingerprint' => $token,
+                // ]);
+
+                $research = Research::find($id);
+                $research->title = $request->title;
+                $research->description = $request->description;
+                $research->expire_at = $request->exp;
+                $research->save();
+
+                ResearchSkill::where('research_id', $id)->delete();
+
+                $skillIdArray =  $request->rskills;
+                $count = count($skillIdArray);
+
+                for($i = 0; $i < $count; $i++){
+                    $rs = new ResearchSkill();
+                    $rs->skill_id = $skillIdArray[$i];
+                    $rs->research_id = $research->id;
+                    $rs->save();
+                }
+                        
+                if(isset($request->file)){
+                    if($request->file->getClientOriginalName()){
+                            $ext = $request->file->getClientOriginalExtension();
+                            $file = date('YmdHis').'_'.rand(1,999).'.'.$ext;
+                            $request->file->storeAs('public/researchfile',$file);
+
+                            $files = new File();
+                            $files->file = $file;
+                            $files->research_id = $research->id;
+                            $files->save();
+                        }else{
+                            $file = NULL;
+                        }
+                }else{
+                    $file = NULL;    
+                }
+
+			    return redirect('app/research');
+		    }        
     }
 
     /**

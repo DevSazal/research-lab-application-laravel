@@ -184,7 +184,7 @@
                                                     <div class="pretty p-default p-thick p-pulse p-curve">
                                                         <input type="checkbox" name="rskills[]" value="{{ $skill->id }}"
                                                         @foreach($rs as $k)
-                                                            @if($skill->id == $k->id)
+                                                            @if($skill->id == $k->skill_id)
                                                                 checked
                                                             @endif
                                                         @endforeach
@@ -194,7 +194,7 @@
                                                         </div>
                                                     </div>
                                                     <!-- @foreach($rs as $k)
-                                                        @if($skill->id == $k->id)
+                                                        @if($skill->id == $k->skill_id)
                                                             checked
                                                         @endif
                                                     @endforeach -->
