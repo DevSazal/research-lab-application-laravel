@@ -30,11 +30,11 @@ Route::get('/app/workshop', function () {
 Auth::routes();
 
 // Admin Panel Route Start
-Route::get('/app', 'Admin\RootController@index')->name('app');
+Route::get('/app', 'Admin\DefaultController@index')->name('app');
 
-Route::get('/app/user', 'Admin\RootController@newUser')->name('request');
-Route::put('/app/user/verify/{id}', 'Admin\RootController@verifyResearchUser');
-Route::put('/app/user/unverify/{id}', 'Admin\RootController@unverifyResearchUser');
+Route::get('/app/user', 'Admin\AdminController@newUser')->name('request');
+Route::put('/app/user/verify/{id}', 'Admin\AdminController@verifyResearchUser');
+Route::put('/app/user/unverify/{id}', 'Admin\AdminController@unverifyResearchUser');
 Route::get('/app/user/add', 'Admin\AdminController@createUser')->name('createUser');
 Route::post('/app/user/add', 'Admin\AdminController@storeUser')->name('storeUser');
 Route::resource('/app/skill', 'Admin\SkillController', ['as'=>'admin']);
