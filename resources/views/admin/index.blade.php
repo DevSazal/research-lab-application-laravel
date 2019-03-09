@@ -108,7 +108,7 @@
                         </div>
                     </div>
 
-                   <!--  short board -->
+                   <!--  short board AND content start-->
 
                     <div class="row">
 
@@ -118,41 +118,45 @@
                                     <h3 class="title"><b>My Feed</b></h3>
                                 </div>
                                 <hr>
+                                @foreach($researches as $research)
                                 <section class="single-feed">
                                     <div class="header">
                                         <a href="single-research-feed.html">
-                                            <h4 class="title"><b>What is Lorem Ipsum</b></h4>
+                                            <h4 class="title"><b>{{ $research->title }}</b></h4>
                                         </a>
                                     </div>
                                     <div class="content">
-                                        <p class="category">Nullam et, etiam consectetuer fusce lectus nascetur at.
-                                            Pulvinar dapibus diam turpis sed, vel eget neque. Sed lacus donec, neque
-                                            velit viverra tellus, faucibus integer odio animi amet lacinia augue. Lacus
-                                            etiam nec, fusce curabitur, sollicitudin pede suscipit quam, aliquet vel
-                                            pede. Suscipit lectus luctus, ac urna eu luctus.</p>
+                                        <p class="category">{{ $research->description }}</p>
                                         <div class="footer">
                                             <div class="chart-legend">
-                                                <!--<i class="fa fa-circle text-info"></i>
-                                            <i class="fa fa-circle text-danger"></i>
-                                            <i class="fa fa-circle text-warning"></i>-->
-                                                <div class="tag skill"> Security</div>
-                                                <div class="tag skill"> Network security</div>
-                                                <div class="tag skill"> Application security</div>
-                                                <div class="tag skill"> Pen Testing</div>
-                                                <div class="tag skill"> SQL inject Testing</div>
+                                                <?php $rs = App\ResearchSkill::where('research_id', $research->id)->get(); ?>
+                                                @foreach($rs as $skill)
+                                                <div class="tag skill"> {{ $skill->id }}</div>
+                                                @endforeach
                                             </div>
                                             <br>
                                             <div class="stats feed-stats">
                                                 <div class="col-md-6 research-feed-footer-left"><i class="ti-reload"></i>
-                                                    <b>Created</b> 3 minutes ago</div>
+                                                    <b>Updated</b> 
+                                                    <?php 
+                                                        if(date('Y-m-d') != ($research->updated_at)->format('Y-m-d')){
+                                                            echo ($research->updated_at)->format('Y-m-d');
+                                                            // echo date('Y-m-d', strtotime('today - 7 days')); 
+                                                        }else{
+                                                            $date1 = new DateTime(date('Y-m-d H:i:s'));
+                                                            $date2 = new DateTime($research->updated_at);
+                                                            echo $date1->diff($date2)->format("%h hour %i minutes ago");
+                                                        }
+                                                    ?></div>
                                                 <a>
                                                     <div class="col-md-6 research-feed-footer-right"><i class="fa fa-user"></i>
-                                                        Maruf Hasan</div>
+                                                        {{ $research->user->name }}</div>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </section>
+                                @endforeach
                                 <section class="single-feed">
                                     <div class="header">
                                         <a href="single-research-feed.html">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Research;
 
 class DefaultController extends Controller
 {
@@ -16,7 +17,8 @@ class DefaultController extends Controller
 
     public function index(){
 
-    	return view('admin.index');
+        $array['researches'] = Research::where('status', 1)->orderBy('id', 'desc')->paginate(10);
+    	return view('admin.index')->with($array);
     }
 
 }
