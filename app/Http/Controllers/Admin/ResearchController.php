@@ -28,7 +28,7 @@ class ResearchController extends Controller
     public function index()
     {
         //
-        $array['research'] = Research::orderBy('status', 'desc')->paginate(15);
+        $array['research'] = Research::orderBy('status', 'asc')->paginate(15);
     	return view('admin.research.index')->with($array);
     }
 

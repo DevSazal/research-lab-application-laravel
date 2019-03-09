@@ -72,5 +72,14 @@ class AdminController extends Controller
 
     	return redirect('app/research');
 
+	}
+	public function pending($id){
+
+    	$user = Research::find($id);
+    	$user->status = 0;
+    	$user->save();
+
+    	return redirect('app/research');
+
     }
 }

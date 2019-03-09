@@ -40,6 +40,7 @@ Route::post('/app/user/add', 'Admin\AdminController@storeUser')->name('storeUser
 Route::resource('/app/skill', 'Admin\SkillController', ['as'=>'admin']);
 Route::resource('/app/research', 'Admin\ResearchController', ['as'=>'admin']);
 Route::put('/app/research/publish/{id}', 'Admin\AdminController@publish');
+Route::put('/app/research/pending/{id}', 'Admin\AdminController@pending');
 
 
 
