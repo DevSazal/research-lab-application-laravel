@@ -143,7 +143,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label><b>Expire Date</b></label>
-                                                <input type="date" class="form-control border-input {{ $errors->has('exp') ? ' is-invalid' : '' }}" placeholder="" name="exp" value="{{ old('exp') }}" required>
+                                                <input type="date" class="form-control border-input {{ $errors->has('exp') ? ' is-invalid' : '' }}" placeholder="" name="exp" value="@if(old('exp')){{old('exp')}}@else{{date('Y-m-d', strtotime('today + 7 days'))}}@endif" required>
 
                                                 @if ($errors->has('exp'))
                                                     <span class="invalid-feedback" role="alert">

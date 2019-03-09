@@ -58,13 +58,14 @@
                                         <tbody>
                                             @foreach($research as $r)
                                             <tr>
-                                                <td>{{ $r->id }}</td>
+                                                <td><b>{{ $r->id }}</b></td>
                                                 <td>{{ $r->title }}</td>
                                                 <td>{{ ($r->created_at)->format('Y-m-d') }}</td>
                                                 <td title="{{ \Carbon\Carbon::parse($r->expire_at)->format('jS F Y') }}">
                                                 <?php 
                                                     if(date('Y-m-d') > $r->expire_at){
                                                         echo "Expired";
+                                                        // echo date('Y-m-d', strtotime('today - 7 days')); 
                                                     }else{
                                                         $date1 = new DateTime(date('Y-m-d H:i:s'));
                                                         $date2 = new DateTime($r->expire_at);
