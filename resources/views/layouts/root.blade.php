@@ -109,7 +109,7 @@
                             <p>Member Request</p>
                         </a>
                     </li>
-                    <li data-panelId="panel1" class="dropdown-btn">
+                    <!-- <li data-panelId="panel1" class="dropdown-btn">
                         <a href="table.html">
                             <i class="ti-view-list-alt"></i>
                             <p>Training<b class="caret"></b></p>
@@ -147,13 +147,13 @@
                             <i class="ti-light-bulb"></i>
                             <p>Contest</p>
                         </a>
-                    </li>
+                    </li> -->
                     <li data-panelId="panel4" class="
                             @if($segment=='skill')
                             active
                             @endif dropdown-btn">
                         <a href="{{ route('admin.skill.index') }}">
-                            <i class="ti-blackboard"></i>
+                            <i class="ti-pin-alt"></i>
                             <p>Skill @if($segment=='skill')@else<b class="caret"></b>@endif</p>
                         </a>
                         <ul id="panel4" class="dropdown-ul">
@@ -190,7 +190,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="user.html">
+                        <a href="">
                             <i class="ti-user"></i>
                             <p>My Profile</p>
                         </a>
