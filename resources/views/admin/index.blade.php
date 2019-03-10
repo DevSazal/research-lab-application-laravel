@@ -116,6 +116,7 @@
                             <div class="card">
                                 <div class="header">
                                     <h3 class="title"><b>My Feed</b></h3>
+                                    <a href="{{ route('admin.research.create') }}" class="btn btn-success" style="margin-top: -36px;"> + Create A Research</a>
                                 </div>
                                 <hr>
                                 @foreach($researches as $research)

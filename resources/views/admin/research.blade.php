@@ -1,6 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'Single feed | Cyber Security Center by Appsolic Lab')
+@section('title', 'Research('.$research->id.') - '.$research->title.' | ')
+@section('pagetitle', '#'.sprintf("%04d", $research->id))
 
 @section('content')
 
@@ -126,8 +127,8 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="researcher-info category">     
-                                                        <p><i class="ti-reload pl-5"></i> <span class="pl-5">Running</span>   05</p>  
-                                                        <p><i class="ti-check pl-5"></i><span class="pl-5">Completed</span>   04</p> 
+                                                        <p><i class="ti-reload pl-5"></i> <span class="pl-5">Running</span>   {{ $run = App\ResearchApplicant::where('status', 2)->where('user_id', $applier->user_id)->count() }}</p>  
+                                                        <p><i class="ti-check pl-5"></i><span class="pl-5">Completed</span>   {{ $end = App\ResearchApplicant::where('status', 3)->where('user_id', $applier->user_id)->count() }}</p> 
                                                     </div>   
                                                 </div>
                                                 <div class="footer">
@@ -157,7 +158,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-2 single-feed-img"> 
-                                            <img src="{{ asset('AdminSD/assets/img/pro-avt.png') }}" alt="">
+                                            <img src="{{ $applier->user['image'] != NULL ? asset('storage/profile/'.$applier->user['image']) : asset('AdminSD/assets/img/pro-avt.png') }}" alt="">
                                         </div>
                                     </div> 
                                 </div>

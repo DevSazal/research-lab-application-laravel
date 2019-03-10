@@ -82,6 +82,15 @@
                             <p>My Feed</p>
                         </a>
                     </li>
+                    <li class="
+                            @if($segment=='research' && Request::segment(3)=='create'))
+                            active
+                            @endif">
+                        <a href="{{ route('admin.research.create') }}">
+                            <i class="ti-pencil-alt"></i>
+                            <p>Create A Research</p>
+                        </a>
+                    </li>
                     <li data-panelId="panel1" class="dropdown-btn">
                         <a href="table.html">
                             <i class="ti-view-list-alt"></i>
@@ -138,6 +147,28 @@
                                 @if($segment=='skill' && Request::segment(3)=='create')
                                 open
                                 @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>Add skill</span></a></li>
+                        </ul>
+                    </li>
+                    <li data-panelId="panel5" class="
+                            @if($segment=='research')
+                            active
+                            @endif dropdown-btn">
+                        <a href="{{ route('admin.research.index') }}">
+                            <i class="ti-book"></i>
+                            <p>My Research @if($segment=='research')@else<b class="caret"></b>@endif</p>
+                        </a>
+                        <ul id="panel5" class="dropdown-ul">
+                            <li><a href="{{ route('admin.research.create') }}" class="
+                                @if($segment=='research' && Request::segment(3)=='create')
+                                open
+                                @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>Create Research</span></a>
+                            </li>
+                            <li><a href="{{ route('admin.research.index') }}" class="
+                                @if($segment=='research' && !Request::segment(3))
+                                open
+                                @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>All Researches</span></a>
+                            </li>
+                            
                         </ul>
                     </li>
                     <li>
