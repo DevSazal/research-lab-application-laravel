@@ -91,6 +91,24 @@
                             <p>Create A Research</p>
                         </a>
                     </li>
+                    <li class="
+                            @if($segment=='user' && Request::segment(3)=='add'))
+                            active
+                            @endif">
+                        <a href="{{ route('createUser') }}">
+                            <i class="ti-plus"></i>
+                            <p>Add A Supervisor</p>
+                        </a>
+                    </li>
+                    <li class="
+                            @if($segment=='user' && Request::segment(3)==NULL))
+                            active
+                            @endif">
+                        <a href="{{ route('request') }}">
+                            <i class="ti-signal"></i>
+                            <p>Member Request</p>
+                        </a>
+                    </li>
                     <li data-panelId="panel1" class="dropdown-btn">
                         <a href="table.html">
                             <i class="ti-view-list-alt"></i>
