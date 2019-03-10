@@ -1,10 +1,17 @@
 @extends('layouts.root')
 
-@section('title', 'Research('.$research->id.') - '.$research->title.' | ')
+@section('title', 'Research ('.$research->id.') - '.$research->title.' | ')
 @section('pagetitle', '#'.sprintf("%04d", $research->id))
 
 @section('content')
 
+<style>
+.btn-warning.active.focus, .btn-warning.active:focus, .btn-warning.active:hover, .btn-warning:active.focus, .btn-warning:active:focus, .btn-warning:active:hover, .open>.dropdown-toggle.btn-warning.focus, .open>.dropdown-toggle.btn-warning:focus, .open>.dropdown-toggle.btn-warning:hover {
+    color: #fff;
+    background-color: #d58512;
+    border-color: #d58512;
+}
+</style>
                 <div class="row">
                     <div class="col-md-8">
                         <section class="single-research-feed">
@@ -117,6 +124,7 @@
                                         <div class="col-md-10">
                                             <div class="header">
                                                 <a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a>
+                                                <button class="btn btn-warning btn-sm" style="border-radius: unset; margin-top: -24px;">Keep Interview</button>
                                             </div>
                                             <div class="content">
                                                 <div class="col-md-6"> 
