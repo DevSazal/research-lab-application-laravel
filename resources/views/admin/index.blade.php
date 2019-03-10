@@ -18,7 +18,7 @@
                                         <div class="col-xs-7">
                                             <div class="numbers">
                                                 <p>Research</p>
-                                                105
+                                                {{ $all = App\Research::count() }}
                                             </div>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@
                                         <div class="col-xs-7">
                                             <div class="numbers">
                                                 <p>Open</p>
-                                                1,345
+                                                {{ $open = App\Research::where('status', 1)->count() }}
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                         <div class="col-xs-7">
                                             <div class="numbers">
                                                 <p>Running</p>
-                                                23
+                                                {{ $run = App\Research::where('status', 2)->count() }}
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                         <div class="col-xs-7">
                                             <div class="numbers">
                                                 <p>Completed</p>
-                                                45
+                                                {{ $done = App\Research::where('status', 3)->count() }}
                                             </div>
                                         </div>
                                     </div>

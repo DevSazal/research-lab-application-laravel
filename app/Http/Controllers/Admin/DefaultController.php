@@ -27,7 +27,7 @@ class DefaultController extends Controller
     public function singleResearch($id)
     {
         $array['research'] = Research::find($id);
-        // $array['rs'] = ResearchSkill::where('research_id', $id)->get();
+        $array['appliers'] = ResearchApplicant::where('research_id', $id)->get();
         // $array['skills'] = Skill::all();
         return view('admin.research')->with($array);
     }
