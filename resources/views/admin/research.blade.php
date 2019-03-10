@@ -70,8 +70,8 @@
                                             <p class="supervisor"><i class="fa fa-user pl-5"></i>{{ $research->user->name }} </p>
                                             <p class="Supervisor-designation"><i class="ti-briefcase pl-5"></i>@if(empty($research->user->designation))Undefined @else{{ $research->user->designation }}@endif</p>
                                             <p class="Supervisor-designation"><i class="ti-location-pin pl-5"></i>@if(empty($research->user->company))Undefined @else{{ $research->user->company }}@endif</p>
-                                            <p class="supervisor-degree"><i class="ti-book pl-5"></i> @if(empty($research->user->edu_dept))Undefined @else{{ $research->user->edu_dept }}@endif</p> 
-                                            <p class="supervisor-degree-map"><i class="fa fa-location-arrow pl-5"></i> {{ $research->user->edu_varsity }}, {{ $research->user->edu_country }}</p>
+                                            <p class="supervisor-degree"><i class="ti-book pl-5"></i>@if(empty($research->user->edu_dept))Undefined @else{{ $research->user->edu_dept }}@endif</p> 
+                                            <p class="supervisor-degree-map"><i class="fa fa-location-arrow pl-5"></i>@if(empty($research->user->edu_varsity))Undefined @else{{ $research->user->edu_varsity }}@endif, @if(empty($research->user->edu_country))Undefined @else{{ $research->user->edu_country }}@endif</p>
                                         </div>
                                         <div class="research-status">
                                             <h5><b>Research Status</b></h5>

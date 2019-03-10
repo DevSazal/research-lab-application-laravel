@@ -29,4 +29,13 @@ class DefaultController extends Controller
         return view('admin.research')->with($array);
     }
 
+    // public function apply($id){
+
+    // 	$user = User::find();
+    // 	$user->power = 1;
+    // 	$user->save();
+
+    // 	return redirect('app/user');
+    // }
+
 }
