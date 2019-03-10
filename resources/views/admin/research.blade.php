@@ -61,7 +61,20 @@
                         <div class="card">
                             <div class="content">
                                 <div class="row">
-                                    <div class="col-md-12"><button class="btn-primary-color" ><b>Apply</b></button></div>  
+                                    <div class="col-md-12">
+                                    <?php
+                                     $check = App\ResearchApplicant::where('research_id', $research->id)->where('user_id', Auth::user()->id)->count();
+                                     ?>
+                                        @if($check > 0)
+                                        <button class="btn-primary-color" style="background: #e4e4e4;" disabled><b>Applied</b></button>
+                                        @else
+                                        <button onclick="$(this).parent().find('#publish').submit()" class="btn-primary-color" ><b>Apply</b></button>
+                                        <form id="publish" method="POST" action="{{ url('app/research/'.$research->id.'/apply') }}">
+                                                            @method('PUT')
+                                                            @csrf
+                                        </form>
+                                        @endif
+                                    </div>  
                                 </div>
                                 <div class="footer">
                                     <div class="stats">

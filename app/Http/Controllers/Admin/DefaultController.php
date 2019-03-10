@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Research;
+use App\ResearchApplicant;
+
+use Auth;
 
 class DefaultController extends Controller
 {
@@ -29,13 +32,14 @@ class DefaultController extends Controller
         return view('admin.research')->with($array);
     }
 
-    // public function apply($id){
+    public function apply($id){
 
-    // 	$user = User::find();
-    // 	$user->power = 1;
-    // 	$user->save();
+    	$apply = new ResearchApplicant();
+        $apply->research_id = $id;
+        $apply->user_id = Auth::user()->id;
+    	$apply->save();
 
-    // 	return redirect('app/user');
-    // }
+    	return redirect('app/research/'.$id);
+    }
 
 }
