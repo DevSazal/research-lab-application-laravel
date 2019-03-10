@@ -20,5 +20,13 @@ class DefaultController extends Controller
         $array['researches'] = Research::where('status', 1)->orderBy('id', 'desc')->paginate(5);
     	return view('admin.index')->with($array);
     }
+    
+    public function singleResearch($id)
+    {
+        $array['research'] = Research::find($id);
+        // $array['rs'] = ResearchSkill::where('research_id', $id)->get();
+        // $array['skills'] = Skill::all();
+        return view('admin.research')->with($array);
+    }
 
 }

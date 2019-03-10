@@ -37,10 +37,17 @@ Route::put('/app/user/verify/{id}', 'Admin\AdminController@verifyResearchUser');
 Route::put('/app/user/unverify/{id}', 'Admin\AdminController@unverifyResearchUser');
 Route::get('/app/user/add', 'Admin\AdminController@createUser')->name('createUser');
 Route::post('/app/user/add', 'Admin\AdminController@storeUser')->name('storeUser');
+
 Route::resource('/app/skill', 'Admin\SkillController', ['as'=>'admin']);
-Route::resource('/app/research', 'Admin\ResearchController', ['as'=>'admin']);
+Route::resource('/app/research', 'Admin\ResearchController', [
+    'except' => [ 'show' ],
+    'as'=>'admin'
+]);
+
 Route::put('/app/research/publish/{id}', 'Admin\AdminController@publish');
 Route::put('/app/research/pending/{id}', 'Admin\AdminController@pending');
+
+Route::get('/app/research/{id}', 'Admin\DefaultController@singleResearch');
 
 
 

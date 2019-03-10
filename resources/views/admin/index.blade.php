@@ -121,7 +121,7 @@
                                 @foreach($researches as $research)
                                 <section class="single-feed">
                                     <div class="header">
-                                        <a href="single-research-feed.html">
+                                        <a href="{{ url('app/research', $research->id) }}">
                                             <h4 class="title"><b>{{ $research->title }}</b></h4>
                                         </a>
                                     </div>
@@ -137,7 +137,7 @@
                                             <br>
                                             <div class="stats feed-stats">
                                                 <div class="col-md-6 research-feed-footer-left"><i class="ti-reload"></i>
-                                                    <b>Updated</b> 
+                                                    <b>Updated:</b> 
                                                     <?php 
                                                         if(date('Y-m-d') != ($research->updated_at)->format('Y-m-d')){
                                                             echo ($research->updated_at)->format('Y-m-d');
