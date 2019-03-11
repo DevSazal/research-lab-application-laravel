@@ -6,8 +6,8 @@
 
 @section('content')
 <style>
-    .card .avatar {
-    width: 100%;
+.card .avatar {
+    width: 163px;
     height: 100%;
     overflow: unset;
     border-radius: unset;
@@ -15,6 +15,9 @@
 }
 .img-circle {
     border-radius: 5px;
+}
+.custom-select.is-invalid, .form-control.is-invalid, .was-validated .custom-select:invalid, .was-validated .form-control:invalid {
+    border-color: #e3342f;
 }
     </style>
 
@@ -30,15 +33,15 @@
                             <ul class="list-unstyled team-members">
                                             <li>
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-5">
                                                         <div class="avatar">
                                                             <img src="http://localhost:8000/storage/profile/image.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-7">
                                                         DJ Khaled
                                                         <br>
-                                                        <span class="text-muted"><small>Offline</small></span>
+                                                        <span class="text-muted"><small></small></span>
                                                         <br>
                                                         <br>
                                                         <div class="stats"><i class="fa fa-phone" aria-hidden="true"></i> 01755889911</div>
@@ -49,9 +52,9 @@
                                                         
                                                     </div>
 
-                                                    <div class="col-md-3 text-right">
-                                                        <!-- <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn> -->
-                                                    </div>
+                                                    <!-- <div class="col-md-3 text-right">
+                                                        <btn class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></btn>
+                                                    </div> -->
                                                 </div>
                                             </li> 
                                             
@@ -67,12 +70,12 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Note</label>
-                                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">Hi, Let's meet to discuss about agenda.</textarea>
+                                                <textarea rows="5" name="note" class="form-control border-input {{ $errors->has('note') ? ' is-invalid' : '' }}" placeholder="Here can be your description" value="Mike">@if(old('note')){{old('note')}}@else{{ "Hi, Let's meet to discuss about agenda." }}@endif</textarea>
                                                 <!-- <input type="text" class="form-control border-input {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" name="name" value="{{ old('name') }}"> -->
 
-                                                @if ($errors->has('name'))
+                                                @if ($errors->has('note'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('name') }}</strong>
+                                                        <strong>{{ $errors->first('note') }}</strong>
                                                     </span>
                                                 @endif
 
@@ -87,11 +90,11 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Appointment Date</label>
-                                                <input type="date" class="form-control border-input {{ $errors->has('designation') ? ' is-invalid' : '' }}" placeholder="" name="date" value="@if(old('exp')){{old('exp')}}@else{{date('Y-m-d', strtotime('today + 1 days'))}}@endif" required>
+                                                <input type="date" name="date" class="form-control border-input {{ $errors->has('date') ? ' is-invalid' : '' }}" placeholder="" value="@if(old('date')){{old('date')}}@else{{date('Y-m-d', strtotime('today + 1 days'))}}@endif" required>
 
-                                                @if ($errors->has('designation'))
+                                                @if ($errors->has('date'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('designation') }}</strong>
+                                                        <strong>{{ $errors->first('date') }}</strong>
                                                     </span>
                                                 @endif
 
@@ -99,18 +102,18 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Select Schedule</label>
-                                                <select name="time" class="form-control border-input  {{ $errors->has('workplace') ? ' is-invalid' : '' }}" id="sel1">
-                                                    <option>1</option>
+                                                <label>Set Appointment Schedule</label>
+                                                <select name="time" class="form-control border-input  {{ $errors->has('time') ? ' is-invalid' : '' }}" id="sel1">
+                                                    <option>Select Timeslot</option>
                                                     <option>2</option>
                                                     <option>3</option>
                                                     <option>4</option>
                                                 </select>
                                                 <!-- <input type="text" class="form-control border-input  {{ $errors->has('workplace') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="{{ old('workplace') ? old('workplace') : 'Daffodil International University' }}" name="workplace"> -->
 
-                                                @if ($errors->has('workplace'))
+                                                @if ($errors->has('time'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('workplace') }}</strong>
+                                                        <strong>{{ $errors->first('time') }}</strong>
                                                     </span>
                                                 @endif
                                             </div>
