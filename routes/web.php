@@ -52,7 +52,7 @@ Route::put('/app/research/{id}/apply', 'Admin\DefaultController@apply');
 
 // Interview Appointmaent Route
 Route::get('/app/research/{id}/call/{user}', 'Admin\SupervisorController@interviewForm');
-Route::put('/app/research/invite', 'Admin\SupervisorController@interviewSave');
+Route::put('/app/invite', 'Admin\SupervisorController@interviewSave');
 
 
 

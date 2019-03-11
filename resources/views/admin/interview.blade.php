@@ -64,7 +64,7 @@
 
 
 
-                                <form action="{{ url('/app/research/invite') }}" method="post">
+                                <form action="{{ url('/app/invite') }}" method="post">
                                     @method('PUT')
                                     @csrf
                                     <div class="row">
@@ -91,7 +91,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Appointment Date</label>
-                                                <input type="date" name="date" class="form-control border-input {{ $errors->has('date') ? ' is-invalid' : '' }}" placeholder="" value="@if(old('date')){{old('date')}}@else{{date('Y-m-d', strtotime('today + 1 days'))}}@endif" required>
+                                                <input type="date" name="date" class="form-control border-input {{ $errors->has('date') ? ' is-invalid' : '' }}" placeholder="" value="@if(old('date')){{old('date')}}@else{{date('Y-m-d', strtotime('today + 1 days'))}}@endif" >
 
                                                 @if ($errors->has('date'))
                                                     <span class="invalid-feedback" role="alert">
@@ -105,7 +105,7 @@
                                             <div class="form-group">
                                                 <label>Set Appointment Schedule</label>
                                                 <select name="time" class="form-control border-input  {{ $errors->has('time') ? ' is-invalid' : '' }}" id="sel1">
-                                                    <option>Select Timeslot</option>
+                                                    <option value="">-- Select Timeslot</option>
                                                     @foreach($times as $t)
                                                     <option value="{{ $t->id }}">{{ $t->time }}</option>
                                                     @endforeach

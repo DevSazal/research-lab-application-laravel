@@ -12,6 +12,18 @@
     border-color: #d58512;
 }
 </style>
+@if($research->user_id == Auth::user()->id)
+<?php $count = App\Appointment::where('user_id', $research->user_id)->where('research_id', $research->id)->count(); ?>
+    @if($count > 0)
+    <div class="alert alert-info alert-with-icon" style="position:relative; background-color: #5de0bc; color: #ffffff;" data-notify="container">
+        <button type="button" aria-hidden="true" data-dismiss="alert" class="close" aria-label="Close">×</button>
+        <span data-notify="icon" class="ti-bell" style="font-size: 22px;margin-top: -16px;"></span>
+        <span data-notify="message">Hi, You have currently {{ $count }} interview schedule for this research project.</span>
+    </div>
+    @endif
+@endif
+
+
                 <div class="row">
                     <div class="col-md-8">
                         <section class="single-research-feed">
