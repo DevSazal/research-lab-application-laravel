@@ -16,7 +16,11 @@
 .pretty.p-default:not(.p-fill) input:checked~.state.p-warning-o label:after {
     background-color: #14bf96!important;
 }
-
+.justify-content-center {
+    justify-content: center!important;
+    display: flex;
+    flex-wrap: wrap;
+}
 /*right button*/
 .card .header .btn{
     float: right;

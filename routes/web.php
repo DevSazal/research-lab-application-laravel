@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/app/single', function () {
-    return view('admin.single');
+Route::get('/app/test', function () {
+    return view('admin.interview');
 });
 
 // Route::get('/app/traning', function () {
