@@ -35,20 +35,20 @@
                                                 <div class="row">
                                                     <div class="col-md-5">
                                                         <div class="avatar">
-                                                            <img src="http://localhost:8000/storage/profile/image.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                                            <img src="{{ $user->image != NULL ? asset('storage/profile/'.$user->image) : asset('AdminSD/assets/img/pro-avt.png') }}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-7">
-                                                        DJ Khaled
+                                                        {{$user->name}}
                                                         <br>
                                                         <span class="text-muted"><small></small></span>
                                                         <br>
                                                         <br>
-                                                        <div class="stats"><i class="fa fa-phone" aria-hidden="true"></i> 01755889911</div>
-                                                        <div class="stats"><i class="fa fa-envelope"></i> tester@diu.edu.bd</div>
+                                                        <div class="stats"><i class="fa fa-phone" aria-hidden="true"></i> {{$user->phone}}</div>
+                                                        <div class="stats"><i class="fa fa-envelope"></i> {{$user->email}}</div>
                                                         <br>
-                                                        <div class="stats"><i class="ti-book pl-5"></i>  B.Sc In Software Engineering</div>
-                                                        <div class="stats"><i class="ti-location-pin pl-5"></i>   Daffodil International University</div>
+                                                        <div class="stats"><i class="ti-book pl-5"></i>  {{$user->edu_dept}}</div>
+                                                        <div class="stats"><i class="ti-location-pin pl-5"></i>   {{$user->edu_varsity}}</div>
                                                         
                                                     </div>
 
@@ -64,13 +64,14 @@
 
 
 
-                                <form action="{{ route('storeUser') }}" method="post">
+                                <form action="{{ url('/app/research/invite') }}" method="post">
+                                    @method('PUT')
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Note</label>
-                                                <textarea rows="5" name="note" class="form-control border-input {{ $errors->has('note') ? ' is-invalid' : '' }}" placeholder="Here can be your description" value="Mike">@if(old('note')){{old('note')}}@else{{ "Hi, Let's meet to discuss about agenda." }}@endif</textarea>
+                                                <textarea rows="5" name="note" class="form-control border-input {{ $errors->has('note') ? ' is-invalid' : '' }}" placeholder="Here can be your description">@if(old('note')){{old('note')}}@else{{ "Hi, Let's meet to discuss about agenda." }}@endif</textarea>
                                                 <!-- <input type="text" class="form-control border-input {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" name="name" value="{{ old('name') }}"> -->
 
                                                 @if ($errors->has('note'))
@@ -105,9 +106,9 @@
                                                 <label>Set Appointment Schedule</label>
                                                 <select name="time" class="form-control border-input  {{ $errors->has('time') ? ' is-invalid' : '' }}" id="sel1">
                                                     <option>Select Timeslot</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
+                                                    @foreach($times as $t)
+                                                    <option value="{{ $t->id }}">{{ $t->time }}</option>
+                                                    @endforeach
                                                 </select>
                                                 <!-- <input type="text" class="form-control border-input  {{ $errors->has('workplace') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="{{ old('workplace') ? old('workplace') : 'Daffodil International University' }}" name="workplace"> -->
 
@@ -121,6 +122,8 @@
                                     </div>
 
                                     <div class="text-center">
+                                        <input type="hidden" name="invite_user_id" value="{{ $user->id }}">
+                                        <input type="hidden" name="research_id" value="{{ $rid }}">
                                         <button type="submit" class="btn btn-info btn-fill btn-wd">Make Appointment</button>
                                     </div>
                                     <div class="clearfix"></div>

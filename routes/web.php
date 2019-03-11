@@ -50,6 +50,10 @@ Route::put('/app/research/pending/{id}', 'Admin\AdminController@pending');
 Route::get('/app/research/{id}', 'Admin\DefaultController@singleResearch');
 Route::put('/app/research/{id}/apply', 'Admin\DefaultController@apply');
 
+// Interview Appointmaent Route
+Route::get('/app/research/{id}/call/{user}', 'Admin\SupervisorController@interviewForm');
+Route::put('/app/research/invite', 'Admin\SupervisorController@interviewSave');
+
 
 
 

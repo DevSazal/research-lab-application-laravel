@@ -124,7 +124,7 @@
                                         <div class="col-md-10">
                                             <div class="header">
                                                 <a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a>
-                                                <button class="btn btn-warning btn-sm" style="border-radius: unset; margin-top: -24px;">Keep Interview</button>
+                                                <a href="{{ url('/app/research/'.$research->id.'/call/'.$applier->user_id) }}" class="btn btn-warning btn-sm" style="border-radius: unset; margin-top: -24px;">Keep Interview</a>
                                             </div>
                                             <div class="content">
                                                 <div class="col-md-6"> 
