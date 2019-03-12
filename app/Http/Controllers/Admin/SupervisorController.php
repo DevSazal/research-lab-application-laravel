@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Appointment;
 use App\TimeDivision;
+use App\ResearchApplicant;
 
 use Auth;
 
@@ -52,6 +53,10 @@ class SupervisorController extends Controller
                 $model->m_user_id = $request->invite_user_id;
                 $model->research_id = $request->research_id;
                 $model->save();
+
+                $applier = ResearchApplicant::find($request->invite_user_id);
+                $applier->status = 1;
+                $applier->save();
 
 			    return redirect('app/research/'.$request->research_id);
 		    }
