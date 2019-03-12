@@ -53,7 +53,7 @@ class SupervisorController extends Controller
                 $model->m_user_id = $request->invite_user_id;
                 $model->research_id = $request->research_id;
                 $model->save();
-
+ 
                 $applier = ResearchApplicant::find($request->invite_user_id);
                 $applier->status = 1;
                 $applier->save();
