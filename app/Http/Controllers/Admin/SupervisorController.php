@@ -65,5 +65,19 @@ class SupervisorController extends Controller
 	    // dd($validator);
     }
 
+    public function award($id,$user,$raid)
+    {
+        $applier = ResearchApplicant::find($raid);
+                $applier->status = 2;
+                $applier->save();
+
+
+        // $array['rid'] = $id;
+        // $array['user'] = User::find($user);
+        // $array['appointments'] = Appointment::where('user_id', Auth::user()->id)->get(); //use it in future
+        // $array['times'] = TimeDivision::all();
+        return redirect('app/research/'.$id);
+    }
+
     
 }

@@ -55,6 +55,11 @@ Route::get('/app/research/{id}/call/{user}', 'Admin\SupervisorController@intervi
 Route::put('/app/invite', 'Admin\SupervisorController@interviewSave');
 
 
+// Interview Appointmaent Route
+Route::get('/app/research/{id}/award/{user}/raid/{raid}', 'Admin\SupervisorController@award');
+Route::put('/app/invite', 'Admin\SupervisorController@interviewSave');
+
+
 
 
 
