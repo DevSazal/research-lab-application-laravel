@@ -40,6 +40,56 @@
 .DevSazal.alert{
     position:relative; background-color: #5de0bc; color: #ffffff;
 }
+.empty-state.no-selection:before {
+    background-image: url(http://localhost:8000/AdminSD/assets/img/chat2.svg);
+}
+.empty-state:before {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 70px;
+    margin: 0 auto 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+.empty-state.no-selection {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.empty-state {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.msg li a{
+    color: #252422;
+}
+.msg li{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+.msg li:hover{
+    background: lavender;
+    color: #3091B2 !important;
+    cursor: pointer;
+}
 /*right button*/
 .card .header .btn{
     float: right;

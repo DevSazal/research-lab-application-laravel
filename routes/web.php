@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/app/test', function () {
-    return view('admin.interview');
+    return view('admin.message.index');
 });
 
 // Route::get('/app/traning', function () {
