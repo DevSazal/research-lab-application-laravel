@@ -21,6 +21,17 @@
     display: flex;
     flex-wrap: wrap;
 }
+.single-feed-invite{
+    background: lavender;
+    /* border-bottom: 1px solid #e0e0e0; */
+}
+.single-feed-invite:hover {
+    background: #34495e !important;
+    color: white;
+}
+.DevSazal.alert{
+    position:relative; background-color: #5de0bc; color: #ffffff;
+}
 /*right button*/
 .card .header .btn{
     float: right;

@@ -15,7 +15,7 @@
 @if($research->user_id == Auth::user()->id)
 <?php $count = App\Appointment::where('user_id', $research->user_id)->where('research_id', $research->id)->count(); ?>
     @if($count > 0)
-    <div class="alert alert-info alert-with-icon" style="position:relative; background-color: #5de0bc; color: #ffffff;" data-notify="container">
+    <div class="DevSazal alert alert-info alert-with-icon" style="position:relative; background-color: #5de0bc; color: #ffffff;" data-notify="container">
         <button type="button" aria-hidden="true" data-dismiss="alert" class="close" aria-label="Close">×</button>
         <span data-notify="icon" class="ti-bell" style="font-size: 22px;margin-top: -16px;"></span>
         <span data-notify="message">Hi, You have currently {{ $count }} interview schedule for this research project.</span>
@@ -131,12 +131,16 @@
                             <?php $user = App\User::find($applier->user_id); ?>
                             
                             <section class="single-feed-profile">
-                                <div class="single-feed">
+                                <div class="single-feed @if($applier->status==1) single-feed-invite @endif">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <div class="header">
                                                 <a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a>
+                                                @if($applier->status==1)
+                                                <button class="btn btn-success btn-sm" style="border-radius: unset; margin-top: -24px;">Award Finally</button>
+                                                @else
                                                 <a href="{{ url('/app/research/'.$research->id.'/call/'.$applier->user_id) }}" class="btn btn-warning btn-sm" style="border-radius: unset; margin-top: -24px;">Keep Interview</a>
+                                                @endif
                                             </div>
                                             <div class="content">
                                                 <div class="col-md-6"> 

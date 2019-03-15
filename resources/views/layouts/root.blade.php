@@ -47,6 +47,74 @@
             background-color: #14bf96!important;
         }
     </style>
+    <!-- color change code 2nd style -->
+    <?php
+        $color = "#1abc9c";
+        $color = "#39d2b4";
+
+        $color = "#55c57a";
+     ?>
+    <style>
+    .navbar .navbar-nav > li > a.btn-success, .btn-success {
+        border-color: {{$color}};
+        color: {{$color}};
+    }
+    .btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover {
+        background-color: {{$color}};
+        border-color: {{$color}};
+    }
+        .single-feed .header .title {
+        color: {{$color}};
+    }
+        .tag {
+        background-color: {{$color}};
+    }
+
+    .pagination>.disabled>span.page-link {
+        color: {{$color}};
+    }
+    .pagination>.active>span.page-link {
+        color: {{$color}};
+        border: 2px solid {{$color}};
+    }
+    .pagination li a.page-link, .pagination li:first-child a.page-link, .pagination li:last-child a.page-link {
+        color: {{$color}};
+
+    }
+    .pagination li.active a.page-link, .pagination li a.page-link:hover, .pagination li.active a.page-link:hover {
+    color: {{$color}};
+    border: 2px solid {{$color}};
+    }
+    .pagination li a.page-link, .pagination li:first-child a.page-link, .pagination li:last-child a.page-link {
+    color: {{$color}};
+    }
+    .pagination li.active a.page-link, .pagination li a.page-link:hover, .pagination li.active a.page-link:hover {
+    color: {{$color}};
+    border: 2px solid {{$color}};
+    }
+    .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:not(.btn):hover, .navbar-default .navbar-nav > .active > a:not(.btn):focus, .navbar-default .navbar-nav > li > a:not(.btn):hover, .navbar-default .navbar-nav > li > a:not(.btn):focus {
+    color: {{$color}};
+    }
+    .document a {
+    color: {{$color}};
+    }
+    .sidebar[data-active-color="danger"] .nav li.active > a, .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a {
+    color: {{$color}};
+    }
+    .btn-primary-color {
+    background: {{$color}};
+    }
+    ul li ul .open {
+    color: {{$color}} !important;
+    }
+    .navbar .navbar-nav > li > a.btn-success:hover, .navbar .navbar-nav > li > a.btn-success:focus, .navbar .navbar-nav > li > a.btn-success:active, .navbar .navbar-nav > li > a.btn-success.active, .open > .navbar .navbar-nav > li > a.btn-success.dropdown-toggle, .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
+    background-color: {{$color}};
+    border-color: {{$color}};
+    }
+    .icon-success {
+    color: {{$color}};
+    }
+    </style>
 
 </head>
 
