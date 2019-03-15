@@ -29,6 +29,14 @@
     background: #34495e !important;
     color: white;
 }
+.awarded {
+    background: #34495e;
+    color: white;
+}
+.awarded:hover {
+    background: #34495e !important;
+    color: white;
+}
 .DevSazal.alert{
     position:relative; background-color: #5de0bc; color: #ffffff;
 }

@@ -13,6 +13,14 @@
 }
 </style>
 @if($research->user_id == Auth::user()->id)
+<?php $count = App\ResearchApplicant::where('research_id', $research->id)->where('status', 2)->count(); ?>
+    @if($count > 0)
+    <div class="DevSazal alert alert-info alert-with-icon" style="position:relative; background-color: #FFC107; color: #34495e;" data-notify="container">
+        <button type="button" aria-hidden="true" data-dismiss="alert" class="close" aria-label="Close">×</button>
+        <span data-notify="icon" class="ti-crown" style="font-size: 22px;margin-top: -16px;"></span>
+        <span data-notify="message"><b>Great!</b> You awarded <b>{{ $count }} person</b> for the research project.</span>
+    </div>
+    @endif
 <?php $count = App\Appointment::where('user_id', $research->user_id)->where('research_id', $research->id)->count(); ?>
     @if($count > 0)
     <div class="DevSazal alert alert-info alert-with-icon" style="position:relative; background-color: #5de0bc; color: #ffffff;" data-notify="container">
@@ -131,7 +139,7 @@
                             <?php $user = App\User::find($applier->user_id); ?>
                             
                             <section class="single-feed-profile">
-                                <div class="single-feed @if($applier->status==1) single-feed-invite @endif">
+                                <div class="single-feed @if($applier->status==1) single-feed-invite @elseif($applier->status==2) awarded @endif">
                                     <div class="row">
                                         <div class="col-md-10">
                                             <div class="header">
@@ -139,6 +147,9 @@
                                                 @if($applier->status==1)
                                                 <div style="display:flex"><a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a><small>Invited</small></div>
                                                 <a href="{{ url('/app/research/'.$research->id.'/award/'.$applier->user_id.'/raid/'.$applier->id) }}" class="btn btn-success btn-sm" style="border-radius: unset; margin-top: -24px;">Award Finally</a>
+                                                @elseif($applier->status==2)
+                                                <div style="display:flex"><a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a><small>Awarded</small></div>
+                                                <a href="{{ url('/app/research/'.$research->id.'/award/'.$applier->user_id.'/raid/'.$applier->id) }}" class="btn btn-success btn-sm" style="border-radius: unset; margin-top: -24px;">Chat</a>
                                                 @else
                                                 <a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a>
                                                 <a href="{{ url('/app/research/'.$research->id.'/call/'.$applier->user_id) }}" class="btn btn-warning btn-sm" style="border-radius: unset; margin-top: -24px;">Keep Interview</a>

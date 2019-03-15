@@ -9,6 +9,7 @@ use App\User;
 use App\Appointment;
 use App\TimeDivision;
 use App\ResearchApplicant;
+use App\Research;
 
 use Auth;
 
@@ -70,6 +71,10 @@ class SupervisorController extends Controller
         $applier = ResearchApplicant::find($raid);
                 $applier->status = 2;
                 $applier->save();
+        $research = Research::find($id);
+                $research->status = 2;
+                $research->save();
+
 
 
         // $array['rid'] = $id;
