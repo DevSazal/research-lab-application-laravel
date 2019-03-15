@@ -10,6 +10,8 @@ use App\Appointment;
 use App\TimeDivision;
 use App\ResearchApplicant;
 use App\Research;
+use App\Message;
+use App\MessageReceiver;
 
 use Auth;
 
@@ -75,12 +77,19 @@ class SupervisorController extends Controller
                 $research->status = 2;
                 $research->save();
 
+        $msg = new Message();
+        $msg->research_id = $id;
+        $msg->user_id = Auth::user()->id;
+        $msg->message = "Hi, Let's start our research.";
+        $msg->save();
 
-
-        // $array['rid'] = $id;
-        // $array['user'] = User::find($user);
-        // $array['appointments'] = Appointment::where('user_id', Auth::user()->id)->get(); //use it in future
-        // $array['times'] = TimeDivision::all();
+        $appliers = ResearchApplicant::where('research_id', $id)->where('status', 2)->get();
+        foreach($appliers as $a){
+            $rcv = new MessageReceiver();
+            $rcv->message_id = $msg->id;
+            $rcv->receiver_user_id = $a->user_id;
+            $rcv->save();
+        }
         return redirect('app/research/'.$id);
     }
 
