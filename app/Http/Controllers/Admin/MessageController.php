@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Research;
+use App\Message;
 
 use Auth;
 
@@ -54,7 +55,8 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $array['messages'] = Message::where('research_id', $id)->get();
+        return view('admin.message.show')->with($array);
     }
 
     /**

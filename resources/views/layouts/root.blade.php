@@ -114,6 +114,9 @@
     .icon-success {
     color: {{$color}};
     }
+    .stats .research-feed-footer-right:hover {
+    color: {{$color}};
+    }
     </style>
 
 </head>

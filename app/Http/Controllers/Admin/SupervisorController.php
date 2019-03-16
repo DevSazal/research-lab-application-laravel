@@ -21,9 +21,10 @@ use Illuminate\Support\Facades\Hash;
 class SupervisorController extends Controller
 {
     //
-    public function interviewForm($id,$user)
+    public function interviewForm($id,$user,$raid)
     {
         $array['rid'] = $id;
+        $array['raid'] = $raid;
         $array['user'] = User::find($user);
         $array['appointments'] = Appointment::where('user_id', Auth::user()->id)->get(); //use it in future
         $array['times'] = TimeDivision::all();
@@ -37,6 +38,7 @@ class SupervisorController extends Controller
 	        'time' => 'required',
             'invite_user_id'=>  'required',
             'research_id'=>  'required',
+            'raid'=>  'required',
 	    ]);
   
 
@@ -57,7 +59,7 @@ class SupervisorController extends Controller
                 $model->research_id = $request->research_id;
                 $model->save();
  
-                $applier = ResearchApplicant::find($request->invite_user_id);
+                $applier = ResearchApplicant::find($request->raid);
                 $applier->status = 1;
                 $applier->save();
 

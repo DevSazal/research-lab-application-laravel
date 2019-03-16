@@ -124,6 +124,7 @@
                                     <div class="text-center">
                                         <input type="hidden" name="invite_user_id" value="{{ $user->id }}">
                                         <input type="hidden" name="research_id" value="{{ $rid }}">
+                                        <input type="hidden" name="raid" value="{{ $raid }}">
                                         <button type="submit" class="btn btn-info btn-fill btn-wd">Make Appointment</button>
                                     </div>
                                     <div class="clearfix"></div>

@@ -143,8 +143,7 @@
                                     <div class="row">
                                         <div class="col-md-10">
                                             <div class="header">
-                                                
-                                                @if($applier->status==1)
+                                             @if($applier->status==1)
                                                 <div style="display:flex"><a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a><small>Invited</small></div>
                                                 <a href="{{ url('/app/research/'.$research->id.'/award/'.$applier->user_id.'/raid/'.$applier->id) }}" class="btn btn-success btn-sm" style="border-radius: unset; margin-top: -24px;">Award Finally</a>
                                                 @elseif($applier->status==2)
@@ -152,7 +151,7 @@
                                                 <a href="{{ url('/app/research/'.$research->id.'/award/'.$applier->user_id.'/raid/'.$applier->id) }}" class="btn btn-success btn-sm" style="border-radius: unset; margin-top: -24px;">Chat</a>
                                                 @else
                                                 <a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a>
-                                                <a href="{{ url('/app/research/'.$research->id.'/call/'.$applier->user_id) }}" class="btn btn-warning btn-sm" style="border-radius: unset; margin-top: -24px;">Keep Interview</a>
+                                                <a href="{{ url('/app/research/'.$research->id.'/call/'.$applier->user_id.'/'.$applier->id) }}" class="btn btn-warning btn-sm" style="border-radius: unset; margin-top: -24px;">Keep Interview</a>
                                                 @endif
                                             </div>
                                             <div class="content">

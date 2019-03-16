@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/app/test', function () {
-    return view('admin.message.index');
+    return view('admin.message.show');
 });
 
 // Route::get('/app/traning', function () {
@@ -51,7 +51,7 @@ Route::get('/app/research/{id}', 'Admin\DefaultController@singleResearch');
 Route::put('/app/research/{id}/apply', 'Admin\DefaultController@apply');
 
 // Interview Appointmaent Route
-Route::get('/app/research/{id}/call/{user}', 'Admin\SupervisorController@interviewForm');
+Route::get('/app/research/{id}/call/{user}/{raid}', 'Admin\SupervisorController@interviewForm');
 Route::put('/app/invite', 'Admin\SupervisorController@interviewSave');
 
 
