@@ -52,7 +52,7 @@
         $color = "#1abc9c";
         $color = "#39d2b4";
 
-        $color = "#55c57a";
+        // $color = "#55c57a";
      ?>
     <style>
     .navbar .navbar-nav > li > a.btn-success, .btn-success {
