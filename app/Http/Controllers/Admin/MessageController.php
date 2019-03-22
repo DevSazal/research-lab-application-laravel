@@ -132,9 +132,30 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        $array['messages'] = Message::where('research_id', $id)->get();
-        $array['research'] = Research::find($id);
-        return view('admin.message.show')->with($array);
+        $r = Research::find($id);
+        if(Auth::user()->role == 2 && $r->user_id == Auth::user()->id){
+            $array['messages'] = Message::where('research_id', $id)->get();
+            $array['research'] = Research::find($id);
+            return view('admin.message.show')->with($array);
+        }else{
+            $applier = ResearchApplicant::where('research_id', $id)
+                        ->where('status', 2)
+                        ->where('user_id', Auth::user()->id)
+                        ->count();
+            if($applier > 0){
+                $array['messages'] = Message::where('research_id', $id)->get();
+                $array['research'] = Research::find($id);
+                return view('admin.message.show')->with($array);
+            }else{
+                return redirect('app/inbox');
+            }
+            
+        }
+
+        
+        // $array['messages'] = Message::where('research_id', $id)->get();
+        // $array['research'] = Research::find($id);
+        // return view('admin.message.show')->with($array);
     }
 
     /**
