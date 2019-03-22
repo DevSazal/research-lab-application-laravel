@@ -17,9 +17,9 @@
                                     <div class="img-recipent"><img src="{{ $msg->user['image'] != NULL ? asset('storage/profile/'.$msg->user['image']) : asset('AdminSD/assets/img/pro-avt.png') }}"></div>
                                     <div class="message-received">
                                         <p>{{ $msg->message }}</p>
-                                        <!-- @if($msg->file != NULL)
+                                        @if($msg->file != NULL)
                                         <p>{{ $msg->file }}</p>
-                                        @endif -->
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="received-name-date-time">
@@ -31,9 +31,9 @@
                                 <div class="message-sent">
                                     
                                         <p>{{ $msg->message }}</p>
-                                        <!-- @if($msg->file != NULL)
+                                        @if($msg->file != NULL)
                                         <p>{{ $msg->file }}</p>
-                                        @endif -->
+                                        @endif
                                     
                                 </div>
                             </div>
