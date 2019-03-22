@@ -6,11 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Research;
 use App\Message;
+use App\ResearchApplicant;
+use App\MessageReceiver;
 
 use Auth;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
 class MessageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+	}
+	
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +55,74 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         //
-    }
+        $validator = Validator::make($request->all(), [
+	        'msg' => 'string',
+            'rid' => 'required',
+            'spid' => 'required',
+            'file'=>  'mimes:jpg,jpeg,gif,png,pdf,doc,docx,xls,xlsx,ppt,pptx',
+	    ]);
+
+	    //   
+
+		if ($validator->fails()) {
+		        return back()
+		                ->withErrors($validator)
+		                ->withInput();
+		    }else{
+
+                // The request is valid...
+
+                if(isset($request->file)){
+                    if($request->file->getClientOriginalName()){
+                            $ext = $request->file->getClientOriginalExtension();
+                            $file = date('YmdHis').'_'.rand(1,999).'.'.$ext;
+                            $request->file->storeAs('public/researchfile',$file);
+                        }else{
+                            $file = NULL;
+                        }
+                }else{
+                    $file = NULL;    
+                }
+
+                $msg = new Message();
+                $msg->research_id = $request->rid;
+                $msg->user_id = Auth::user()->id;
+                $msg->message = $request->msg;
+                $msg->file = $file;
+                $msg->save();
+
+                if($request->spid == Auth::user()->id){
+                    $appliers = ResearchApplicant::where('research_id', $request->rid)
+                                ->where('status', 2)
+                                ->get();
+                    foreach($appliers as $a){
+                        $rcv = new MessageReceiver();
+                        $rcv->message_id = $msg->id;
+                        $rcv->receiver_user_id = $a->user_id;
+                        $rcv->save();
+                    }
+                }else{
+                    $appliers = ResearchApplicant::where('research_id', $request->rid)
+                                ->where('status', 2)
+                                ->where('user_id', '!=', Auth::user()->id)
+                                ->get();
+                    foreach($appliers as $a){
+                        $rcv = new MessageReceiver();
+                        $rcv->message_id = $msg->id;
+                        $rcv->receiver_user_id = $a->user_id;
+                        $rcv->save();
+                    }
+
+                    $rcv = new MessageReceiver();
+                    $rcv->message_id = $msg->id;
+                    $rcv->receiver_user_id = $request->spid;
+                    $rcv->save();
+
+                }
+
+			    return redirect('app/inbox/'.$request->rid);
+		    }
+    } 
 
     /**
      * Display the specified resource.
@@ -56,6 +133,7 @@ class MessageController extends Controller
     public function show($id)
     {
         $array['messages'] = Message::where('research_id', $id)->get();
+        $array['research'] = Research::find($id);
         return view('admin.message.show')->with($array);
     }
 
