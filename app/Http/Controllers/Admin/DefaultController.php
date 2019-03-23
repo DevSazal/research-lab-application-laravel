@@ -34,11 +34,12 @@ class DefaultController extends Controller
 
     public function apply($id){
 
-    	$apply = new ResearchApplicant();
-        $apply->research_id = $id;
-        $apply->user_id = Auth::user()->id;
-    	$apply->save();
-
+        if(Auth::user()->role == 1 && Auth::user()->power == 1){
+            $apply = new ResearchApplicant();
+            $apply->research_id = $id;
+            $apply->user_id = Auth::user()->id;
+            $apply->save();
+        }
     	return redirect('app/research/'.$id);
     }
 
