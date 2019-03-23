@@ -27,12 +27,17 @@ class SupervisorController extends Controller
     //
     public function interviewForm($id,$user,$raid)
     {
-        $array['rid'] = $id;
-        $array['raid'] = $raid;
-        $array['user'] = User::find($user);
-        $array['appointments'] = Appointment::where('user_id', Auth::user()->id)->get(); //use it in future
-        $array['times'] = TimeDivision::all();
-        return view('admin.interview')->with($array);
+        if(Auth::user()->role == 2 && Auth::user()->power ==1){
+            $array['rid'] = $id;
+            $array['raid'] = $raid;
+            $array['user'] = User::find($user);
+            $array['appointments'] = Appointment::where('user_id', Auth::user()->id)->get(); //use it in future
+            $array['times'] = TimeDivision::all();
+            return view('admin.interview')->with($array);
+        }else{
+            return redirect('app/research/'.$id);
+        }
+        
     }
     public function interviewSave(Request $request){
 
@@ -76,26 +81,29 @@ class SupervisorController extends Controller
 
     public function award($id,$user,$raid)
     {
-        $applier = ResearchApplicant::find($raid);
-                $applier->status = 2;
-                $applier->save();
-        $research = Research::find($id);
-                $research->status = 2;
-                $research->save();
+        if(Auth::user()->role ==2 && Auth::user()->power == 1){
+            $applier = ResearchApplicant::find($raid);
+                    $applier->status = 2;
+                    $applier->save();
+            $research = Research::find($id);
+                    $research->status = 2;
+                    $research->save();
 
-        $msg = new Message();
-        $msg->research_id = $id;
-        $msg->user_id = Auth::user()->id;
-        $msg->message = "Hi, Let's start our research.";
-        $msg->save();
+            $msg = new Message();
+            $msg->research_id = $id;
+            $msg->user_id = Auth::user()->id;
+            $msg->message = "Hi, Let's start our research.";
+            $msg->save();
 
-        $appliers = ResearchApplicant::where('research_id', $id)->where('status', 2)->get();
-        foreach($appliers as $a){
-            $rcv = new MessageReceiver();
-            $rcv->message_id = $msg->id;
-            $rcv->receiver_user_id = $a->user_id;
-            $rcv->save();
+            $appliers = ResearchApplicant::where('research_id', $id)->where('status', 2)->get();
+            foreach($appliers as $a){
+                $rcv = new MessageReceiver();
+                $rcv->message_id = $msg->id;
+                $rcv->receiver_user_id = $a->user_id;
+                $rcv->save();
+            }
         }
+        
         return redirect('app/research/'.$id);
     }
 

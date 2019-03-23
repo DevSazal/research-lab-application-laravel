@@ -49,10 +49,10 @@ Route::put('/app/research/publish/{id}', 'Admin\AdminController@publish');
 Route::put('/app/research/pending/{id}', 'Admin\AdminController@pending');
 
 Route::get('/app/research/{id}', 'Admin\DefaultController@singleResearch');
-Route::put('/app/research/{id}/apply', 'Admin\DefaultController@apply');
+Route::put('/app/research/{id}/apply', 'Admin\DefaultController@apply'); //role access r
 
 // Interview Appointmaent Route
-Route::get('/app/research/{id}/call/{user}/{raid}', 'Admin\SupervisorController@interviewForm');
+Route::get('/app/research/{id}/call/{user}/{raid}', 'Admin\SupervisorController@interviewForm'); //role access s
 Route::put('/app/invite', 'Admin\SupervisorController@interviewSave');
 
 
