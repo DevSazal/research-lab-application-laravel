@@ -18,7 +18,7 @@
     <div class="DevSazal alert alert-info alert-with-icon" style="position:relative; background-color: #FFC107; color: #34495e;" data-notify="container">
         <button type="button" aria-hidden="true" data-dismiss="alert" class="close" aria-label="Close">×</button>
         <span data-notify="icon" class="ti-crown" style="font-size: 22px;margin-top: -16px;"></span>
-        <span data-notify="message"><b>Great!</b> You awarded <b>{{ $count }} person</b> for the research project.</span>
+        <span data-notify="message"><b>Great!</b> You awarded <b>{{ $count }} person</b> for the research project. Let's <a href="{{ url('/app/inbox/'.$research->id) }}" style="color:black; font-weight:bold;" target="_blank">chat.</a></span>
     </div>
     @endif
 <?php $count = App\Appointment::where('user_id', $research->user_id)->where('research_id', $research->id)->count(); ?>
@@ -93,6 +93,7 @@
                                     <?php
                                      $check = App\ResearchApplicant::where('research_id', $research->id)->where('user_id', Auth::user()->id)->count();
                                      ?>
+                                     @if(Auth::user()->role == 1 && Auth::user()->power == 1)
                                         @if($check > 0)
                                         <button class="btn-primary-color" style="background: #e4e4e4;" disabled><b>Applied</b></button>
                                         @else
@@ -102,6 +103,9 @@
                                                             @csrf
                                         </form>
                                         @endif
+                                    @else
+                                        <button class="btn-primary-color" style="background: #e4e4e4;" disabled><b>Not Qualified</b></button>
+                                    @endif
                                     </div>  
                                 </div>
                                 <div class="footer">
@@ -145,20 +149,26 @@
                                             <div class="header">
                                              @if($applier->status==1)
                                                 <div style="display:flex"><a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a><small>Invited</small></div>
+                                                    @if($research->user_id == Auth::user()->id)
                                                 <a href="{{ url('/app/research/'.$research->id.'/award/'.$applier->user_id.'/raid/'.$applier->id) }}" class="btn btn-success btn-sm" style="border-radius: unset; margin-top: -24px;">Award Finally</a>
+                                                    @endif
                                                 @elseif($applier->status==2)
                                                 <div style="display:flex"><a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a><small>Awarded</small></div>
+                                                    @if($research->user_id == Auth::user()->id)
                                                 <a href="{{ url('/app/inbox/'.$research->id) }}" class="btn btn-success btn-sm" style="border-radius: unset; margin-top: -24px;">Chat</a>
+                                                    @endif
                                                 @else
                                                 <a href="#"><h4 class="title"><b>{{ $applier->user['name'] }}</b></h4></a>
+                                                    @if($research->user_id == Auth::user()->id)
                                                 <a href="{{ url('/app/research/'.$research->id.'/call/'.$applier->user_id.'/'.$applier->id) }}" class="btn btn-warning btn-sm" style="border-radius: unset; margin-top: -24px;">Keep Interview</a>
+                                                    @endif
                                                 @endif
                                             </div>
                                             <div class="content">
                                                 <div class="col-md-6"> 
                                                     <div class="researcher-info category"> 
-                                                        <p class="supervisor-degree"><i class="ti-book pl-5"></i> {{ $applier->user['edu_dept'] }}</p>
-                                                        <p class="Supervisor-designation"><i class="ti-location-pin pl-5"></i> {{ $applier->user['edu_varsity'] }}</p> 
+                                                        <p class="supervisor-degree"><i class="ti-book pl-5"></i> @if(empty($applier->user['edu_dept']))Undefined @else{{ $applier->user['edu_dept'] }}@endif</p>
+                                                        <p class="Supervisor-designation"><i class="ti-location-pin pl-5"></i> @if(empty($applier->user['edu_varsity']))Undefined @else{{ $applier->user['edu_varsity'] }}@endif</p> 
                                                     </div> 
                                                 </div>
                                                 <div class="col-md-6">
