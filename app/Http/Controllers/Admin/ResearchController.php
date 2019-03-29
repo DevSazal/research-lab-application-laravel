@@ -19,6 +19,11 @@ class ResearchController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        if (Auth::user()->role > 1){
+
+        }else{
+            return redirect('/app');
+        }
     }
     /**
      * Display a listing of the resource.
