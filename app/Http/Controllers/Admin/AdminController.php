@@ -8,24 +8,16 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Research;
 
-// use Auth;
-
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 // use App\Http\Requests\storeUserForm;
-use Illuminate\Contracts\Auth\Guard;
 
 class AdminController extends Controller
 {
-    public function __construct(Guard $auth)
+    public function __construct()
     {
 		$this->middleware('auth');
-		dd($this->currentUser = $auth->user());
-		// if (Auth::user()->role > 2){
-
-        // }else{
-        //     return redirect('/app');
-        // }
+		$this->middleware('role');
 	}
 	
 	public function newUser(){
