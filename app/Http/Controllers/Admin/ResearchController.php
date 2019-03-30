@@ -19,11 +19,11 @@ class ResearchController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        if (Auth::user()->role > 1){
+        // if (Auth::user()->role > 1){
 
-        }else{
-            return redirect('/app');
-        }
+        // }else{
+        //     return redirect('/app');
+        // }
     }
     /**
      * Display a listing of the resource.
@@ -33,8 +33,17 @@ class ResearchController extends Controller
     public function index()
     {
         //
-        $array['research'] = Research::orderBy('status', 'asc')->orderBy('id', 'desc')->paginate(15);
-    	return view('admin.research.index')->with($array);
+        if (Auth::user()->role > 2){
+            $array['research'] = Research::orderBy('status', 'asc')->orderBy('id', 'desc')->paginate(15);
+            return view('admin.research.index')->with($array);
+        }elseif(Auth::user()->role == 2){
+            $array['research'] = Research::where('user_id', Auth::user()->id)->orderBy('status', 'asc')->orderBy('id', 'desc')->paginate(15);
+            return view('admin.research.index')->with($array);
+        }else{
+            return abort(404);
+        }
+        // $array['research'] = Research::orderBy('status', 'asc')->orderBy('id', 'desc')->paginate(15);
+    	// return view('admin.research.index')->with($array);
     }
 
     /**
@@ -44,8 +53,13 @@ class ResearchController extends Controller
      */
     public function create()
     {
-        $array['skills'] = Skill::all();
-        return view('admin.research.create')->with($array);
+        if (Auth::user()->role >= 2){          
+            $array['skills'] = Skill::all();
+            return view('admin.research.create')->with($array);
+        }else{
+            // return redirect('/app');
+            return abort(404);
+        }
     }
 
     /**
@@ -135,10 +149,26 @@ class ResearchController extends Controller
      */
     public function edit($id)
     {
-        $array['research'] = Research::find($id);
-        $array['rs'] = ResearchSkill::where('research_id', $id)->get();
-        $array['skills'] = Skill::all();
-        return view('admin.research.edit')->with($array);
+        $check = Research::find($id);
+        if (Auth::user()->role > 2){
+            $array['research'] = Research::find($id);
+            $array['rs'] = ResearchSkill::where('research_id', $id)->get();
+            $array['skills'] = Skill::all();
+            return view('admin.research.edit')->with($array);
+
+        }elseif(Auth::user()->role == 2 && Auth::user()->id == $check->user_id){
+            $array['research'] = Research::find($id);
+            $array['rs'] = ResearchSkill::where('research_id', $id)->get();
+            $array['skills'] = Skill::all();
+            return view('admin.research.edit')->with($array);
+        }else{
+            // return redirect('/app');
+            return abort(404);
+        }
+        // $array['research'] = Research::find($id);
+        // $array['rs'] = ResearchSkill::where('research_id', $id)->get();
+        // $array['skills'] = Skill::all();
+        // return view('admin.research.edit')->with($array);
     }
 
     /**
