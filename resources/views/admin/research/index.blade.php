@@ -81,7 +81,8 @@
                                                 </td>
                                                 <td>{{ $r->user->name }}</td>
                                                 <td>
-
+                                                    
+                                                @if(Auth::user()->role > 2 && Auth::user()->power == 1)
                                                     @if($r->status == 0)
                                                         <button onclick="$(this).parent().find('#publish').submit()" class="btn btn-success btn-sm">Publish</button>
                                                         
@@ -90,6 +91,7 @@
                                                         <button onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Pending</button>
                                                         
                                                     @endif
+                                                @endif
                                                         <!-- <button onclick="$(this).parent().find('#edit').submit()" class="btn btn-info btn-sm">Edit</button> -->
                                                         <a href="{{ route('admin.research.edit', $r->id) }}" class="btn btn-info btn-sm">Edit</a>
 
