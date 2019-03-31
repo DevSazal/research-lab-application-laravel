@@ -153,6 +153,7 @@
                             <p>My Feed</p>
                         </a>
                     </li>
+                    @if(Auth::user()->role > 1 && Auth::user()->power == 1)
                     <li class="
                             @if($segment=='research' && Request::segment(3)=='create'))
                             active
@@ -162,6 +163,8 @@
                             <p>Create A Research</p>
                         </a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role > 2 && Auth::user()->power == 1)
                     <li class="
                             @if($segment=='user' && Request::segment(3)=='add'))
                             active
@@ -171,6 +174,8 @@
                             <p>Add A Supervisor</p>
                         </a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role > 2 && Auth::user()->power == 1)
                     <li class="
                             @if($segment=='user' && Request::segment(3)==NULL))
                             active
@@ -180,6 +185,7 @@
                             <p>Member Request</p>
                         </a>
                     </li>
+                    @endif
                     <!-- <li data-panelId="panel1" class="dropdown-btn">
                         <a href="table.html">
                             <i class="ti-view-list-alt"></i>
@@ -219,6 +225,7 @@
                             <p>Contest</p>
                         </a>
                     </li> -->
+                    @if(Auth::user()->role > 2 && Auth::user()->power == 1)
                     <li data-panelId="panel4" class="
                             @if($segment=='skill')
                             active
@@ -238,6 +245,8 @@
                                 @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>Add skill</span></a></li>
                         </ul>
                     </li>
+                    @endif
+                    @if(Auth::user()->role > 1 && Auth::user()->power == 1)
                     <li data-panelId="panel5" class="
                             @if($segment=='research')
                             active
@@ -260,6 +269,7 @@
                             
                         </ul>
                     </li>
+                    @endif
                     <li>
                         <a href="">
                             <i class="ti-user"></i>
