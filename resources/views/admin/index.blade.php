@@ -116,7 +116,9 @@
                             <div class="card">
                                 <div class="header">
                                     <h3 class="title"><b>My Feed</b></h3>
+                                    @if(Auth::user()->role > 1 && Auth::user()->power == 1)
                                     <a href="{{ route('admin.research.create') }}" class="btn btn-success" style="margin-top: -36px;"> + Create A Research</a>
+                                    @endif
                                 </div>
                                 <hr>
                                 @foreach($researches as $research)
