@@ -271,7 +271,7 @@
                     </li>
                     @endif
                     <li>
-                        <a href="">
+                        <a href="{{ url('app/profile') }}">
                             <i class="ti-user"></i>
                             <p>My Profile</p>
                         </a>
