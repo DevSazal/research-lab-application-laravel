@@ -64,6 +64,7 @@ Route::resource('/app/inbox', 'Admin\MessageController', ['as'=>'admin']);
 // Profile Edit
 Route::get('/app/profile', 'Admin\ProfileController@edit', ['as'=>'admin']);
 Route::post('/app/profile', 'Admin\ProfileController@update')->name('update');
+Route::post('/app/profile/password', 'Admin\ProfileController@password')->name('password');
 
 
 

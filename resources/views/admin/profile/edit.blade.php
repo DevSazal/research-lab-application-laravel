@@ -116,9 +116,9 @@
                                 <h4 class="title">Change Password</h4>
                             </div>
                             <div class="content">
-                                <form action="{{ route('storeUser') }}" method="post">
+                                <form action="{{ route('password') }}" method="post">
                                     @csrf
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Phone</label>
@@ -131,7 +131,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">

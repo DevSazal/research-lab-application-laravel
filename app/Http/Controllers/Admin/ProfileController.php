@@ -83,4 +83,57 @@ class ProfileController extends Controller
 		    }
     }
 
+    public function password(Request $request){
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:6|confirmed',
+	    ]);
+
+	    //   
+
+		if ($validator->fails()) {
+		        return back()
+		                ->withErrors($validator)
+		                ->withInput();
+		    }else{
+
+                // The request is valid...
+
+                $user = User::find(Auth::user()->id);
+                $user->password = Hash::make($request->password);
+                $user->save();
+                        
+			    return redirect('app/profile');
+		    }
+    }
+
+    public function updateSkill(){
+        // $validator = Validator::make($request->all(), [
+        //     'rskills'=>  'required',
+	    // ]);
+
+	    // //   
+
+		// if ($validator->fails()) {
+		//         return back()
+		//                 ->withErrors($validator)
+		//                 ->withInput();
+		//     }else{
+
+        //         // The request is valid...
+
+        //         UserSkill::where('research_id', $id)->delete();
+
+        //         $skillIdArray =  $request->rskills;
+        //         $count = count($skillIdArray);
+
+        //         for($i = 0; $i < $count; $i++){
+        //             $rs = new UserSkill();
+        //             $rs->skill_id = $skillIdArray[$i];
+        //             $rs->research_id = $research->id;
+        //             $rs->save();
+        //         }
+                        
+		// 	    return redirect('app/research');
+		//     }
+    }
 }
