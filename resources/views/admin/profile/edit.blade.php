@@ -169,13 +169,13 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form action="{{ route('storeUser') }}" method="post">
+                                <form action="{{ route('update') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" name="name" value="{{ old('name') }}">
+                                                <input type="text" class="form-control border-input {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Name" name="name" value="{{ old('name') ? old('name') : $user->name }}">
 
                                                 @if ($errors->has('name'))
                                                     <span class="invalid-feedback" role="alert">
@@ -188,7 +188,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email Address</label>
-                                                <input type="email" class="form-control border-input {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" name="email" value="{{ old('email') }}" autocomplete="off">
+                                                <input type="email" class="form-control border-input {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" name="email" value="{{ old('email') ? old('email') : $user->email }}" autocomplete="off">
 
                                                 @if ($errors->has('email'))
                                                     <span class="invalid-feedback" role="alert">
@@ -228,7 +228,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="015********" name="phone" value="{{ old('phone') }}">
+                                                <input type="text" class="form-control border-input {{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="015********" name="phone" value="{{ old('phone') ? old('phone') : $user->phone }}">
 
                                                 @if ($errors->has('phone'))
                                                     <span class="invalid-feedback" role="alert">
@@ -262,7 +262,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Department</label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('edu_dept') ? ' is-invalid' : '' }}" placeholder="B.Sc In Software Engineering" name="edu_dept" value="{{ old('edu_dept') }}">
+                                                <input type="text" class="form-control border-input {{ $errors->has('edu_dept') ? ' is-invalid' : '' }}" placeholder="B.Sc In Software Engineering" name="edu_dept" value="{{ old('edu_dept') ? old('edu_dept') : $user->edu_dept }}">
 
                                                 @if ($errors->has('edu_dept'))
                                                     <span class="invalid-feedback" role="alert">
@@ -275,7 +275,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>University</label>
-                                                <input type="text" class="form-control border-input  {{ $errors->has('edu_varsity') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="{{ old('edu_varsity') ? old('edu_varsity') : 'Daffodil International University' }}" name="edu_varsity">
+                                                <input type="text" class="form-control border-input  {{ $errors->has('edu_varsity') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="{{ old('edu_varsity') ? old('edu_varsity') : $user->edu_varsity != NULL ? $user->edu_varsity : '' }}" name="edu_varsity">
 
                                                 @if ($errors->has('edu_varsity'))
                                                     <span class="invalid-feedback" role="alert">
@@ -288,7 +288,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Country of University</label>
+                                                <label>Country of University @if($user->edu_country != NULL)<span style="color:#56d9b4;">({{$user->edu_country}})</span>@endif</label>
                                                 <select class="form-control border-input {{ $errors->has('edu_country') ? ' is-invalid' : '' }}" id="country" name="edu_country"></select>
                                                 <!-- <input type="text" class="form-control border-input {{ $errors->has('edu_dept') ? ' is-invalid' : '' }}" placeholder="Assistant Professor" name="edu_dept" value="{{ old('edu_dept') }}"> -->
 
@@ -310,7 +310,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Designation</label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('designation') ? ' is-invalid' : '' }}" placeholder="Assistant Professor" name="designation" value="{{ old('designation') }}">
+                                                <input type="text" class="form-control border-input {{ $errors->has('designation') ? ' is-invalid' : '' }}" placeholder="Assistant Professor" name="designation" value="{{ old('designation') ? old('designation') : $user->designation }}">
 
                                                 @if ($errors->has('designation'))
                                                     <span class="invalid-feedback" role="alert">
@@ -323,7 +323,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Workplace</label>
-                                                <input type="text" class="form-control border-input  {{ $errors->has('workplace') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="{{ old('workplace') ? old('workplace') : 'Daffodil International University' }}" name="workplace">
+                                                <input type="text" class="form-control border-input  {{ $errors->has('workplace') ? ' is-invalid' : '' }}" placeholder="Daffodil International University" value="{{ old('workplace') ? old('workplace') : $user->company }}" name="workplace">
 
                                                 @if ($errors->has('workplace'))
                                                     <span class="invalid-feedback" role="alert">
@@ -350,7 +350,7 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title"><b>Choose your own skills<b></h4>
-                                    <label style="padding-top: 5px;">Select the following suitable skills for your research. Hope these choices will be the best suit your needs.</label>
+                                    <label style="padding-top: 5px;">Select the following suitable skills for you. Hope these choices will be the best suit your knowledge.</label>
                             </div>
                             <div class="content" style="padding-top: 8px;">
                                 
