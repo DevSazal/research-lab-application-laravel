@@ -61,6 +61,8 @@ Route::get('/app/research/{id}/award/{user}/raid/{raid}', 'Admin\SupervisorContr
 // Route::put('/app/invite', 'Admin\SupervisorController@interviewSave');
 
 Route::resource('/app/inbox', 'Admin\MessageController', ['as'=>'admin']);
+// Profile Edit
+Route::get('/app/profile', 'Admin\ProfileController@edit', ['as'=>'admin']);
 
 
 
