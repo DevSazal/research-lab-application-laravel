@@ -87,7 +87,15 @@
                                 <div class="author">
                                   <img class="avatar border-white" src="{{ $user->image != NULL ? asset('storage/profile/'.$user->image) : asset('AdminSD/assets/img/pro-avt.png') }}" alt="..."/>
                                   <h4 class="title">{{ $user->name }}<br />
-                                     <a href=""><small>@chetfaker</small></a>
+                                     <a href="">
+                                         @if(Auth::user()->role > 2)
+                                         <small>@Admin</small>
+                                         @elseif(Auth::user()->role == 2)
+                                         <small>@Supervisor</small>
+                                         @elseif(Auth::user()->role == 1)
+                                         <small>@Researcher</small>
+                                         @endif
+                                        </a>
                                   </h4>
                                 </div>
                                 <!-- <p class="description text-center">
