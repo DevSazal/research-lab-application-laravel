@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Skill;
+use App\UserSkill;
 use Auth;
 
 
@@ -22,7 +23,7 @@ class ProfileController extends Controller
     public function edit(){
 
         $array['user'] = User::find(Auth::user()->id);
-        // $array['us'] = UserSkill::where('user_id', Auth::user()->id)->get();
+        $array['us'] = UserSkill::where('user_id', Auth::user()->id)->get();
         $array['skills'] = Skill::all();
         return view('admin.profile.edit')->with($array);
     }
@@ -106,34 +107,34 @@ class ProfileController extends Controller
 		    }
     }
 
-    public function updateSkill(){
-        // $validator = Validator::make($request->all(), [
-        //     'rskills'=>  'required',
-	    // ]);
+    public function updateSkill(Request $request){
+        $validator = Validator::make($request->all(), [
+            'uskills'=>  'required',
+	    ]);
 
-	    // //   
+	    //   
 
-		// if ($validator->fails()) {
-		//         return back()
-		//                 ->withErrors($validator)
-		//                 ->withInput();
-		//     }else{
+		if ($validator->fails()) {
+		        return back()
+		                ->withErrors($validator)
+		                ->withInput();
+		    }else{
 
-        //         // The request is valid...
+                // The request is valid...
 
-        //         UserSkill::where('research_id', $id)->delete();
+                UserSkill::where('user_id', Auth::user()->id)->delete();
 
-        //         $skillIdArray =  $request->rskills;
-        //         $count = count($skillIdArray);
+                $skillIdArray =  $request->uskills;
+                $count = count($skillIdArray);
 
-        //         for($i = 0; $i < $count; $i++){
-        //             $rs = new UserSkill();
-        //             $rs->skill_id = $skillIdArray[$i];
-        //             $rs->research_id = $research->id;
-        //             $rs->save();
-        //         }
+                for($i = 0; $i < $count; $i++){
+                    $us = new UserSkill();
+                    $us->skill_id = $skillIdArray[$i];
+                    $us->user_id = Auth::user()->id;
+                    $us->save();
+                }
                         
-		// 	    return redirect('app/research');
-		//     }
+			    return redirect('app/profile');
+		    }
     }
 }

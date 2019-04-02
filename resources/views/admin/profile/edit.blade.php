@@ -353,31 +353,40 @@
                                     <label style="padding-top: 5px;">Select the following suitable skills for you. Hope these choices will be the best suit your knowledge.</label>
                             </div>
                             <div class="content" style="padding-top: 8px;">
-                                
+                                <form action="{{ route('updateSkill') }}" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 @foreach($skills as $skill)
                                                     <div class="pretty p-default p-thick p-pulse p-curve">
-                                                        <input type="checkbox" name="rskills[]" value="{{ $skill->id }}" />
+                                                        <input type="checkbox" name="uskills[]" value="{{ $skill->id }}" 
+                                                        @foreach($us as $k)
+                                                            @if($skill->id == $k->skill_id)
+                                                                checked
+                                                            @endif
+                                                        @endforeach
+                                                        />
                                                         <div class="state p-warning-o">
                                                             <label>{{ $skill->title }}</label>
                                                         </div>
                                                     </div>
                                                 @endforeach
                                                 
-                                                @if ($errors->has('rskills'))
+                                                @if ($errors->has('uskills'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('rskills') }}</strong>
+                                                        <strong>{{ $errors->first('uskills') }}</strong>
                                                     </span>
                                                 @endif
                                             
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Update Skill</button>
+                                    </div>
                                     <div class="clearfix"></div>
-                                
+                                </form>
                             </div>
                         </div>
                     </div>
