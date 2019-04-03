@@ -67,6 +67,9 @@ Route::post('/app/profile', 'Admin\ProfileController@update')->name('update');
 Route::post('/app/profile/password', 'Admin\ProfileController@password')->name('password');
 Route::post('/app/profile/skill', 'Admin\ProfileController@updateSkill')->name('updateSkill');
 
+// Route of report
+Route::get('/app/report', 'Admin\DefaultController@report');
+
 
 
 

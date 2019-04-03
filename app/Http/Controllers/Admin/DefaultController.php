@@ -19,9 +19,12 @@ class DefaultController extends Controller
     }
 
     public function index(){
-
         $array['researches'] = Research::where('status', 1)->orderBy('id', 'desc')->paginate(5);
     	return view('admin.index')->with($array);
+    }
+
+    public function report(){
+        return view('admin.report');
     }
     
     public function singleResearch($id)
