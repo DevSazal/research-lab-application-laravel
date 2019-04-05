@@ -35,6 +35,7 @@
     <link href="{{ asset('AdminSD/assets/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('AdminSD/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('AdminSD/assets/css/pretty-checkbox.min.css') }}" rel="stylesheet">
+
     <!-- <link href="{{ asset('AdminSD/assets/css/mdb.css') }}" rel="stylesheet">
      Font Awesome v5
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"> -->
@@ -118,6 +119,8 @@
     color: {{$color}};
     }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 

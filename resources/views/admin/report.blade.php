@@ -16,6 +16,7 @@ table,
         font-size: 12px;
         
     }
+    .tooltip-inner{max-width:800px;}
 </style>
 
 
@@ -121,27 +122,32 @@ table,
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
+                                        <!-- <tr>
+                                            <td >1</td>
                                             <td>Rana</td>
                                             <td>10-04-2019</td>
                                             <td>10.00</td>
                                             <td>Open</td>
+                                        </tr> -->
+                                        <?php 
+                                                $appointments = App\Appointment::where('user_id', Auth::user()->id)
+                                                            ->orderBy('id', 'desc')->get();
+                                                                
+                                             ?>
+                                        @foreach($appointments as $ap)
+                                        <tr data-toggle="tooltip" data-placement="left" title="Note: {{$ap->note}}">
+                                            <td>{{ $ap->id }}</td>
+                                            <td>{{ $ap->appointeduser->name}}</td>
+                                            <td>{{ $ap->appointment_date }}</td>
+                                            <td>{{ $ap->time->time }}</td>
+                                            @if($ap->research_id != NULL)
+                                            <td><a href="{{url('app/research/'.$ap->research_id )}}" class="btn btn-info btn-sm">#{{sprintf("%04d", $ap->research_id)}}</a></td>
+                                            @else
+                                            <td>Open</td>
+                                            @endif
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Sazal</td>
-                                            <td>10-04-2019</td>
-                                            <td>11.00</td>
-                                            <td><a href="#" class="btn btn-info btn-sm">#001</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Kamrul</td>
-                                            <td>10-04-2019</td>
-                                            <td>12.00</td>
-                                            <td><a href="#" class="btn btn-info btn-sm">#002</a></td>
-                                        </tr>
+                                        @endforeach
+                                        
                                         </tbody>
                                     </table>
                                 </div>
@@ -334,4 +340,11 @@ table,
         </div>
     </div> -->
     @endif
+<script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+
 @endsection
