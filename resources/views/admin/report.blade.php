@@ -19,8 +19,8 @@ table,
 </style>
 
 
-
-    <!-- <div class="row">
+    @if(Auth::user()->role > 1)
+    <div class="row">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12 ">
@@ -32,109 +32,51 @@ table,
                         <section class="single-feed-research">
                             <div class="content">
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                    <h5 class="panel-title">
-                        
-                                        How to set orderby for role of post_author as parameter 8
-                                        
-                                    </h5>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body table-responsive">
-                                        <table class="table table-hover text-center">
-                                                <thead >
-                                                <tr>
-                                                    <th><b>#</b></th>
-                                                    <th><b>Researcher Name</b></th>
-                                                    <th><b>Chat</b></th>   
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Kamrul Hasan</td>
-                                                    <td><a href="#" class="btn btn-info btn-sm">Chat</a></td>     
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Sazal Hasan</td>
-                                                    <td><a href="#" class="btn btn-info btn-sm">Chat</a></td>     
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                    <h5 class="panel-title">
-                                        
-                                        How to set orderby for role of post_author as parameter 8
-                                        
-                                    </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body table-responsive">
-                                        <table class="table table-hover text-center">
-                                                <thead >
-                                                <tr>
-                                                    <th><b>#</b></th>
-                                                    <th><b>Researcher Name</b></th>
-                                                    <th><b>Chat</b></th>   
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Kamrul Hasan</td>
-                                                    <td><a  href="#" class="btn btn-info btn-sm">Chat</a></td>     
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Sazal Hasan</td>
-                                                    <td><a  href="#" class="btn btn-info btn-sm">Chat</a></td>     
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                    <h5 class="panel-title">
-                                        
-                                        How to set orderby for role of post_author as parameter 8
-                                        
-                                    </h5>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body table-responsive">
-                                        <table class="table table-hover text-center">
-                                                <thead >
-                                                <tr>
-                                                    <th><b>#</b></th>
-                                                    <th><b>Researcher Name</b></th>
-                                                    <th><b>Chat</b></th>   
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Kamrul Hasan</td>
-                                                    <td><a href="#" class="btn btn-info btn-sm">Chat</a></td>     
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Sazal Hasan</td>
-                                                    <td><a href="#" class="btn btn-info btn-sm">Chat</a></td>     
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                <?php 
+                                $research = App\Research::where('user_id', Auth::user()->id)->where('status', '>=', 2)
+                                            ->orderBy('status', 'asc')->orderBy('id', 'desc')->get();
+                                            $i = 0;
+                                ?>
+                                @foreach($research as $r)
+                                    <?php $i++; ?>
+                                    <div class="panel panel-default" role="tab">
+                                        <div class="panel-heading" role="button" id="headingOne"  data-toggle="collapse" data-parent="#accordion" href="#collapse{{$r->id}}" aria-expanded="true" aria-controls="collapse{{$r->id}}">
+                                            <h5 class="panel-title">
                                 
+                                                {{ $r->title}}
+                                                
+                                            </h5>
+                                        </div>
+                                        <div id="collapse{{$r->id}}" class="panel-collapse collapse @if($i == 1) in @endif" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body table-responsive">
+                                            <table class="table table-hover text-center">
+                                                    <thead >
+                                                    <tr>
+                                                        <th><b>#</b></th>
+                                                        <th><b>Researcher</b></th>
+                                                        <th><b>Chat</b></th>   
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php 
+                                                    $appliers = App\ResearchApplicant::where('research_id', $r->id)->where('status', '>=', 2)
+                                                                ->orderBy('status', 'asc')->orderBy('id', 'desc')->get();
+                                                                
+                                                    ?>
+                                                    @foreach($appliers as $applier)
+                                                    <tr>
+                                                        <td>{{ $applier->id }}</td>
+                                                        <td>{{ $applier->user->name }}</td>
+                                                        <td><a href="{{ url('/app/inbox/'.$r->id) }}" class="btn btn-info btn-sm">Chat</a></td>     
+                                                    </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </section>
                     </div>
@@ -225,9 +167,10 @@ table,
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+    @else
     <!-- Next -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12 ">
@@ -389,5 +332,6 @@ table,
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+    @endif
 @endsection
