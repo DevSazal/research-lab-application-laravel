@@ -21,7 +21,7 @@
                     @endif
 
 					<div class="wrap-input100 validate-input {{ $errors->has('email') ? 'validate-input alert-validate' : '' }}" data-validate = "{{ $errors->has('email') ? $errors->first('email') : 'Email is required: ex@abc.xyz' }}">
-						<input type="email" name="email" class="input100"  placeholder="Email">
+						<input type="email" name="email" class="input100" value="{{ old('email') }}" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -30,7 +30,7 @@
 					
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-						{{ __('Send Password Reset Link') }}
+							{{ __('Send Password Reset Link') }}
 						</button>
 					</div>
 
