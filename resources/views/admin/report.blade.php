@@ -138,7 +138,7 @@ table,
                                         <tr data-toggle="tooltip" data-placement="left" title="Note: {{$ap->note}}">
                                             <td>{{ $ap->id }}</td>
                                             <td>{{ $ap->appointeduser->name}}</td>
-                                            <td>{{ $ap->appointment_date }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($ap->appointment_date)->format('j F, Y') }}</td>
                                             <td>{{ $ap->time->time }}</td>
                                             @if($ap->research_id != NULL)
                                             <td><a href="{{url('app/research/'.$ap->research_id )}}" class="btn btn-info btn-sm">#{{sprintf("%04d", $ap->research_id)}}</a></td>

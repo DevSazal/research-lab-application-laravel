@@ -1,171 +1,311 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><b>Let's Join As A Researcher</b></div>
+<style type="text/css">
+		.input100 {
+		    border-radius: unset;
+		}
+		@media (min-width: 1024px) and (max-width: 4000px) {
+  
+		  	.mobile{
+		  		display: none;
+		  	}
+		  	.login100-pic {
+			  	width: 45%;
+			}
+			.login100-form {
+			  	width: 45%;
+			}
+			.wrap-login100 {
+		    	padding: 70px 130px 33px 95px;
+			}
+			.btn-size{
+				width:40%;
+			}
+		  
+		}
+		@media (min-width: 200px) and (max-width: 1023px) {
+		  
+			.laptop{
+			  	display: none;
+			}
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                        @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+		}
+	</style>
+	
+	<div class="limiter laptop">
+		<div class="container-login100">
+			<form class="validate-form" action="index.html" method="get" enctype="">
+			<div class="wrap-login100">
+				<span class="login100-form-title">
+						Let's Join As a Researcher
+					</span>
+				<div class="login100-pic" >
+					<div class="wrap-input100 validate-input" data-validate = " Name is required">
+						<input type="text" name="name" class="input100" value="" placeholder="Name" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+					<div class="wrap-input100 validate-input" data-validate = "Email is required: ex@abc.xyz">
+						<input type="email" name="email" class="input100" value=""  placeholder="Email" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input type="password" name="password" class="input100" value=""  placeholder="Password" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+					<div class="wrap-input100 validate-input" data-validate = "Confirm Password is required">
+						<input type="password" name="password_confirmation" class="input100" value="" placeholder="Confirm Password" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+					<div class="wrap-input100 validate-input" data-validate = "Phone is required">
+						<input type="text" name="phone" class="input100" value=""  placeholder="Phone" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+						</span>
+					</div>
+				</div>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+				<div class="login100-form">
+					
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+					<!-- <div class="wrap-input100 validate-input" data-validate = "Profile Photo is required: ex@abc.xyz">
+						<input type="file" name="image" class="input100" value=""  placeholder="Profile Photo" accept="image/*">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-camera" aria-hidden="true"></i>
+						</span>
+					</div> -->
+					<div class="wrap-input100 validate-input" data-validate = "Profile Photo is required: ex@abc.xyz">
+						<input type="file" name="image" class="" value=""  placeholder="Profile Photo" accept="image/*">
+						<span class="focus-input100"></span>
+						<!-- <span class="symbol-input100">
+							<i class="fa fa-camera" aria-hidden="true"></i>
+						</span> -->
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Department is required">
+						<input type="text" name="edu_dept" class="input100" value=""  placeholder="Department" required >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-book" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+					<div class="wrap-input100 validate-input" data-validate = "University is required">
+						<input type="text" name="edu_varsity" class="input100" value=""  placeholder="University" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-university" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
+					<div class="wrap-input100 validate-input" data-validate = "Country is required">
+						<select id="country" name="edu_country" class="input100" value="" placeholder="Slect Country" required>
+							<option type="text" value="rana"> test</option>
+							<option type="text" value="rana"> test</option>
+							<option type="text" value="rana"> test</option>
+							<option type="text" value="rana"> test</option>
+						</select>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-globe" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Phone</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
 
-                                @if ($errors->has('phone'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+					<div class="wrap-input100 validate-input" data-validate = "bKash TrxID is required">
+						<input type="text" name="trxid" class="input100"  value="" placeholder="bKash TrxID" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-money" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Profile Photo<!--  (Optional) --></label>
+				</div>
+			
 
-                            <div class="col-md-6">
-                                <input type="file" class="form-control-file {{ $errors->has('image') ? ' is-invalid' : '' }}" id="exampleFormControlFile1" name="image" accept="image/*">
-                                <!-- <p class="help-block">Equal ratio. (example: 100*100)</p> -->
-                                <!-- <input id="name" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus> -->
+			<!-- button -->
+				<div class="container-login100-form-btn">
+					<label class="text-center">* First, you have to send 500BDT on this bKash number 01700110022. Then, enter your bKash TrxID into the form.
+					</label>
+					<button type="submit" class="login100-form-btn btn-size">
+						Register
+					</button>
+				</div>
 
-                                @if ($errors->has('image'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+				<div class="text-center container-login100-form-btn">
+					<span class="txt1" style="padding-right: 5px;">
+						Forgot 
+					</span>
+					<a class="txt2" href="#">
+						Username / Password?
+					</a>
+				</div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Department</label>
+				<div class="text-left p-t-136 container-login100-form-btn">
+						<a class="txt2" href="index.html">
+							<b>Login your Account</b>
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+<!-- 	laptop end -->
+<!-- 	other start -->
+<div class="limiter mobile">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{{ asset('auth/images/img-01.png') }}" alt="IMG">
+				</div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('edu_dept') ? ' is-invalid' : '' }}" name="edu_dept" value="{{ old('edu_dept') }}" placeholder="B.Sc in Software Engineering" required autofocus>
+				<form class="login100-form validate-form">
+					<span class="login100-form-title">
+						Let's Join As a Researcher
+					</span>
 
-                                @if ($errors->has('edu_dept'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('edu_dept') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+					<div class="wrap-input100 validate-input" data-validate = " Name is required">
+						<input type="text" name="name" class="input100" value="" placeholder="Name" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">University</label>
+					<div class="wrap-input100 validate-input" data-validate = "Email is required: ex@abc.xyz">
+						<input type="email" name="email" class="input100" value=""  placeholder="Email" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('edu_varsity') ? ' is-invalid' : '' }}" name="edu_varsity" value="{{ old('edu_varsity') }}" placeholder="Daffodil International University" required autofocus>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input type="password" name="password" class="input100" value=""  placeholder="Password" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                                @if ($errors->has('edu_varsity'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('edu_varsity') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+					<div class="wrap-input100 validate-input" data-validate = "Confirm Password is required">
+						<input type="password" name="password_confirmation" class="input100" value="" placeholder="Confirm Password" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Country of University</label>
+					<div class="wrap-input100 validate-input" data-validate = "Phone is required">
+						<input type="text" name="phone" class="input100" value=""  placeholder="Phone" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                            <div class="col-md-6">
-                                <select class="form-control {{ $errors->has('edu_country') ? ' is-invalid' : '' }}" id="country" name="edu_country"></select>
-                                <!-- <input id="name" type="text" class="form-control{{ $errors->has('edu_country') ? ' is-invalid' : '' }}" name="edu_country" value="{{ old('edu_country') }}" placeholder="Bangladesh" required autofocus> -->
 
-                                @if ($errors->has('edu_country'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('edu_country') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+					<!-- half of input text -->
+					<!-- <div class="wrap-input100 validate-input" data-validate = "Profile Photo is required: ex@abc.xyz">
+						<input type="file" name="image" class="input100" value=""  placeholder="Profile Photo" accept="image/*">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-camera" aria-hidden="true"></i>
+						</span>
+					</div> -->
+					<div class="wrap-input100 validate-input" data-validate = "Profile Photo is required: ex@abc.xyz">
+						<input type="file" name="image" class="" value=""  placeholder="Profile Photo" accept="image/*">
+						<span class="focus-input100"></span>
+						<!-- <span class="symbol-input100">
+							<i class="fa fa-camera" aria-hidden="true"></i>
+						</span> -->
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Department is required">
+						<input type="text" name="edu_dept" class="input100" value=""  placeholder="Department" required >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-book" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                        <!-- bKash payment -->
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">bKash TrxID</label>
+					<div class="wrap-input100 validate-input" data-validate = "University is required">
+						<input type="text" name="edu_varsity" class="input100" value=""  placeholder="University" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-university" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('trxid') ? ' is-invalid' : '' }}" name="trxid" value="{{ old('trxid') }}" placeholder="" required autofocus>
+					<div class="wrap-input100 validate-input" data-validate = "Country is required">
+						<select id="country" name="edu_country" class="input100" value="" placeholder="Slect Country" required>
+							<option type="text" value="rana"> test</option>
+							<option type="text" value="rana"> test</option>
+							<option type="text" value="rana"> test</option>
+							<option type="text" value="rana"> test</option>
+						</select>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-globe" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                                @if ($errors->has('trxid'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('trxid') }}</strong>
-                                    </span>
-                                @endif
 
-                                <p class="help-block" style="padding-top: 10px; color: green; font-weight: bold">* First, you have to send 500BDT on this bKash number 01700110022. Then, enter your bKash TrxID into the form.</p>
-                            </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="{{ asset('AdminSD/assets/js/countries.js') }}"></script>
-<script language="javascript">
-    populateCountries("country");
-</script>
+					<div class="wrap-input100 validate-input" data-validate = "bKash TrxID is required">
+						<input type="text" name="trxid" class="input100"  value="" placeholder="bKash TrxID" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-money" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							Forgot
+						</span>
+						<a class="txt2" href="#">
+							Username / Password?
+						</a>
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="index.html">
+							<b>Login your Account</b>
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 @endsection

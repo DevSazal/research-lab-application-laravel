@@ -1,65 +1,72 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">   
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{{ asset('auth/images/img-01.png') }}" alt="IMG">
+				</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
+				<form class="login100-form validate-form" method="POST" action="{{ route('password.update') }}">
                         @csrf
+					<input type="hidden" name="token" value="{{ $token }}">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+					<span class="login100-form-title">
+						Reset Password
+					</span>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
+					<div class="wrap-input100 validate-input {{ $errors->has('email') ? 'validate-input alert-validate' : '' }}" data-validate = "{{ $errors->has('email') ? $errors->first('email') : 'Email is required: ex@abc.xyz' }}">
+						<input type="email" name="email" class="input100" value="{{ $email ?? old('email') }}"  placeholder="Email" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+					<div class="wrap-input100 validate-input {{ $errors->has('password') ? 'validate-input alert-validate' : '' }}" data-validate = "{{ $errors->has('password') ? $errors->first('password') : 'Password is required' }}">
+						<input type="password" name="password" class="input100" value=""  placeholder="Password" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+					<div class="wrap-input100 validate-input {{ $errors->has('password_confirmation') ? 'validate-input alert-validate' : '' }}" data-validate = "{{ $errors->has('password_confirmation') ? $errors->first('password_confirmation') : 'Password is required' }}">
+						<input type="password" name="password_confirmation" class="input100" value="" placeholder="Confirm Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+						{{ __('Reset Password') }}
+						</button>
+					</div>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
+					<div class="text-center p-t-12">
+						<span class="txt1">
+						
+						</span>
+						<a class="txt2" href="{{ route('login') }}">
+							Login your account
+						</a>
+					</div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+					<div class="text-center p-t-136">
+						<a class="txt2" href="{{ route('register') }}">
+							<b>Create your Account</b>
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 @endsection
