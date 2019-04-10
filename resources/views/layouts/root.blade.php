@@ -328,9 +328,9 @@
                             </li>
                             
                             <li>
-                                <a href="#">
-                                    <i class="ti-settings"></i>
-                                    <p>Settings</p>
+                                <a href="{{ url('app/report') }}">
+                                    <i class="ti-bell"></i>
+                                    <p>My Board</p>
                                 </a>
                             </li>
                         </ul>

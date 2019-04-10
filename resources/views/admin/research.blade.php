@@ -13,7 +13,7 @@
 }
 </style>
 @if($research->user_id == Auth::user()->id)
-<?php $count = App\ResearchApplicant::where('research_id', $research->id)->where('status', 2)->count(); ?>
+<?php $count = App\ResearchApplicant::where('research_id', $research->id)->where('status','>=', 2)->count(); ?>
     @if($count > 0)
     <div class="DevSazal alert alert-info alert-with-icon" style="position:relative; background-color: #FFC107; color: #34495e;" data-notify="container">
         <button type="button" aria-hidden="true" data-dismiss="alert" class="close" aria-label="Close">×</button>
@@ -182,9 +182,10 @@
                                                     <!--<i class="fa fa-circle text-info"></i>
                                                         <i class="fa fa-circle text-danger"></i>
                                                         <i class="fa fa-circle text-warning"></i>-->
-                                                        <div class="tag skill"> Security</div>
-                                                        <div class="tag skill"> Network security</div>
-                                                        <div class="tag skill"> Application security</div>
+                                                        <?php $uskils = App\UserSkill::where('user_id', $applier->user_id)->get(); ?>
+                                                        @foreach($uskils as $uskill)
+                                                        <div class="tag skill"> {{ $uskill->skill->title }}</div>
+                                                        @endforeach
                                                     </div>
                                                     <br>
                                                     <div class="stats feed-stats">

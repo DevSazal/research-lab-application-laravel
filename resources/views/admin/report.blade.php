@@ -91,8 +91,8 @@ table,
                             </div>
                             <section class="single-feed-research">
                                 <div class="content">
-                                    <h5><i class="ti-reload"></i> Runing Project :  <b>04</b></h5> 
-                                    <h5><i class="ti-user"></i> Runing Researcher : <b>12</b></h5>
+                                    <h5><i class="ti-stats-up"> </i> Runing Research :  <b>{{ $run = App\Research::where('status', 2)->where('user_id', Auth::user()->id)->count() }}</b></h5> 
+                                    <!-- <h5><i class="ti-user"> </i> Awarded Researcher : <b>12</b></h5> -->
 
                                 </div>
                             </section>
@@ -107,7 +107,7 @@ table,
                     <section class="single-report-feed">
                         <div class="card">
                             <div class="header">
-                                <h5 class="title"><b>Apointment of researcher </b></h5>
+                                <h5 class="title"><b>Apointment Schedule</b></h5>
                             </div>
                             <section class="single-feed-research">
                                 <div class="content table-responsive">
@@ -159,13 +159,13 @@ table,
                     <section class="single-report-feed">
                         <div class="card">
                             <div class="header">
-                                <h5 class="title"><b>Total Status</b></h5>
+                                <h5 class="title"><b>Total Research Status</b></h5>
                             </div>
                             <section class="single-feed-research">
                                 <div class="content">
-                                    <h5><i class="ti-stats-up"> </i> Complete Project : <b>  22</b> </h5>  
-                                    <h5><i class="ti-user"> </i> Total Researcher : <b>  35 </b></h5>
-                                    <h5><i class="ti-cup"> </i> Wining Award     : <b> 05 </b></h5>
+                                    <h5><i class="ti-reload"> </i> Not Started Yet : <b>  {{ $open = App\Research::where('status', 1)->where('user_id', Auth::user()->id)->count() }}</b> </h5>  
+                                    <h5><i class="ti-cup"> </i> Completed Research : <b>  {{ $complete = App\Research::where('status','>', 2)->where('user_id', Auth::user()->id)->count() }} </b></h5>
+                                    
                                 </div>
                             </section>
                         </div>
@@ -176,76 +176,55 @@ table,
     </div>
     @else
     <!-- Next -->
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12 ">
                 <section class="single-report-feed">
                     <div class="card">
                         <div class="header">
-                            <h5 class="title"><b>Active Project</b></h5>
+                            <h5 class="title"><b>My Research Panel</b></h5>
                         </div>
                         <section class="single-feed-research">
                             <div class="content">
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                    <h5 class="panel-title">
-                                        
-                                        How to set orderby for role of post_author as parameter 8
-                                        
-                                    </h5>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body table-responsive">
-                                        <table class="table table-hover text-center">
-                                                <thead >
-                                                <tr>
-                                                    <th><b>#</b></th>
-                                                    <th><b>Supervisor</b></th>
-                                                    <th><b>Chat</b></th>   
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Kamrul Hasan</td>
-                                                    <td><a href="#" class="btn btn-info btn-sm">Chat</a></td>     
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <?php 
+                                    $research = App\ResearchApplicant::where('user_id', Auth::user()->id)->where('status', '>=', 2)
+                                                ->orderBy('status', 'asc')->orderBy('id', 'desc')->get();
+                                                $i = 0;
+                                    ?>
+                                    @foreach($research as $r)
+                                    <?php $i++; ?>
+                                    <div class="panel panel-default" role="tab">
+                                        <div class="panel-heading" role="button" id="headingOne"  data-toggle="collapse" data-parent="#accordion" href="#collapse{{$r->id}}" aria-expanded="true" aria-controls="collapse{{$r->id}}">
+                                        <h5 class="panel-title">
+                                            
+                                            {{ $r->research->title }}
+                                            
+                                        </h5>
+                                        </div>
+                                        <div id="collapse{{$r->id}}" class="panel-collapse collapse @if($i == 1) in @endif" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body table-responsive">
+                                            <table class="table table-hover text-center">
+                                                    <thead >
+                                                    <tr>
+                                                        <th><b>#</b></th>
+                                                        <th><b>Supervisor</b></th>
+                                                        <th><b>Chat</b></th>   
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{ $r->research->user_id }}</td>
+                                                        <td>{{ $r->research->user->name }}</td>
+                                                        <td><a href="{{ url('/app/inbox/'.$r->research_id) }}" class="btn btn-info btn-sm">Chat</a></td>     
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel panel-default"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                    <h5 class="panel-title">
-                                        
-                                        How to set orderby for role of post_author as parameter 8
-                                        
-                                    </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body table-responsive">
-                                        <table class="table table-hover text-center">
-                                                <thead >
-                                                <tr>
-                                                    <th><b>#</b></th>
-                                                    <th><b>Supervisor</b></th>
-                                                    <th><b>Chat</b></th>   
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Kamrul Hasan</td>
-                                                    <td><a  href="#" class="btn btn-info btn-sm">Chat</a></td>     
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endforeach  
                                 
                                 
                             </div>
@@ -261,8 +240,8 @@ table,
                             </div>
                             <section class="single-feed-research">
                                 <div class="content">
-                                    <h5><i class="ti-reload"></i> Runing Project :  <b>04</b></h5> 
-                                    <h5><i class="ti-user"></i> Runing Researcher : <b>12</b></h5>
+                                    <h5><i class="ti-stats-up"> </i> Runing Research :  <b>{{ $run = App\ResearchApplicant::where('status', 2)->where('user_id', Auth::user()->id)->count() }}</b></h5>
+                                    <!-- <h5><i class="ti-user"></i> Runing Researcher : <b>12</b></h5> -->
 
                                 </div>
                             </section>
@@ -277,7 +256,7 @@ table,
                     <section class="single-report-feed">
                         <div class="card">
                             <div class="header">
-                                <h5 class="title"><b>Apointment of researcher </b></h5>
+                                <h5 class="title"><b>Apointment Schedule </b></h5>
                             </div>
                             <section class="single-feed-research">
                                 <div class="content table-responsive">
@@ -292,27 +271,25 @@ table,
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Rana</td>
-                                            <td>10-04-2019</td>
-                                            <td>10.00</td>
+                                        <?php 
+                                                $appointments = App\Appointment::where('m_user_id', Auth::user()->id)
+                                                            ->orderBy('id', 'desc')->get();
+                                                                
+                                             ?>
+                                        @foreach($appointments as $ap)
+                                        <tr data-toggle="tooltip" data-placement="left" title="Note: {{$ap->note}}">
+                                            <td>{{ $ap->id}}</td>
+                                            <td>{{ $ap->user->name}}</td>
+                                            <td>{{ \Carbon\Carbon::parse($ap->appointment_date)->format('j F, Y') }}</td>
+                                            <td>{{ $ap->time->time }}</td>
+                                            @if($ap->research_id != NULL)
+                                            <td><a href="{{url('app/research/'.$ap->research_id )}}" class="btn btn-info btn-sm">#{{sprintf("%04d", $ap->research_id)}}</a></td>
+                                            @else
                                             <td>Open</td>
+                                            @endif
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Sazal</td>
-                                            <td>10-04-2019</td>
-                                            <td>11.00</td>
-                                            <td><a href="#" class="btn btn-info btn-sm">#001</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Kamrul</td>
-                                            <td>10-04-2019</td>
-                                            <td>12.00</td>
-                                            <td><a href="#" class="btn btn-info btn-sm">#002</a></td>
-                                        </tr>
+                                        @endforeach
+        
                                         </tbody>
                                     </table>
                                 </div>
@@ -328,9 +305,10 @@ table,
                             </div>
                             <section class="single-feed-research">
                                 <div class="content">
-                                    <h5><i class="ti-stats-up"> </i> Complete Project : <b>  22</b> </h5>  
-                                    <h5><i class="ti-user"> </i> Total Researcher : <b>  35 </b></h5>
-                                    <h5><i class="ti-cup"> </i> Wining Award     : <b> 05 </b></h5>
+                                    <h5><i class="ti-time"> </i> Current Appointment : <b>  {{ $run = App\Appointment::where('m_user_id', Auth::user()->id)->count() }}</b> </h5>
+                                    <h5><i class="ti-cup"> </i> Wining Award     : <b> {{ $award = App\ResearchApplicant::where('status','>=', 1)->where('user_id', Auth::user()->id)->count() }} </b></h5>  
+                                    <h5><i class="ti-reload"> </i> Completed Research : <b>  {{ $complete = App\ResearchApplicant::where('status','>', 2)->where('user_id', Auth::user()->id)->count() }} </b></h5>
+                                    
                                 </div>
                             </section>
                         </div>
@@ -338,7 +316,7 @@ table,
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     @endif
 <script>
     $(function () {
