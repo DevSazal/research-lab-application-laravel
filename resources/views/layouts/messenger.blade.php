@@ -38,7 +38,7 @@
                     <div class="messages">
                     <?php $segment = Request::segment(3) ?>
                         <?php if(Auth::user()->role == 2){
-        $list = App\Research::where('user_id', Auth::user()->id)->where('status', 2)->get();
+        $list = App\Research::where('user_id', Auth::user()->id)->where('status','>=', 2)->get();
                         ?>
                         @foreach($list as $set)
                             <li class="
@@ -56,7 +56,7 @@
                             </li>
                         @endforeach
                         <?php }elseif(Auth::user()->role == 1){
-        $list = App\ResearchApplicant::where('user_id', Auth::user()->id)->where('status', 2)->get();
+        $list = App\ResearchApplicant::where('user_id', Auth::user()->id)->where('status','>=', 2)->get();
         ?>
                         @foreach($list as $set)
                             <li class="

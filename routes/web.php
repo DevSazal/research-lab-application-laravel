@@ -70,7 +70,41 @@ Route::post('/app/profile/skill', 'Admin\ProfileController@updateSkill')->name('
 // Route of report
 Route::get('/app/report', 'Admin\DefaultController@report');
 
+// publicview route
 
 
+Route::get('/index',function(){
+	return view('index');
+});
+
+Route::get('/research',function(){
+	return view('research');
+});
+
+Route::get('/contact',function(){
+	return view('contact');
+});
+
+Route::get('/training',function(){
+	return view('training');
+});
+
+// publicview route
+
+
+
+
+// Training route
+
+Route::get('/app/training/create',function(){
+    return view('admin.training.create');
+});
+Route::get('/app/training/index',function(){
+    return view('admin.training.index');
+});
+
+
+
+// Training route
 
 

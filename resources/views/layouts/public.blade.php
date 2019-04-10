@@ -1,15 +1,19 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <title>Cyber Securtiy Center</title>
+  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+
+  <title>@yield('title')Cyber Securtiy Center</title>
+
 </head>
 
 <body>
@@ -20,9 +24,9 @@
         <nav class="navbar ">
           <div class="menu-left navbar-left">
             <ul class="nav navbar-nav">
-              <li><a href="#">Login</a></li>
+              <li><a href="login">Login</a></li>
               <li><a class="disabled top-pad" id="slash">/</a></li>
-              <li><a href="#" class="top-pad">Register</a></li>
+              <li><a href="register" class="top-pad">Register</a></li>
             </ul>
           </div>
           <div class="menu-right navbar-right">
@@ -47,16 +51,16 @@
         <nav id='cssmenu'>
           <div class="row">
             <div class="col-md-4">
-              <div class="logo"><a href="index.html"> <img src="img/logo.png" alt=""> </a></div>
+              <div class="logo"><a href="index.html"> <img src="{{ asset('assets/img/logo.png') }}" alt=""> </a></div>
             </div>
 
             <div class="col-md-8 p-menu" id='cssmenu'>
               <div id="head-mobile"></div>
               <div class="button"></div>
               <ul class="navbar-right">
-                <li class="active"><a href='#'>HOME</a></li>
-                <li><a href="service.html">SERVICES</a></li>
-                <li><a href="research.html">RESEARCH</a></li>
+                <li class="active"><a href='index'>HOME</a></li>
+                <li><a href="service">SERVICES</a></li>
+                <li><a href="research">RESEARCH</a></li>
                 <li><a href="#">SCHEDULES</a>
                   <ul>
                     <li><a href="#">TRAINING</a>
@@ -79,8 +83,8 @@
               </ul>
               </li>
          <!-- <li><a href="news.html">NEWS</a></li> -->
-              <li><a href="innovation.html">INNOVATION</a></li>
-              <li><a href="contact.html">CONTACT</a></li>
+              <li><a href="innovation">INNOVATION</a></li>
+              <li><a href="contact">CONTACT</a></li>
               <!-- <li><a href="#">BIO</a>
                   <ul>
                     <li><a href='#'>Product 1</a>
@@ -114,76 +118,19 @@
       </div>
     </div>
   </header>
-  <!--Header menu option End -->
- 
-	<!--Location map Start -->
-	<section id="location-map">	
-	
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.7896223640487!2d90.37421641438482!3d23.75488038458712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8ace928ae15%3A0xaa8023ec98f14cf5!2sDaffodil+International+University!5e0!3m2!1sen!2sbd!4v1544072897236" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-		
-	</section>
-	<!--Location map End -->
-	
-	<div class="container"> 
-		<section class="contact-us pt-20 pb-10"> 
-			<h2>KEEP IN TOUCH</h2>
-			<p>Your email address will not be published. Required fields are marked.</p>
-			<hr />
-			<div class="row">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-sm-6 form-group">
-							<input class="form-control" id="name" name="name" placeholder="Name*" type="text" required>
-						</div>
-						<div class="col-sm-6 form-group">
-							<input class="form-control" id="email" name="email" placeholder="Email*" type="email" required>
-						</div>
-						<div class="col-sm-12 form-group">
-							<input class="form-control" id="subject" name="subject" placeholder="Subject*" type="text" required>
-						</div>
-					</div>
-					<textarea class="form-control" id="comments" name="comments" placeholder="Comment*" required rows="5"></textarea>
-				  <br>
-				  <div class="row">
-						<div class="col-md-12 form-group">
-							<button class="btn" type="submit">Send</button>
-						</div>
-				  </div>
-				</div>
-		
-			  </div>
-		</section>
-		<section class="publication pt-20 pb-10">
-			<div class="row">
-				<div class="col-sm-12 col-md-4 col-lg-4">
-				  <div class="panel panel text-center ">
-					<div class="panel-heading pt-40 "> <i class="fas fa-phone fa-4x"></i></div>
-					<div class="panel-body"> <b>+880-1773-053355</b> <br /><b>+880-1521-117791</b> </div>
-				  </div>
-				</div>
-				<div class="col-sm-12 col-md-4 col-lg-4">
-				  <div class="panel panel text-center">
-					<div class="panel-heading pt-40 "> <i class="fas fa-envelope fa-4x"></i> </div>
-					<div class="panel-body"> <b>info_csc@diu.edu.bd</b> <br /><b>support_csc@diu.edu.bd</b></div>
-				  </div>
-				</div>
-				<div class="col-sm-12 col-md-4 col-lg-4">
-				  <div class="panel panel text-center">
-					<div class="panel-heading pt-40 "><i class="fas fa-map-marked-alt fa-4x"></i> </div>
-					<div class="panel-body"> <b>Daffodil Tower 4/2, Sobhanbag, Mirpur Rd, Dhaka 1207</b></div>
-				  </div>
-				</div>
-			</div> 
-		</section>
-	</div>
- 
- <!-- footer section Start -->
-	<footer>
+ <!--Header menu option End -->
+
+
+ 	@yield('content')
+
+
+
+
+  	<footer>
 		<div class="container-fluid footer-over pb-12"> 
 			<h3 class="text-center">Cyber security centre managed by DIU CSC</h3>
 		</div>
-		<!-- footer top start  -->
-		<div class="footer-top pt-20 pb-15"> 
+		<div class="footer-top pt-20 pb-15"> <!-- footer top start  -->
 			<div class="container">
 				<div class="col-sm-12 col-md-3"> 
 					<h4>Events</h4>
@@ -225,10 +172,8 @@
 					</ul>
 				</div>
 			</div>
-		</div>
-		<!-- footer top end  -->
-		<!-- Partner section  -->
-		<section class="partner pt-20 pb-15"> 
+		</div><!-- footer top end  -->
+		<section class="partner pt-20 pb-15"> <!-- Partner section  -->
 			<div class="container">
 				<div class="col-sm-3">
 					<div class="panel">
@@ -248,34 +193,30 @@
 					</div>
 				</div>
 				<div class="col-sm-3">
-					<img class="img-responsive center-block" src="img/isaca-logo.png" alt="" />
+					<img class="img-responsive center-block" src="{{ asset('assets/img/isaca-logo.png') }}" alt="" />
 				</div>
 				<div class="col-sm-3">
-					<img class="img-responsive center-block" src="img/diulogo.png" alt="" />
+					<img class="img-responsive center-block" src="{{ asset('assets/img/diulogo.png') }}" alt="" />
 				</div>
 				
 			</div>
 		</section>
-		<!-- footer copyright start -->
-		<div class="copyright-zone pt-20"> 
+		<div class="copyright-zone pt-20"> <!-- footer copyright start -->
 			<div class="container">
 				<div class="col-sm-6 "> 
-					<p class="pull-left">Copyright © 2018 Cyber Security Centre, DIU. All Rights Reserved</p>
+					<p class="pull-left">Copyright Â© 2018 Cyber Security Centre, DIU. All Rights Reserved</p>
 				</div>
 				<div class="col-sm-6 pull-right">
 					<p class="pull-right">Developed By <a href="https://appsoliclab.com/" target="_blank" >Appsolic Lab</a> 
 				</div>
 			</div>
-		</div>
-		<!-- footer copyright end -->
+		</div><!-- footer copyright end -->
 	</footer>
   <!-- footer section Start -->
 </div>
-  <script type="text/javascript" src="js/js.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/custom.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+  <script type="text/javascript" src="{{ asset('assets/js/js.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
 
 </html>
- 

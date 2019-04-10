@@ -37,7 +37,7 @@
                             <div class="card">
                                 <div class="header">
                                     <h3 class="title"><b>Research List</b></h3>
-                                    <a href="{{ route('admin.research.create') }}" class="btn btn-success"> + Add New Research</a>
+                                    <a href="{{ route('admin.research.create') }}" class="btn btn-success"> + Add New Training</a>
                                 </div>
                                 
                                  <!--    <div class="header">
@@ -48,13 +48,15 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <th>#</th>
-                                            <th>Title</th>
+                                            <th>Training Title</th>
+                                            <th>Date</th>
+                                            <th>Trainer Name</th>
+                                            <th>Fee</th>
+                                            <th>Contct</th>
                                             <th>Created</th>
-                                            <th>Expire</th>
-                                            <th>Status</th>
-                                            <th>Author</th>
                                             <th>Action</th>
                                         </thead>
+
                                         <tbody>
                                             @foreach($research as $r)
                                             <tr>
@@ -73,7 +75,7 @@
                                                     }
                                                         ?></td>
                                                 <td>
-                                                    @if($r->status >= 1)
+                                                    @if($r->status == 1)
                                                         <span class="label label-success">Published</span>
                                                     @else
                                                         <span class="label label-warning">Pending</span>
@@ -88,11 +90,8 @@
                                                         
 
                                                     @else
-                                                        @if($r->status == 1)
                                                         <button onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Pending</button>
-                                                        @elseif($r->status > 1)
                                                         
-                                                        @endif
                                                     @endif
                                                 @endif
                                                         <!-- <button onclick="$(this).parent().find('#edit').submit()" class="btn btn-info btn-sm">Edit</button> -->
@@ -121,6 +120,7 @@
                                             
                                             
                                         </tbody>
+
                                     </table>
 
                                 </div>
