@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'Add Research - ')
-@section('pagetitle', 'Add Research')
+@section('title', 'Add Training - ')
+@section('pagetitle', 'New Training')
 
 
 @section('content')

@@ -110,7 +110,8 @@ class TrainingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $array['training'] = Training::find($id);
+        return view('admin.training.edit')->with($array);
     }
 
     /**
@@ -122,7 +123,54 @@ class TrainingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $validator = Validator::make($request->all(), [
+            'title' => 'string|required',
+            'description' => 'required|string|min:20',
+            'start_date' => 'required|date',
+            'fee' => 'integer|nullable',
+            'contact' => 'required',
+            'trainer' => 'string|required',
+            'trainer_description' => 'required|string|min:20',
+            'type' => 'required',
+            'file'=>  'mimes:jpg,jpeg,gif,png',
+	    ]);
+
+	    //   
+
+		if ($validator->fails()) {
+		        return back()
+		                ->withErrors($validator)
+		                ->withInput();
+		    }else{
+
+                // The request is valid...
+
+                if(isset($request->file)){
+                    if($request->file->getClientOriginalName()){
+                            $ext = $request->file->getClientOriginalExtension();
+                            $file = date('YmdHis').'_'.rand(1,999).'.'.$ext;
+                            $request->file->storeAs('public/trainingPhoto',$file);
+                        }else{
+                            $file = NULL;
+                        }
+                }else{
+                    $file = NULL;    
+                }
+
+                $t = Training::find($id);
+                $t->title = $request->title;
+                $t->description = $request->description;
+                $t->start_date = $request->start_date;
+                $t->fee = $request->fee;
+                $t->contact = $request->contact;
+                $t->trainer_name = $request->trainer;
+                $t->trainer_description = $request->trainer_description;
+                $t->type = $request->type;
+                $t->file = $file;
+                $t->save();
+
+			    return redirect('app/training/'.$id.'/edit');
+		    }
     }
 
     /**
