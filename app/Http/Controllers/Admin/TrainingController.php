@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
+use App\Training;
+
 class TrainingController extends Controller
 {
     /**
@@ -40,7 +45,7 @@ class TrainingController extends Controller
             'title' => 'string|required',
             'description' => 'required|string|min:20',
             'start_date' => 'required|date',
-            'fee' => 'integer',
+            'fee' => 'integer|nullable',
             'contact' => 'required',
             'trainer' => 'string|required',
             'trainer_description' => 'required|string|min:20',
@@ -82,7 +87,7 @@ class TrainingController extends Controller
                 $t->file = $file;
                 $t->save();
 
-			    return redirect('app/inbox/'.$request->rid);
+			    return redirect('app/training/');
 		    }
     }
 
@@ -117,7 +122,7 @@ class TrainingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

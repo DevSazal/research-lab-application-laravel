@@ -156,7 +156,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label><i class="fa fa-money" aria-hidden="true"></i><b> Fee</b></label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('fee') ? ' is-invalid' : '' }}" placeholder="BDT" name="fee" value="{{ old('fee') }}" required>
+                                                <input type="text" class="form-control border-input {{ $errors->has('fee') ? ' is-invalid' : '' }}" placeholder="BDT" name="fee" value="{{ old('fee') }}">
 
                                                 @if ($errors->has('fee'))
                                                     <span class="invalid-feedback" role="alert">
