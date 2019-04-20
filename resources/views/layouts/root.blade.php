@@ -167,7 +167,7 @@
                         </a>
                     </li>
                     @endif
-                    @if(Auth::user()->role > 2 && Auth::user()->power == 1)
+                    @if(Auth::user()->role > 3 && Auth::user()->power == 1)
                     <li class="
                             @if($segment=='user' && Request::segment(3)=='add'))
                             active
@@ -178,7 +178,7 @@
                         </a>
                     </li>
                     @endif
-                    @if(Auth::user()->role > 2 && Auth::user()->power == 1)
+                    @if(Auth::user()->role > 3 && Auth::user()->power == 1)
                     <li class="
                             @if($segment=='user' && Request::segment(3)==NULL))
                             active
@@ -190,7 +190,7 @@
                     </li>
                     @endif
                     
-                    @if(Auth::user()->role > 2 && Auth::user()->power == 1)
+                    @if(Auth::user()->role > 3 && Auth::user()->power == 1)
                     <li data-panelId="panel4" class="
                             @if($segment=='skill')
                             active
@@ -254,6 +254,28 @@
                                 @if($segment=='training' && Request::segment(3)=='create')
                                 open
                                 @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>Add Training</span></a></li>
+                        </ul>
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->role > 2 && Auth::user()->power == 1)
+                    <li data-panelId="panel7" class="
+                            @if($segment=='awareness')
+                            active
+                            @endif dropdown-btn">
+                        <a href="{{ route('admin.awareness.index') }}">
+                            <i class="ti-blackboard"></i>
+                            <p>Awareness @if($segment=='awareness')@else<b class="caret"></b>@endif</p>
+                        </a>
+                        <ul id="panel7" class="dropdown-ul">
+                            <li><a href="{{ route('admin.awareness.index') }}" class="
+                                @if($segment=='awareness' && !Request::segment(3))
+                                open
+                                @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>All Program</span></a></li>
+                            <li><a href="{{ route('admin.awareness.create') }}" class="
+                                @if($segment=='awareness' && Request::segment(3)=='create')
+                                open
+                                @endif"><span><i class="fa fa-circle-o" aria-hidden="true"></i></span><span>Add Program</span></a></li>
                         </ul>
                     </li>
                     @endif
@@ -344,10 +366,11 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
+                        @if(Auth::user()->role >= 1 && Auth::user()->power == 1 && Auth::user()->role <= 2)
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-panel"></i>
-                                    <p>Stats</p>
+                                    <p>Messages(0)</p>
                                 </a>
                             </li>
                             
@@ -357,6 +380,7 @@
                                     <p>My Board</p>
                                 </a>
                             </li>
+                        @endif
                         </ul>
 
                     </div>

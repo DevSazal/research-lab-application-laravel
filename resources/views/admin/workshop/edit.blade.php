@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'Edit Training - ')
-@section('pagetitle', 'Edit Training')
+@section('title', 'Edit Awareness Program - ')
+@section('pagetitle', 'Edit Awareness Program')
 
 
 @section('content')
@@ -89,7 +89,7 @@
 </style>
             <!-- content code start -->
 
-<form action="{{ route('admin.training.update', $training->id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('admin.awareness.update', $training->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
 
@@ -98,7 +98,7 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="header" style="padding-bottom: 20px;">
-                                <h4 class="title"><b>Update Training Information<b></h4>
+                                <h4 class="title"><b>Update Program Information<b></h4>
                             </div>
                             
                         </div>
@@ -112,8 +112,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label><b>Course Title</b></label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Course Title" name="title" value="{{ old('title') ? old('title') : $training->title }}" required>
+                                                <label><b>Title</b></label>
+                                                <input type="text" class="form-control border-input {{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Program Title" name="title" value="{{ old('title') ? old('title') : $training->title }}" required>
 
                                                 @if ($errors->has('title'))
                                                     <span class="invalid-feedback" role="alert">
@@ -128,7 +128,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label><b>Description </b></label>
-                                                <textarea name="description" rows="5" class="form-control border-input {{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Here can be your course description" value="">{{ old('description') ? old('description') : $training->description }}</textarea>
+                                                <textarea name="description" rows="5" class="form-control border-input {{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Here can be your program description" value="">{{ old('description') ? old('description') : $training->description }}</textarea>
 
                                                 
                                                 @if ($errors->has('description'))
@@ -147,7 +147,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label><i class="fa fa-calendar" aria-hidden="true"></i> <b> Start Date</b></label>
+                                                <label><i class="fa fa-calendar" aria-hidden="true"></i> <b> Program Date</b></label>
                                                 <input type="date" class="form-control border-input {{ $errors->has('start_date') ? ' is-invalid' : '' }}" placeholder="" name="start_date" value="@if(old('start_date')){{old('start_date')}}@else{{date('Y-m-d', strtotime($training->start_date))}}@endif" required>
 
                                                 @if ($errors->has('start_date'))
@@ -201,7 +201,7 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="header" style="padding-bottom: 20px;">
-                                <h4 class="title"><b>About Trainer<b></h4>
+                                <h4 class="title"><b>About Program<b></h4>
                             </div>
                             
                         </div>
@@ -218,12 +218,12 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label><b>Trainer Name</b></label>
-                                                <input type="text" class="form-control border-input {{ $errors->has('trainer') ? ' is-invalid' : '' }}" placeholder="Trainer Name" name="trainer" value="{{ old('trainer') ? old('trainer') : $training->trainer_name }}" required>
+                                                <label><b>Program Start Time</b></label>
+                                                <input type="time" class="form-control border-input {{ $errors->has('start_time') ? ' is-invalid' : '' }}" placeholder="" name="start_time" value="{{ old('start_time') ? old('start_time') : date('H:i', strtotime($training->start_time)) }}" required>
 
-                                                @if ($errors->has('trainer'))
+                                                @if ($errors->has('start_time'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('trainer') }}</strong>
+                                                        <strong>{{ $errors->first('start_time') }}</strong>
                                                     </span>
                                                 @endif
 
@@ -234,13 +234,13 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 
-                                                <label><b>Description </b></label>
-                                                <textarea name="trainer_description" rows="5" class="form-control border-input {{ $errors->has('trainer_description') ? ' is-invalid' : '' }}" placeholder="Here can be trainer description" value="">{{ old('trainer_description') ? old('trainer_description') : $training->trainer_description }}</textarea>
+                                                <label><b>Venue </b></label>
+                                                <textarea name="venue" rows="5" class="form-control border-input {{ $errors->has('venue') ? ' is-invalid' : '' }}" placeholder="Here can be venue information" value="">{{ old('venue') ? old('venue') : $training->venue }}</textarea>
 
                                                 
-                                                @if ($errors->has('trainer_description'))
+                                                @if ($errors->has('venue'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('trainer_description') }}</strong>
+                                                        <strong>{{ $errors->first('venue') }}</strong>
                                                     </span>
                                                 @endif
 
@@ -255,13 +255,13 @@
                                                 <div class="pretty p-default p-thick p-pulse p-curve">
                                                     <input type="radio" name="type" value="0" />
                                                     <div class="state p-warning-o">
-                                                        <label>Technical Training</label>
+                                                        <label>Workshop</label>
                                                     </div>
                                                 </div>
                                                 <div class="pretty p-default p-thick p-pulse p-curve">
                                                     <input type="radio" name="type" value="1" />
                                                     <div class="state p-warning-o">
-                                                        <label>Vendor Training</label>
+                                                        <label>Seminar</label>
                                                     </div>
                                                 </div>
                                                 
@@ -310,7 +310,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    <p class="file-return">only pdf, doc, docx, xls, xlsx, ppt, pptx and image format</p>
+                                                    <p class="file-return">only image format</p>
 
                                                 @if ($errors->has('file'))
                                                     <span class="invalid-feedback" role="alert">
@@ -326,7 +326,7 @@
                           
 
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Update Training</button>
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Update Program</button>
                                     </div>
                                     <div class="clearfix"></div>
                                 

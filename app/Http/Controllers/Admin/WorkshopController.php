@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-use App\Training;
+use App\Awareness;
 
 use Auth;
 
-class TrainingController extends Controller
+class WorkshopController extends Controller
 {
     public function __construct()
     {
@@ -26,8 +27,8 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        $array['trainings'] = Training::orderBy('id', 'desc')->paginate(15);
-        return view('admin.training.index')->with($array);
+        $array['workshops'] = Awareness::orderBy('id', 'desc')->paginate(15);
+        return view('admin.workshop.index')->with($array);
     }
 
     /**
@@ -37,7 +38,7 @@ class TrainingController extends Controller
      */
     public function create()
     {
-        return view('admin.training.create');
+        return view('admin.workshop.create');
     }
 
     /**
@@ -51,12 +52,14 @@ class TrainingController extends Controller
         //
         $validator = Validator::make($request->all(), [
             'title' => 'string|required',
-            'description' => 'required|string|min:20',
+            'description' => 'required|string|min:5',
             'start_date' => 'required|date',
             'fee' => 'integer|nullable',
             'contact' => 'required',
-            'trainer' => 'string|required',
-            'trainer_description' => 'required|string|min:20',
+
+            'start_time' => 'required|date_format:H:i',
+            'venue' => 'required|string|min:5',
+
             'type' => 'required',
             'file'=>  'mimes:jpg,jpeg,gif,png',
 	    ]);
@@ -83,19 +86,21 @@ class TrainingController extends Controller
                     $file = NULL;    
                 }
 
-                $t = new Training();
+                $t = new Awareness();
                 $t->title = $request->title;
                 $t->description = $request->description;
                 $t->start_date = $request->start_date;
                 $t->fee = $request->fee;
                 $t->contact = $request->contact;
-                $t->trainer_name = $request->trainer;
-                $t->trainer_description = $request->trainer_description;
+
+                $t->start_time = $request->start_time;
+                $t->venue = $request->venue;
+
                 $t->type = $request->type;
                 $t->file = $file;
                 $t->save();
 
-			    return redirect('app/training/');
+			    return redirect('app/awareness/');
 		    }
     }
 
@@ -118,8 +123,8 @@ class TrainingController extends Controller
      */
     public function edit($id)
     {
-        $array['training'] = Training::find($id);
-        return view('admin.training.edit')->with($array);
+        $array['training'] = Awareness::find($id);
+        return view('admin.workshop.edit')->with($array);
     }
 
     /**
@@ -133,12 +138,14 @@ class TrainingController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'string|required',
-            'description' => 'required|string|min:20',
+            'description' => 'required|string|min:5',
             'start_date' => 'required|date',
             'fee' => 'integer|nullable',
             'contact' => 'required',
-            'trainer' => 'string|required',
-            'trainer_description' => 'required|string|min:20',
+
+            'start_time' => 'required|date_format:H:i',
+            'venue' => 'required|string|min:5',
+
             'type' => 'required',
             'file'=>  'mimes:jpg,jpeg,gif,png',
 	    ]);
@@ -165,14 +172,16 @@ class TrainingController extends Controller
                     $file = NULL;    
                 }
 
-                $t = Training::find($id);
+                $t = Awareness::find($id);
                 $t->title = $request->title;
                 $t->description = $request->description;
                 $t->start_date = $request->start_date;
                 $t->fee = $request->fee;
                 $t->contact = $request->contact;
-                $t->trainer_name = $request->trainer;
-                $t->trainer_description = $request->trainer_description;
+
+                $t->start_time = $request->start_time;
+                $t->venue = $request->venue;
+
                 $t->type = $request->type;
                 if($file != NULL){
                     $t->file = $file;
@@ -180,7 +189,7 @@ class TrainingController extends Controller
                 $t->save();
 
                 // return redirect('app/training/'.$id.'/edit');
-                return redirect('app/training/');
+                return redirect('app/awareness/');
 		    }
     }
 

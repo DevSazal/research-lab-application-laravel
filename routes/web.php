@@ -71,6 +71,7 @@ Route::post('/app/profile/skill', 'Admin\ProfileController@updateSkill')->name('
 Route::get('/app/report', 'Admin\DefaultController@report');
 
 Route::resource('/app/training', 'Admin\TrainingController', ['as'=>'admin']);
+Route::resource('/app/awareness', 'Admin\WorkshopController', ['as'=>'admin']);
 // publicview route
 
 
