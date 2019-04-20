@@ -83,6 +83,9 @@
 .pretty.p-icon:not(.p-fill) input:checked~.state. label:after {
     background-color: #14bf96!important;
 }
+.invalid-feedback strong{
+    color: red;
+}
 </style>
             <!-- content code start -->
 

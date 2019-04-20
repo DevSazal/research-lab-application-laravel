@@ -10,8 +10,15 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Training;
 
+use Auth;
+
 class TrainingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // $this->middleware('role');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +26,8 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        //
+        $array['trainings'] = Training::paginate(15);
+        return view('admin.training.index')->with($array);
     }
 
     /**
@@ -166,10 +174,13 @@ class TrainingController extends Controller
                 $t->trainer_name = $request->trainer;
                 $t->trainer_description = $request->trainer_description;
                 $t->type = $request->type;
-                $t->file = $file;
+                if($file != NULL){
+                    $t->file = $file;
+                }
                 $t->save();
 
-			    return redirect('app/training/'.$id.'/edit');
+                // return redirect('app/training/'.$id.'/edit');
+                return redirect('app/training/');
 		    }
     }
 

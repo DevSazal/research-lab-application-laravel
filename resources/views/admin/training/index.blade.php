@@ -1,7 +1,7 @@
 @extends('layouts.root')
 
-@section('title', 'Research - ')
-@section('pagetitle', 'Research')
+@section('title', 'Training - ')
+@section('pagetitle', 'Training')
 
 
 @section('content')
@@ -36,8 +36,8 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="header">
-                                    <h3 class="title"><b>Research List</b></h3>
-                                    <a href="{{ route('admin.research.create') }}" class="btn btn-success"> + Add New Training</a>
+                                    <h3 class="title"><b>Training List</b></h3>
+                                    <a href="{{ route('admin.training.create') }}" class="btn btn-success"> + Add New Training</a>
                                 </div>
                                 
                                  <!--    <div class="header">
@@ -49,8 +49,9 @@
                                         <thead>
                                             <th>#</th>
                                             <th>Training Title</th>
-                                            <th>Date</th>
-                                            <th>Trainer Name</th>
+                                            <th>Start Date</th>
+                                            <th>Trainer</th>
+                                            <th>Type</th>
                                             <th>Fee</th>
                                             <th>Contct</th>
                                             <th>Created</th>
@@ -58,62 +59,21 @@
                                         </thead>
 
                                         <tbody>
-                                            @foreach($research as $r)
+                                            @foreach($trainings as $t)
                                             <tr>
-                                                <td><b>{{ $r->id }}</b></td>
-                                                <td>{{ $r->title }}</td>
-                                                <td>{{ ($r->created_at)->format('Y-m-d') }}</td>
-                                                <td title="{{ \Carbon\Carbon::parse($r->expire_at)->format('jS F Y') }}">
-                                                <?php 
-                                                    if(date('Y-m-d') > $r->expire_at){
-                                                        echo "Expired";
-                                                        // echo date('Y-m-d', strtotime('today - 7 days')); 
-                                                    }else{
-                                                        $date1 = new DateTime(date('Y-m-d H:i:s'));
-                                                        $date2 = new DateTime($r->expire_at);
-                                                        echo $date1->diff($date2)->format("%dD %hH");
-                                                    }
-                                                        ?></td>
-                                                <td>
-                                                    @if($r->status == 1)
-                                                        <span class="label label-success">Published</span>
-                                                    @else
-                                                        <span class="label label-warning">Pending</span>
-                                                    @endif
-                                                </td>
-                                                <td>{{ $r->user->name }}</td>
-                                                <td>
-                                                    
-                                                @if(Auth::user()->role > 2 && Auth::user()->power == 1)
-                                                    @if($r->status == 0)
-                                                        <button onclick="$(this).parent().find('#publish').submit()" class="btn btn-success btn-sm">Publish</button>
-                                                        
-
-                                                    @else
-                                                        <button onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Pending</button>
-                                                        
-                                                    @endif
-                                                @endif
-                                                        <!-- <button onclick="$(this).parent().find('#edit').submit()" class="btn btn-info btn-sm">Edit</button> -->
-                                                        <a href="{{ route('admin.research.edit', $r->id) }}" class="btn btn-info btn-sm">Edit</a>
-
-
-                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#wait').submit()" class="btn btn-danger btn-sm">Wait</a> -->
-                                                        <form id="wait" method="POST" action="{{ url('app/research/pending', $r->id) }}">
-                                                            @method('PUT')
-                                                            @csrf
-                                                        </form>
-                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->
-                                                        <form id="publish" method="POST" action="{{ url('app/research/publish', $r->id) }}">
-                                                            @method('PUT')
-                                                            @csrf
-                                                        </form>
-                                                        <!-- <a href="javascript:void(0)" onclick="$(this).parent().find('#accept').submit()" class="btn btn-info btn-sm">Accept</a> -->
-                                                        <form id="edit" method="POST" action="{{ route('admin.research.edit', $r->id) }}">
-                                                            @method('GET')
-                                                            @csrf
-                                                        </form>
-                                                                                                        
+                                                <td><b>{{ $t->id }}</b></td>
+                                                <td>{{ $t->title }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($t->start_date)->format('j F Y') }}</td>
+                                                <td>{{ $t->trainer_name }}</td>
+                                                <td>@if($t->type == 0)<span class="label label-success">Technical</span>@elseif($t->type == 1)<span class="label label-primary">Vendor</span>@endif</td>
+                                                <td>@if($t->fee != NULL){{ $t->fee.' BDT' }}@else<span class="label label-success">Free</span>@endif</td>
+                                                <td>{{ $t->contact }}</td>
+                                                <td>{{ ($t->created_at)->format('Y/m/d') }}</td>
+                                                
+                                                <td>     
+                                                    @if(Auth::user()->role > 2 && Auth::user()->power == 1)
+                                                       <a href="{{ route('admin.training.edit', $t->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                                    @endif                                                     
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -126,7 +86,7 @@
                                 </div>
                                 <!--pagination-->
                                 <nav class="pagination-box" aria-label="Page navigation">
-                                    {{ $research->links() }}
+                                    {{ $trainings->links() }}
                                     <!-- <ul class="pagination" role="navigation">
                                         <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
                                             <span class="page-link" aria-hidden="true">‹</span>
