@@ -5,6 +5,32 @@
 
 
 @section('content')
+<style type="text/css">
+    .complete_research{
+        width:100%;
+        border-radius: 25px ;
+        background: #31af91;
+        margin-top: 10px;
+        padding: 10px 0;
+        
+    }
+    .complete_research a{
+        color:#fff !important;
+        text-align: center;
+    }
+    
+    .complete_research:hover {
+        width:100%;
+        border-radius: 20px;
+        background: #3091B2;
+        margin-top: 10px;
+        padding: 10px 0;
+        color:#fff !important;
+        text-align: center;
+    }
+    
+
+</style>
             <div class="col">
                 <div class="col-content" id="chatBox">
                     <section class="message">
@@ -23,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="received-name-date-time">
-                                    <span>10.30 am</span> |<span>Sazal Ahamed</span>
+                                    <span>10.30 am</span> |<span>{{ $msg->user['name'] }}</span>
                                 </div>
                             </div>
                             @else
@@ -82,6 +108,8 @@
 
                             <a href="{{ url('app/research', $research->id) }}"><h3><i class="fas fa-external-link-alt"></i> {{ $research->title }}</h3></a>
                             <!-- <p>London, United Kingdom</p> -->
+                            <div class="complete_research"><a href="#">Complete Research</a></div>
+                            
 
                         </div>
 

@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return redirect('/app');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+//     // return redirect('/app');
+// });
+Route::get('/', 'HomeController@index');
+Route::get('/training', 'HomeController@training');
+Route::get('/awareness', 'HomeController@seminar');
+Route::get('/research', 'HomeController@research');
 
 Route::get('/app/test', function () {
     return view('admin.message.show');
@@ -75,21 +79,12 @@ Route::resource('/app/awareness', 'Admin\WorkshopController', ['as'=>'admin']);
 // publicview route
 
 
-Route::get('/index',function(){
-	return view('index');
-});
-
-Route::get('/research',function(){
-	return view('research');
-});
 
 Route::get('/contact',function(){
 	return view('contact');
 });
 
-Route::get('/training',function(){
-	return view('training');
-});
+
 
 // publicview route
 

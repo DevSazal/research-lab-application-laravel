@@ -24,9 +24,9 @@
         <nav class="navbar ">
           <div class="menu-left navbar-left">
             <ul class="nav navbar-nav">
-              <li><a href="login">Login</a></li>
+              <li><a href="{{ url('/login') }}">Login</a></li>
               <li><a class="disabled top-pad" id="slash">/</a></li>
-              <li><a href="register" class="top-pad">Register</a></li>
+              <li><a href="{{ url('/register') }}" class="top-pad">Register</a></li>
             </ul>
           </div>
           <div class="menu-right navbar-right">
@@ -58,21 +58,33 @@
               <div id="head-mobile"></div>
               <div class="button"></div>
               <ul class="navbar-right">
-                <li class="active"><a href='index'>HOME</a></li>
-                <li><a href="service">SERVICES</a></li>
-                <li><a href="research">RESEARCH</a></li>
-                <li><a href="#">SCHEDULES</a>
-                  <ul>
-                    <li><a href="#">TRAINING</a>
+                <li class="active"><a href="{{ url('/') }}">HOME</a></li>
+                <!-- <li><a href="service">SERVICES</a></li> -->
+                <li><a href="{{ url('/research') }}">RESEARCH</a></li>
+                 <li><a href="{{ url('/training') }}">TRAINING</a>
                       <ul>
-                        <li><a href="technical-trining.html">TECHNICAL</a></li>
-                        <li><a href="vendor-training.html">VENDOR</a></li>
+                        <li><a href="{{ url('/training') }}">TECHNICAL</a></li>
+                        <li><a href="{{ url('/training') }}">VENDOR</a></li>
+                      </ul>
+                  </li>
+                  <li><a href="{{ url('/awareness') }}">AWARENESS</a>
+                      <ul>
+                        <li><a href="{{ url('/awareness') }}">WORKSHOP</a></li>
+                        <li><a href="{{ url('/awareness') }}">SEMINAR</a></li>
+                      </ul>
+                  </li>
+                <!-- <li><a href="#">SCHEDULES</a>
+                  <ul>
+                    <li><a href="{{ url('/training') }}">TRAINING</a>
+                      <ul>
+                        <li><a href="{{ url('/training') }}">TECHNICAL</a></li>
+                        <li><a href="{{ url('/training') }}">VENDOR</a></li>
                       </ul>
                     </li>
-                    <li><a href="#">AWERNESS</a>
+                    <li><a href="{{ url('/awareness') }}">AWARENESS</a>
                       <ul>
-                        <li><a href="workshop.html">WORKSHOP</a></li>
-                        <li><a href="seminar.html">SEMINAR</a></li>
+                        <li><a href="{{ url('/awareness') }}">WORKSHOP</a></li>
+                        <li><a href="{{ url('/awareness') }}">SEMINAR</a></li>
                       </ul>
                     </li>
                     <ul>
@@ -81,10 +93,10 @@
                     </ul>
                 </li>
               </ul>
-              </li>
+              </li> -->
          <!-- <li><a href="news.html">NEWS</a></li> -->
-              <li><a href="innovation">INNOVATION</a></li>
-              <li><a href="contact">CONTACT</a></li>
+             <!--  <li><a href="innovation">INNOVATION</a></li> -->
+              <li><a href="{{ url('/contact') }}">CONTACT</a></li>
               <!-- <li><a href="#">BIO</a>
                   <ul>
                     <li><a href='#'>Product 1</a>

@@ -1,13 +1,21 @@
 @extends('layouts.public')
 
-@section('title', '')
+@section('title', 'Training - ')
   
 @section('content')
 
   <style type="text/css">
+    .short-line-up {
+      background: #e74c3c none repeat scroll 0 0;
+      display: block;
+      height: 3px;
+      width: 50px;
+      margin-bottom: 25px;
+    }
+
     
     .short-line {
-      background: #337ab7 none repeat scroll 0 0;
+      background: #85cf73 none repeat scroll 0 0;
       display: block;
       height: 3px;
       width: 50px;
@@ -21,17 +29,19 @@
       padding-right: 7px;
       
     }
+
     .short-line-after-trainer {
-      background: #337ab7 none repeat scroll 0 0;
+      background: #f1eeee none repeat scroll 0 0;
       display: block;
       height: 1px;
       width: 100%;
       margin: 10px 0;
     }
 
-    .trainer-footer i{
-      color:#337ab7;
-      padding-right: 7px;
+    .trainer-footer i {
+    color: #6ECF73;
+    padding-right: 7px;
+
     }
     .panel-body {
       padding-top: 5px;
@@ -41,43 +51,48 @@
 
 	<!--norse-map section start-->
 	  <section id="training-map">
-		<img src="{{ asset('assets/img/RND header.jpg') }}" width="100%" height="350px" style="#controls{ display: none;}"></img>
+		<img src="{{ asset('assets/img/training-banner-5.jpg') }}" width="100%" height="350px" style="#controls{ display: none;}"></img>
 	  </section>
   <!--norse-map section End-->
-  <section class="traning" style="padding-top: 30px;">
-    <div class="container"> 
-        <div class="row">
-            <div class="col-md-3">
-                <img  src="{{ asset('assets/img/Picture1.jpg') }}" width="100%" alt="Trainer image">
-                <div class="panel panel-default ">
-                    <div class="panel-body">
-                        <div class="training">
-                            <div class="row">
-                              <div class="container"> 
-                                <h4><b>Web Development</b></h4>
-                              </div>
-                            </div>
-                            <span class="short-line"></span>
-                        </div>  
-                        <div class="trainer">
-                            <div class="row">
-                                <div class="container"> 
-                                  <div><i class="fas fa-user-tie"></i> Md Kamrul Hasan</div>
-                                  <div><i class="fa fa-calendar fa-1x"></i> 12-04-2019</div> 
-                                </div>              
-                            </div> 
-                        </div> 
+
+  <section class="traning pb-20 pt-20" >
+      <div class="container">
+        <h2 class="text-left ">TRAINING</h2>
+        <p>It's helps to build your career</p>
+        <span class="short-line-up"></span>
+          <div class="row">
+              @foreach($trainings as $t)
+              <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset('storage/trainingPhoto/'.$t->file)}}" alt="Card image cap" width="100%" alt="training image" style="height: 180px;">
+                    <div class="card-body"> 
+                        <h5 class="card-title">{{ $t->title }}</h5>
+                        <span class="short-line"></span>
+                        <div style="padding-bottom:20px"> @if($t->type == 0)<span class="label label-success">Technical</span>@elseif($t->type == 1)<span class="label label-primary">Vendor</span>@endif</div> 
+
+                        <p class="card-text">{{ \Illuminate\Support\Str::words($t->description, 29,'....') }}</p>
+                        <span>
+                          <i class="far fa-user"></i><span class="icon-text">{{ $t->trainer_name }}</span> <br>
+                          <i class="far fa-calendar-alt"></i><span class="icon-text">{{ \Carbon\Carbon::parse($t->start_date)->format('j F Y') }}</span>    
+                        </span>
+
                         <span class="short-line-after-trainer"></span>
                         <div class="trainer-footer"> 
                             <div class="row">
-                                <div class="col-sm-6"><i class="fas fa-money-bill-alt"></i> 12500</div>
-                                <div class="col-sm-6"><i class="fa fa-phone"></i> 01521117791</div>
+                                <div class="col-sm-5"><i class="fas fa-money-bill-alt"></i> @if($t->fee != NULL){{ $t->fee.'' }}@else<span>Free</span>@endif</div>
+                                <div class="col-sm-7 text-right"><i class="fa fa-phone"></i> {{ $t->contact }}</div>
                             </div> 
-                        </div>  
+                        </div> 
+                        
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+              </div>
+            @endforeach
+          </div>
+          <nav class="pagination-box" aria-label="Page navigation">
+          {{ $trainings->links() }}                         
+        </nav>
+      </div>
   </section>
+
  @endsection

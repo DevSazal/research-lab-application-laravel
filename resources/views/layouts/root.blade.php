@@ -47,7 +47,43 @@
         .pretty.p-default:not(.p-fill) input:checked~.state.p-warning-o label:after {
             background-color: #14bf96!important;
         }
+        
+
     </style>
+    <style type="text/css">
+        .message{
+            position: relative;
+        }
+        .overlay{
+            position: absolute;
+            top: 20px;
+            right: 0px;
+            background: #39d2b4;
+            width: 12%;
+            font-size: 9px;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            border-radius: 25%;
+        }
+        .my-board{
+            position: relative;
+        }
+        .overlay1{
+            position: absolute;
+            top: 20px;
+            right: 0px;
+            background: #f39c12;
+            width: 12%;
+            font-size: 9px;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            border-radius: 25%;
+        }
+    </style>
+
+
     <!-- color change code 2nd style -->
     <?php
         $color = "#1abc9c";
@@ -156,7 +192,7 @@
                             <p>My Feed</p>
                         </a>
                     </li>
-                    @if(Auth::user()->role > 1 && Auth::user()->power == 1)
+                    @if(Auth::user()->role > 1 && Auth::user()->power == 1 && Auth::user()->role != 3)
                     <li class="
                             @if($segment=='research' && Request::segment(3)=='create'))
                             active
@@ -167,7 +203,7 @@
                         </a>
                     </li>
                     @endif
-                    @if(Auth::user()->role > 3 && Auth::user()->power == 1)
+                    @if(Auth::user()->role > 3 && Auth::user()->power == 1  && Auth::user()->role != 3)
                     <li class="
                             @if($segment=='user' && Request::segment(3)=='add'))
                             active
@@ -178,7 +214,7 @@
                         </a>
                     </li>
                     @endif
-                    @if(Auth::user()->role > 3 && Auth::user()->power == 1)
+                    @if(Auth::user()->role > 3 && Auth::user()->power == 1  && Auth::user()->role != 3)
                     <li class="
                             @if($segment=='user' && Request::segment(3)==NULL))
                             active
@@ -190,7 +226,7 @@
                     </li>
                     @endif
                     
-                    @if(Auth::user()->role > 3 && Auth::user()->power == 1)
+                    @if(Auth::user()->role > 3 && Auth::user()->power == 1  && Auth::user()->role != 3)
                     <li data-panelId="panel4" class="
                             @if($segment=='skill')
                             active
@@ -211,7 +247,7 @@
                         </ul>
                     </li>
                     @endif
-                    @if(Auth::user()->role > 1 && Auth::user()->power == 1)
+                    @if(Auth::user()->role > 1 && Auth::user()->power == 1  && Auth::user()->role != 3)
                     <li data-panelId="panel5" class="
                             @if($segment=='research')
                             active
@@ -367,18 +403,26 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                         @if(Auth::user()->role >= 1 && Auth::user()->power == 1 && Auth::user()->role <= 2)
-                            <li>
+                            <li class="message">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-panel"></i>
-                                    <p>Messages(0)</p>
+                                    <i class="fa fa-envelope"></i>
+                                    <p>Messages</p>
                                 </a>
+                                <span class="overlay">
+                                04
+                                </span>
                             </li>
                             
-                            <li>
+
+                            
+                            <li class="my-board">
                                 <a href="{{ url('app/report') }}">
                                     <i class="ti-bell"></i>
                                     <p>My Board</p>
                                 </a>
+                                <span class="overlay1">
+                                14
+                                </span>
                             </li>
                         @endif
                         </ul>

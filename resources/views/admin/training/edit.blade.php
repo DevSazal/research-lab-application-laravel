@@ -310,7 +310,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    <p class="file-return">only pdf, doc, docx, xls, xlsx, ppt, pptx and image format</p>
+                                                    <p class="file-return">only image format</p>
 
                                                 @if ($errors->has('file'))
                                                     <span class="invalid-feedback" role="alert">
