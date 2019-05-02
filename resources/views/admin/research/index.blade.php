@@ -37,7 +37,9 @@
                             <div class="card">
                                 <div class="header">
                                     <h3 class="title"><b>Research List</b></h3>
+                                    @if(Auth::user()->role > 1 && Auth::user()->power == 1 && Auth::user()->role < 3)
                                     <a href="{{ route('admin.research.create') }}" class="btn btn-success"> + Add New Research</a>
+                                    @endif
                                 </div>
                                 
                                  <!--    <div class="header">

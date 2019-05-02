@@ -52,6 +52,8 @@ Route::resource('/app/research', 'Admin\ResearchController', [
 Route::put('/app/research/publish/{id}', 'Admin\AdminController@publish');
 Route::put('/app/research/pending/{id}', 'Admin\AdminController@pending');
 
+Route::get('/app/research/complete/{id}', 'Admin\SupervisorController@complete');
+
 Route::get('/app/research/{id}', 'Admin\DefaultController@singleResearch');
 Route::put('/app/research/{id}/apply', 'Admin\DefaultController@apply'); //role access r
 

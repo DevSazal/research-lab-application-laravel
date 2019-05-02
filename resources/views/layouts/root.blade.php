@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+    <link rel="icon" href="{{ asset('AdminSD/assets/img/brainstorm.png') }}" sizes="16x16">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>@yield('title')Applied Reaserch Application | Cyber Security Center | Developed by Appsolic Lab</title>
@@ -192,7 +192,7 @@
                             <p>My Feed</p>
                         </a>
                     </li>
-                    @if(Auth::user()->role > 1 && Auth::user()->power == 1 && Auth::user()->role != 3)
+                    @if(Auth::user()->role > 1 && Auth::user()->power == 1 && Auth::user()->role != 3 && Auth::user()->role != 5)
                     <li class="
                             @if($segment=='research' && Request::segment(3)=='create'))
                             active
@@ -404,13 +404,20 @@
                         <ul class="nav navbar-nav navbar-right">
                         @if(Auth::user()->role >= 1 && Auth::user()->power == 1 && Auth::user()->role <= 2)
                             <li class="message">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="{{ url('/app/inbox') }}">
                                     <i class="fa fa-envelope"></i>
                                     <p>Messages</p>
                                 </a>
+                                <?php 
+                                $msg = App\MessageReceiver::where('receiver_user_id', Auth::user()->id)
+                                ->where('seen', 0)
+                                ->count();
+                                ?>
+                                @if($msg > 0)
                                 <span class="overlay">
-                                04
+                                {{sprintf("%02d", $msg)}}
                                 </span>
+                                @endif
                             </li>
                             
 
@@ -420,9 +427,20 @@
                                     <i class="ti-bell"></i>
                                     <p>My Board</p>
                                 </a>
+                                <?php 
+                                if(Auth::user()->role == 2 && Auth::user()->power == 1){
+                                    $ap = App\Appointment::where('user_id', Auth::user()->id)->where('appointment_date', '>=', date('Y-m-d'))->count();
+                                }elseif(Auth::user()->role == 1 && Auth::user()->power == 1){
+                                    $ap = App\Appointment::where('m_user_id', Auth::user()->id)->where('appointment_date', '>=', date('Y-m-d'))->count();
+                                }else{
+                                    $ap = 0;
+                                }
+                                  ?>
+                                @if($ap > 0)
                                 <span class="overlay1">
-                                14
+                                {{ $ap }}
                                 </span>
+                                @endif
                             </li>
                         @endif
                         </ul>
@@ -438,13 +456,20 @@
                     
 
 
+<!-- power active start -->
+ @if(Auth::user()->power == 0)
+    <div class="DevSazal alert alert-info alert-with-icon" style="position:relative; background-color: #e17791; color: #fff;" data-notify="container">
+        <button type="button" aria-hidden="true" data-dismiss="alert" class="close" aria-label="Close">×</button>
+        <span data-notify="icon" class="ti-bell" style="font-size: 22px;margin-top: -16px;"></span>
+        <span data-notify="message"><b>Opps!!!</b> The <b>user</b> is not active yet. Please contact with <a href="{{ url('/') }}" style="color:black; font-weight:bold;" target="_blank">Cyber Security Center, DIU.</a></span>
+    </div>
+@else
 
+    @yield('content')
 
+@endif
 
-
-@yield('content')
-
-
+<!-- power active end -->
 
 
                 </div>
@@ -457,17 +482,17 @@
                         <ul>
 
                             <li>
-                                <a href="#">
+                                <a href="{{ url('/') }}">
                                     Cyber Security Center
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="http://daffodilvarsity.edu.bd/">
                                     Daffodil
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="https://opensource.org/licenses/MIT">
                                     Licenses
                                 </a>
                             </li>
@@ -475,7 +500,7 @@
                     </nav>
                     <div class="copyright pull-right">
                         &copy;
-                        <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i>
+                        <script>document.write(new Date().getFullYear())</script>. Developed <i class="fa fa-heart heart"></i>
                         by <a href="http://www.appsoliclab.com">Appsolic Lab</a>
                     </div>
                 </div>

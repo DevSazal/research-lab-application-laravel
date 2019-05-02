@@ -93,7 +93,7 @@ class MessageController extends Controller
 
                 if($request->spid == Auth::user()->id){
                     $appliers = ResearchApplicant::where('research_id', $request->rid)
-                                ->where('status', 2)
+                                ->where('status','>=', 2)
                                 ->get();
                     foreach($appliers as $a){
                         $rcv = new MessageReceiver();
@@ -103,7 +103,7 @@ class MessageController extends Controller
                     }
                 }else{
                     $appliers = ResearchApplicant::where('research_id', $request->rid)
-                                ->where('status', 2)
+                                ->where('status','>=', 2)
                                 ->where('user_id', '!=', Auth::user()->id)
                                 ->get();
                     foreach($appliers as $a){
@@ -132,6 +132,18 @@ class MessageController extends Controller
      */
     public function show($id)
     {
+        // msg seen start
+                    $msg = MessageReceiver::where('receiver_user_id', Auth::user()->id)
+                                ->where('seen', 0)
+                                ->get();
+                    foreach($msg as $m){
+                        $rcv = MessageReceiver::find($m->id);
+                        $rcv->seen = 1;
+    
+                        $rcv->save();
+                    } 
+        // msg seen end
+
         $r = Research::find($id);
         if(Auth::user()->role == 2 && $r->user_id == Auth::user()->id){
             $array['messages'] = Message::where('research_id', $id)->get();
@@ -139,7 +151,7 @@ class MessageController extends Controller
             return view('admin.message.show')->with($array);
         }else{
             $applier = ResearchApplicant::where('research_id', $id)
-                        ->where('status', 2)
+                        ->where('status','>=', 2)
                         ->where('user_id', Auth::user()->id)
                         ->count();
             if($applier > 0){

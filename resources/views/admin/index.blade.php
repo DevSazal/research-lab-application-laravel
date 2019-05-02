@@ -5,6 +5,8 @@
 
 @section('content')
 
+
+
                     <div class="row" id="board">
                         <div class="col-lg-3 col-sm-6">
                             <div class="card">
@@ -22,12 +24,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="footer">
+                                    <!-- <div class="footer">
                                         <hr />
                                         <div class="stats">
                                             <i class="ti-reload"></i> Updated now
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -47,12 +49,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="footer">
+                                    <!-- <div class="footer">
                                         <hr />
                                         <div class="stats">
                                             <i class="ti-calendar"></i> Last day
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -72,12 +74,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="footer">
+                                    <!-- <div class="footer">
                                         <hr />
                                         <div class="stats">
                                             <i class="ti-timer"></i> In the last hour
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -97,12 +99,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="footer">
+                                    <!-- <div class="footer">
                                         <hr />
                                         <div class="stats">
                                             <i class="ti-reload"></i> Updated now
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -116,7 +118,7 @@
                             <div class="card">
                                 <div class="header">
                                     <h3 class="title"><b>My Feed</b></h3>
-                                    @if(Auth::user()->role > 1 && Auth::user()->power == 1)
+                                    @if(Auth::user()->role > 1 && Auth::user()->power == 1 && Auth::user()->role < 3)
                                     <a href="{{ route('admin.research.create') }}" class="btn btn-success" style="margin-top: -36px;"> + Create A Research</a>
                                     @endif
                                 </div>

@@ -44,12 +44,12 @@
                                     <div class="message-received">
                                         <p>{{ $msg->message }}</p>
                                         @if($msg->file != NULL)
-                                        <p>{{ $msg->file }}</p>
+                                        <p><i class="fas fa-paperclip"></i> <a href="{{ asset('storage/researchfile/'.$msg->file)}}" target="_blank" style="color: #e6dde9;">{{ $msg->file }}</a></p>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="received-name-date-time">
-                                    <span>10.30 am</span> |<span>{{ $msg->user['name'] }}</span>
+                                    <span>{{ \Carbon\Carbon::parse($msg->created_at)->format('h:m a | j F Y') }}</span> |<span>{{ $msg->user['name'] }}</span>
                                 </div>
                             </div>
                             @else
@@ -58,7 +58,7 @@
                                     
                                         <p>{{ $msg->message }}</p>
                                         @if($msg->file != NULL)
-                                        <p>{{ $msg->file }}</p>
+                                        <p><i class="fas fa-paperclip"></i> <a href="{{ asset('storage/researchfile/'.$msg->file)}}" target="_blank" style="color: #e6dde9;">{{ $msg->file }}</a></p>
                                         @endif
                                     
                                 </div>
@@ -108,7 +108,17 @@
 
                             <a href="{{ url('app/research', $research->id) }}"><h3><i class="fas fa-external-link-alt"></i> {{ $research->title }}</h3></a>
                             <!-- <p>London, United Kingdom</p> -->
-                            <div class="complete_research"><a href="#">Complete Research</a></div>
+                            @if(Auth::user()->role == 2 && Auth::user()->power == 1)
+                            @if ($research->status != 3)
+                            <div class="complete_research">      
+                                <a href="{{ url('app/research/complete', $research->id) }}">Complete Research</a>      
+                            </div>
+                            @else
+                            <i class="fas fa-trophy" style="color: #f39c12"></i> <p style="color: #f39c12">  Research Completed</p>
+                            @endif
+                            @else
+                            @endif
+                            
                             
 
                         </div>

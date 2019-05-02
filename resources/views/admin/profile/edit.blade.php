@@ -88,8 +88,10 @@
                                   <img class="avatar border-white" src="{{ $user->image != NULL ? asset('storage/profile/'.$user->image) : asset('AdminSD/assets/img/pro-avt.png') }}" alt="..."/>
                                   <h4 class="title">{{ $user->name }}<br />
                                      <a href="">
-                                         @if(Auth::user()->role > 2)
+                                         @if(Auth::user()->role > 3)
                                          <small>@Admin</small>
+                                         @elseif(Auth::user()->role == 3)
+                                         <small>@Training & Awareness Coordinator</small>
                                          @elseif(Auth::user()->role == 2)
                                          <small>@Supervisor</small>
                                          @elseif(Auth::user()->role == 1)

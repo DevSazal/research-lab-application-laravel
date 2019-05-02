@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     
     <title>@yield('title')Cyber Security Center | Developed by Appsolic Lab</title>
+    <link rel="icon" href="{{ asset('AdminSD/inbox/img/fav.png') }}" sizes="16x16">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('AdminSD/inbox/css/style.css') }}">

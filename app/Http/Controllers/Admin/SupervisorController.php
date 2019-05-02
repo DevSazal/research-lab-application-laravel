@@ -107,5 +107,22 @@ class SupervisorController extends Controller
         return redirect('app/research/'.$id);
     }
 
+    public function complete($id){
+
+    	$user = Research::find($id);
+    	$user->status = 3;
+        $user->save();
+        
+        $appliers = ResearchApplicant::where('research_id', $id)->where('status', 2)->get();
+        foreach($appliers as $applier){
+            $user = ResearchApplicant::find($applier->id);
+            $user->status = 3;
+            $user->save();
+        }
+
+    	return redirect('/app/inbox/'.$id);
+
+	}
+
     
 }
