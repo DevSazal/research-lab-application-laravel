@@ -75,8 +75,6 @@ Route::get('/contact',function(){
 	return view('contact');
 });
 
-
-
 // publicview route
 
 

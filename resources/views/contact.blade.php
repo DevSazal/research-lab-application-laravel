@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', ' | research')
+@section('title', 'Contact - ')
   
 @section('content')
   <!--Header menu option End -->

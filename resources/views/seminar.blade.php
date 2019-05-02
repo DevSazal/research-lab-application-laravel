@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Seminar - ')
+@section('title', 'Awareness Events - ')
   
 @section('content')
 

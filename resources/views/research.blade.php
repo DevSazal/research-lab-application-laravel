@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', ' | research')
+@section('title', 'Research - ')
   
 @section('content')
 

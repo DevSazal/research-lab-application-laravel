@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 
-  <title>@yield('title')Cyber Securtiy Center</title>
+  <title>@yield('title')Cyber Securtiy Center, DIU | Developed by Appsolic Lab</title>
 
 </head>
 
