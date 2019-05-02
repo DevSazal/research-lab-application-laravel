@@ -20,17 +20,6 @@ Route::get('/training', 'HomeController@training');
 Route::get('/awareness', 'HomeController@seminar');
 Route::get('/research', 'HomeController@research');
 
-Route::get('/app/test', function () {
-    return view('admin.message.show');
-});
-
-// Route::get('/app/traning', function () {
-//     return view('admin.single');
-// });
-
-Route::get('/app/workshop', function () {
-    return view('admin.single');
-});
 
 Auth::routes();
 
@@ -90,17 +79,5 @@ Route::get('/contact',function(){
 
 // publicview route
 
-
-
-
-// Training route
-
-Route::get('/app/training/index',function(){
-    return view('admin.training.index');
-});
-
-
-
-// Training route
 
 
